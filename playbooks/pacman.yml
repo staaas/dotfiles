@@ -1,5 +1,0 @@
-- hosts: localhost
-  tasks:
-    - name: Update pacman and pacman cache
-      pacman: name=pacman state=installed update_cache=yes
-      sudo: yes

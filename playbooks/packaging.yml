@@ -1,0 +1,16 @@
+- hosts: localhost
+  tasks:
+    - name: Copy pacman.conf
+      copy: >
+        src=../templates/etc/pacman.conf
+        dest=/etc/pacman.conf
+        owner=root group=root mode=0644
+      sudo: yes
+    - name: Update pacman and pacman cache
+      pacman: name=pacman state=installed update_cache=yes
+      sudo: yes
+    - name: Update packages
+      pacman: name=pacman state=installed
+      sudo: yes
+
+
