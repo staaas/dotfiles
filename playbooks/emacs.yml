@@ -1,0 +1,19 @@
+- hosts: localhost
+  tasks:
+    - name: "emacs: install packages"
+      pacman: name={{ item }} state=installed
+      sudo: yes
+      with_items:
+        - emacs
+        - python2-jedi-git  # garage22
+        - python-epc  # garage22
+        - python3-jedi-git  # garage22
+        - python-epc  # garage22
+    - name: "emacs: copy .emacs"
+      copy: >
+        src=../templates/home/user/.emacs
+        dest=/home/{{ ansible_user_id }}/.emacs
+    - name: "emacs: copy .emacs.d"
+      copy: >
+        src=../templates/home/user/.emacs.d
+        dest=/home/{{ ansible_user_id }}/.
