@@ -1,0 +1,12 @@
+- hosts: localhost
+  tasks:
+    - name: "gnome-keyring: install"
+      pacman: name={{ item }} state=installed
+      sudo: yes
+      with_items:
+        - gnome-keyring
+        - seahorse
+    - name: "gnome-keyring: configure"
+      copy: >
+        src=../templates/home/user/.zshenv
+        dest=/home/{{ ansible_user_id }}/.zshenv
