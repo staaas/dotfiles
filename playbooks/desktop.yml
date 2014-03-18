@@ -1,0 +1,49 @@
+- hosts: localhost
+  tasks:
+    - name: "desktop: install packages"
+      pacman: name={{ item }} state=installed
+      sudo: yes
+      with_items:
+        # base X11 packages
+        - xorg-server
+        - xorg-server-xephyr
+        - xorg-apps
+        - xf86-video-intel
+        # vital desktop stuff
+        - awesome
+        - vicious
+        - sbxkb
+        - i3lock
+        - gnome-keyring
+        # terminal
+        - rxvt-unicode
+        - urxvt-perls
+        # desktop manager
+        - lightdm
+        - lightdm-gtk3-greeter
+        # appearance
+        - lxappearance
+        - gnome-themes-standard
+        - zukitwo-themes  # garage22
+        # sound
+        - pulseaudio
+        - alsa-utils
+        - pavucontrol
+    - name: "desktop: install fonts"
+      pacman: name=pacman state=installed
+      sudo: yes
+      with_items:
+        - ttf-dejavu
+        - ttf-bitstream-vera
+        - ttf-inconsolata
+        - ttf-ubuntu-font-family
+        - terminus-font
+        - ttf-ms-fonts  # garage22
+    - name: "desktop: .Xprofile"
+      copy: >
+        src=../templates/home/user/.Xprofile
+        dest=/home/{{ ansible_user_id }}/.Xprofile
+    - name: "desktop: .icons"
+      copy: >
+        src=../templates/home/user/.icons/
+        dest=/home/{{ ansible_user_id }}/.icons/

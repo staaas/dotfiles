@@ -1,0 +1,9 @@
+# screen powersave
+xset +dpms
+xset dpms 0 0 300
+# remap keys
+if [  -f $HOME/.Xmodmap ]; then
+    /usr/bin/xmodmap $HOME/.Xmodmap
+fi
+
+start-pulseaudio-x11
