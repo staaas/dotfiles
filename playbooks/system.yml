@@ -5,8 +5,8 @@
       sudo: yes
     - name: "system: add %wheel to sudoers"
       copy: >
-        src=../templates/etc/sudoers.d/10-wheel
-        dest=/etc/sudoers.d/10-wheel owner=root group=root mode=0440
+        src=../templates/etc/sudoers.d/wheel
+        dest=/etc/sudoers.d/wheel owner=root group=root mode=0440
       sudo: yes
     - name: "system: install X"
       pacman: name={{ item }} state=installed
