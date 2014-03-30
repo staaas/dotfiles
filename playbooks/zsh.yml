@@ -1,0 +1,12 @@
+- hosts: localhost
+  tasks:
+    - name: "zsh: install oh-my-zsh"
+      pacman: name=oh-my-zsh-git state=installed
+      sudo: yes
+    - name: "zsh: copy .zshrc"
+      copy: >
+        src=../templates/home/user/.zshrc
+        dest=/home/{{ ansible_user_id }}/.zshrc
+    - name: "zsh: set default shell"
+      user: name={{ ansible_user_id }} shell=/usr/bin/zsh
+      sudo: yes

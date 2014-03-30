@@ -1,12 +1,16 @@
 - hosts: localhost
   tasks:
-    - name: "gnome-keyring: install"
+    - name: "keyring: install"
       pacman: name={{ item }} state=installed
       sudo: yes
       with_items:
         - gnome-keyring
         - seahorse
-    - name: "gnome-keyring: configure"
+    - name: "keyring: copy .zprofile"
+      copy: >
+        src=../templates/home/user/.zprofile
+        dest=/home/{{ ansible_user_id }}/.zprofile
+    - name: "keyring: copy .zshenv"
       copy: >
         src=../templates/home/user/.zshenv
         dest=/home/{{ ansible_user_id }}/.zshenv
