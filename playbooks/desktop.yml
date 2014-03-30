@@ -29,8 +29,29 @@
         - pulseaudio
         - alsa-utils
         - pavucontrol
+        # various software
+        - openssh
+        - wget
+        - gnu-netcat
+        - emacs
+        - firefox
+        - chromium
+        - thunderbird
+        - unzip
+        - libreoffice-calc
+        - libreoffice-draw
+        - libreoffice-impress
+        - libreoffice-math
+        - libreoffice-writer
+        - libreoffice-be
+        - libreoffice-ru
+        - evince
+        - sxiv
+        # messaging
+        - skype
+        - psi
     - name: "desktop: install fonts"
-      pacman: name=pacman state=installed
+      pacman: name={{ item }} state=installed
       sudo: yes
       with_items:
         - ttf-dejavu
