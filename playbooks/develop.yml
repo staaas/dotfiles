@@ -7,6 +7,10 @@
         - git
         - mercurial
         - subversion
+    - name: "developer: copy .gitconfig"
+      copy: >
+        src=../templates/home/user/.gitconfig
+        dest=/home/{{ ansible_user_id }}/.gitconfig
     - name: "developer: install Python and tools"
       pacman: name={{ item }} state=installed
       sudo: yes
@@ -28,4 +32,3 @@
       with_items:
         - octave
         - r
-
