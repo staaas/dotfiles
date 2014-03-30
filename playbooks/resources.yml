@@ -1,0 +1,21 @@
+- hosts: localhost
+  tasks:
+    - name: "resources: install tops"
+      pacman: name={{ item }} state=installed
+      sudo: yes
+      with_items:
+        - htop
+        - iotop
+        - powertop
+    - name: "resources: install tlp"
+      pacman: name={{ item }} state=installed
+      sudo: yes
+      with_items:
+        - tlp
+        - acpi_call
+    - name: "system: enable tlp"
+      service: name=tlp enabled=yes state=started
+      sudo: yes
+    - name: "system: enable tlp-sleep"
+      service: name=tlp-sleep enabled=yes state=started
+      sudo: yes
