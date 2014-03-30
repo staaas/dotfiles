@@ -1,0 +1,31 @@
+- hosts: localhost
+  tasks:
+    - name: "developer: install SCMs"
+      pacman: name={{ item }} state=installed
+      sudo: yes
+      with_items:
+        - git
+        - mercurial
+        - subversion
+    - name: "developer: install Python and tools"
+      pacman: name={{ item }} state=installed
+      sudo: yes
+      with_items:
+        - python
+        - python2
+        - pypy
+        - pypy3
+        - ipython
+        - ipython2
+        - python-virtualenv
+        - python2-virtualenv
+        - python-virtualenvwrapper
+        - python-virtualenv-clone
+        - python2-virtualenv-clone
+    - name: "developer: install math tools"
+      pacman: name={{ item }} state=installed
+      sudo: yes
+      with_items:
+        - octave
+        - r
+
