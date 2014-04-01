@@ -66,3 +66,11 @@ export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # ssh
 # export SSH_KEY_PATH="~/.ssh/dsa_id"
+
+# virtualenvwrapper
+export WORKON_HOME=~/dev/Envs
+mkdir -p $WORKON_HOME
+source /usr/bin/virtualenvwrapper.sh
+
+# source local rc file
+source ~/.zshrc_local
