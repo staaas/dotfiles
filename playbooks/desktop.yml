@@ -18,6 +18,7 @@
         # terminal
         - rxvt-unicode
         - urxvt-perls
+        - the_silver_searcher
         # desktop manager
         - lightdm
         - lightdm-gtk3-greeter
