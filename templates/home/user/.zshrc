@@ -74,3 +74,6 @@ source /usr/bin/virtualenvwrapper.sh
 
 # source local rc file
 source ~/.zshrc_local
+
+# fixing unknown TERM shen sshing
+alias ssh="TERM=rxvt ssh"
