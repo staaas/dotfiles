@@ -29,6 +29,7 @@
         # various software
         - openssh
         - wget
+        - mc
         - gnu-netcat
         - emacs
         - firefox
