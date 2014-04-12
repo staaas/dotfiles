@@ -50,7 +50,6 @@
         - evince
         - gimp
         - sxiv
-        - iconv
         # sound
         - pulseaudio
         - pulseaudio-alsa
