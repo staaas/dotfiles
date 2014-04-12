@@ -15,6 +15,7 @@
         - sbxkb
         - i3lock
         - gnome-keyring
+        - gnome-keyring-query  # from garage22
         # terminal
         - rxvt-unicode
         - urxvt-perls
@@ -67,8 +68,8 @@
         # messaging
         - skype
         - psi
-    - name: "desktop: set default pulseaudio sink"
-      shell: pactl set-default-sink alsa_output.usb-GYROCOM_C_C_Co.__LTD_Audiotrak_ProDigy_CUBE-01-CUBE.analog-stereo
+#    - name: "desktop: set default pulseaudio sink"
+#      shell: pactl set-default-sink alsa_output.usb-GYROCOM_C_C_Co.__LTD_Audiotrak_ProDigy_CUBE-01-CUBE.analog-stereo
     - name: "desktop: install fonts"
       pacman: name={{ item }} state=installed
       sudo: yes
