@@ -47,7 +47,9 @@
         - libreoffice-be
         - libreoffice-ru
         - evince
+        - gimp
         - sxiv
+        - iconv
         # sound
         - pulseaudio
         - pulseaudio-alsa
@@ -61,6 +63,7 @@
         - libvorbis
         - libmad
         - flac
+        - vlc
         # messaging
         - skype
         - psi
