@@ -1,0 +1,43 @@
+[general]
+metadata = ~/.config/offlineimap
+accounts = nottcc, gmail
+maxsyncaccounts = 2
+ui = ttyui
+
+
+[Account nottcc]
+localrepository = nottcc_local
+remoterepository = nottcc_remote
+status_backend = sqlite
+
+[Repository nottcc_local]
+type = Maildir
+localfolders = ~/mail/nottcc
+
+[Repository nottcc_remote]
+type = IMAP
+sslcacertfile = /etc/ssl/certs/ca-certificates.crt
+remotehost = nott.cc
+remoteuser = stas
+remotepass =
+maxconnections = 5
+
+
+[Account gmail]
+localrepository = gmail_local
+remoterepository = gmail_remote
+status_backend = sqlite
+
+[Repository gmail_local]
+type = Maildir
+localfolders = ~/mail/gmail
+
+[Repository gmail_remote]
+type = Gmail
+ssl = yes
+sslcacertfile = /etc/ssl/certs/ca-certificates.crt
+remoteuser = rudakou
+remotepass =
+maxconnections = 5
+folderfilter = lambda folder: folder in ('INBOX', '[Gmail]/Drafts','[Gmail]/Sent')
+nametrans = lambda folder: folder.replace("[Gmail]/","")

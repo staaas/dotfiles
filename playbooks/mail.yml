@@ -1,0 +1,21 @@
+- hosts: localhost
+  tasks:
+    - name: "mail: install packages"
+      pacman: name={{ item }} state=installed
+      sudo: yes
+      with_items:
+        - offlineimap
+    - name: "mail: .offlineimaprc"
+      copy: >
+        src=../templates/home/user/.offlineimaprc
+        dest=/home/{{ ansible_user_id }}/.offlineimaprc
+    - name: "mail: Maildir gmail"
+      file: >
+        path=/home/{{ ansible_user_id }}/mail/gmail
+        state=directory
+        mode=0700
+    - name: "mail: Maildir nottcc"
+      file: >
+        path=/home/{{ ansible_user_id }}/mail/nottcc
+        state=directory
+        mode=0700
