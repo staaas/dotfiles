@@ -9,6 +9,10 @@
       copy: >
         src=../templates/home/user/.offlineimaprc
         dest=/home/{{ ansible_user_id }}/.offlineimaprc
+    - name: "mail: offlineimap.py"
+      copy: >
+        src=../templates/home/user/mail/offlineimap.py
+        dest=/home/{{ ansible_user_id }}/mail/offlineimap.py
     - name: "mail: Maildir gmail"
       file: >
         path=/home/{{ ansible_user_id }}/mail/gmail

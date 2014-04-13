@@ -1,5 +1,6 @@
 [general]
 metadata = ~/.config/offlineimap
+pythonfile = ~/mail/offlineimap.py
 accounts = nottcc, gmail
 maxsyncaccounts = 2
 ui = ttyui
@@ -19,7 +20,7 @@ type = IMAP
 sslcacertfile = /etc/ssl/certs/ca-certificates.crt
 remotehost = nott.cc
 remoteuser = stas
-remotepass =
+remotepasseval = get_password('nottcc@offlineimap')
 maxconnections = 5
 
 
@@ -37,7 +38,7 @@ type = Gmail
 ssl = yes
 sslcacertfile = /etc/ssl/certs/ca-certificates.crt
 remoteuser = rudakou
-remotepass =
+remotepasseval = get_password('gmail@offlineimap')
 maxconnections = 5
 folderfilter = lambda folder: folder in ('INBOX', '[Gmail]/Drafts','[Gmail]/Sent')
 nametrans = lambda folder: folder.replace("[Gmail]/","")
