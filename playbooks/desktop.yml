@@ -50,6 +50,7 @@
         - evince
         - gimp
         - sxiv
+        - ntfsprogs
         # sound
         - pulseaudio
         - pulseaudio-alsa

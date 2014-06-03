@@ -5,6 +5,7 @@
       sudo: yes
       with_items:
         - offlineimap
+        - mu-git
     - name: "mail: .offlineimaprc"
       copy: >
         src=../templates/home/user/.offlineimaprc
@@ -23,3 +24,12 @@
         path=/home/{{ ansible_user_id }}/mail/nottcc
         state=directory
         mode=0700
+    - name: "mail: offlineimap.service"
+      copy: >
+        src=../templates/home/user/.config/systemd/user/offlineimap.service
+        dest=/home/{{ ansible_user_id }}/.config/systemd/user/offlineimap.service
+    - name: "mail: offlineimap.timer"
+      copy: >
+        src=../templates/home/user/.config/systemd/user/offlineimap.timer
+        dest=/home/{{ ansible_user_id }}/.config/systemd/user/offlineimap.timer
+

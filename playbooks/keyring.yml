@@ -6,10 +6,6 @@
       with_items:
         - gnome-keyring
         - seahorse
-    - name: "keyring: copy .zprofile"
-      copy: >
-        src=../templates/home/user/.zprofile
-        dest=/home/{{ ansible_user_id }}/.zprofile
     - name: "keyring: copy .zshenv"
       copy: >
         src=../templates/home/user/.zshenv

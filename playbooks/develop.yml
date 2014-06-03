@@ -26,6 +26,19 @@
         - python-virtualenvwrapper
         - python-virtualenv-clone
         - python2-virtualenv-clone
+    - name: "developer: install Rust tools"
+      pacman: name={{ item }} state=installed
+      sudo: yes
+      with_items:
+        - rust
+    - name: "developer: install Scala tools"
+      pacman: name={{ item }} state=installed
+      sudo: yes
+      with_items:
+        - scala
+        - sbt
+        - eclipse
+        - eclipse-scala-ide
     - name: "developer: install math tools"
       pacman: name={{ item }} state=installed
       sudo: yes
