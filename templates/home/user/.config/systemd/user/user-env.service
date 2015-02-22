@@ -1,0 +1,10 @@
+[Unit]
+Description=Systemd user environment
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/bin/systemd-set-user-env
+
+[Install]
+WantedBy=default.target
