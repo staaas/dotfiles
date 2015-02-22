@@ -1,9 +1,5 @@
-(load-theme 'tango-dark t)
-
-(set-default-font "-*-terminus-medium-r-*-*-*-140-75-75-*-*-iso10646-1")
-;; default font in new frames
-(add-to-list 'default-frame-alist
-             '(font . "-*-terminus-medium-r-*-*-*-140-75-75-*-*-iso10646-1"))
+;; default font size
+(set-face-attribute 'default nil :height 100)
 
 ;; Pretty buffer names for duplicate filenames
 (require 'uniquify) 

@@ -4,4 +4,5 @@
 (load-file "~/.emacs.d/editing.el")
 (load-file "~/.emacs.d/project.el")
 (load-file "~/.emacs.d/mail.el")
+(load-file "~/.emacs.d/org.el")
 (load-file "~/.emacs.d/pythonista.el")

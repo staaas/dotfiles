@@ -1,6 +1,9 @@
 (require 'mu4e)
 
-;; these are actually the defaults
+(setq
+ mu4e-get-mail-command "true"   ;; or fetchmail, or ...
+ mu4e-update-interval 300)             ;; update every 5 minutes
+
 (setq
  mu4e-maildir       "~/mail/nottcc"   ;; top-level Maildir
  mu4e-sent-folder   "/Sent"       ;; folder for sent messages
