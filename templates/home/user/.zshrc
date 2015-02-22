@@ -78,3 +78,6 @@ source ~/.zshrc_local
 # fixing unknown TERM shen sshing
 alias ssh="TERM=rxvt ssh"
 alias fab="TERM=rxvt fab"
+
+# random aliases
+alias mucount="mu msgs-count --query='flag:unread'"
