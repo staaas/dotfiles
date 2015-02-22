@@ -45,3 +45,11 @@
       with_items:
         - octave
         - r
+    - name: "developer: install debug tools"
+      pacman: name={{ item }} state=installed
+      sudo: yes
+      with_items:
+        - strace
+        - ltrace
+        - lsof
+        - valgrind
