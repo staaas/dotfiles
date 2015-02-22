@@ -65,6 +65,10 @@
         - libmad
         - flac
         - vlc
+        # intel amt management
+        - remmina
+        - libvncserver
+	- amtterm-git
         # messaging
         - skype
         - psi
