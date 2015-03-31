@@ -22,7 +22,7 @@
         - the_silver_searcher
         # desktop manager
         - lightdm
-        - lightdm-gtk3-greeter
+        - lightdm-gtk-greeter
         # appearance
         - lxappearance
         - gnome-themes-standard
@@ -32,7 +32,7 @@
         - wget
         - mc
         - gnu-netcat
-        - openconnect4x
+        - openconnect
         - emacs
         - firefox
         - chromium
@@ -40,13 +40,9 @@
         - flashplugin
         - thunderbird
         - unzip
-        - libreoffice-calc
-        - libreoffice-draw
-        - libreoffice-impress
-        - libreoffice-math
-        - libreoffice-writer
-        - libreoffice-be
-        - libreoffice-ru
+        - libreoffice-still
+        - libreoffice-still-be
+        - libreoffice-still-ru
         - evince
         - gimp
         - sxiv
@@ -68,7 +64,6 @@
         # intel amt management
         - remmina
         - libvncserver
-	- amtterm-git
         # messaging
         - skype
         - psi
