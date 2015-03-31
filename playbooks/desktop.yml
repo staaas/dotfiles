@@ -87,3 +87,5 @@
       copy: >
         src=../templates/home/user/.icons/
         dest=/home/{{ ansible_user_id }}/.icons/
+    - name: "desktop: default browser for Skype"
+      shell: xdg-mime default opera.desktop x-scheme-handler/http && xdg-mime default opera.desktop x-scheme-handler/https
