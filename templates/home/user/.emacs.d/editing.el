@@ -21,3 +21,8 @@
 (require 'yasnippet)
 (yas-global-mode 1)
 (yas/load-directory "~/.emacs.d/snippets")
+
+;; company mode
+(global-company-mode)
+(setq company-idle-delay 0.2)
+(setq company-minimum-prefix-length 1)

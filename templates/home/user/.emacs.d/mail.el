@@ -5,7 +5,7 @@
  mu4e-update-interval 300)             ;; update every 5 minutes
 
 (setq
- mu4e-maildir       "~/mail/nottcc"   ;; top-level Maildir
+ mu4e-maildir       "~/.mail/nottcc"   ;; top-level Maildir
  mu4e-sent-folder   "/Sent"       ;; folder for sent messages
  mu4e-drafts-folder "/Drafts"     ;; unfinished messages
  mu4e-trash-folder  "/Trash"      ;; trashed messages

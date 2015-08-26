@@ -1,6 +1,27 @@
 ;; make more packages available with the package installer
 (setq to-install
-      '(python-mode rust-mode flymake-rust ein slime magit yasnippet jedi auto-complete autopair find-file-in-repository projectile ))
+      '(
+	flycheck
+	ein
+	magit
+	yasnippet
+	auto-complete
+	autopair
+	find-file-in-repository
+	projectile
+	company
+	;; python
+	python-mode
+	jedi
+	;; lisp
+	slime
+	;; rust
+	rust-mode
+	company-racer
+	racer
+	flycheck-rust
+	rust-mode
+	))
 
 (require 'package)
 (package-initialize)

@@ -6,3 +6,4 @@
 (load-file "~/.emacs.d/mail.el")
 (load-file "~/.emacs.d/org.el")
 (load-file "~/.emacs.d/pythonista.el")
+(load-file "~/.emacs.d/rustacian.el")

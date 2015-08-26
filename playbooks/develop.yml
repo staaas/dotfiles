@@ -30,7 +30,8 @@
       pacman: name={{ item }} state=installed
       sudo: yes
       with_items:
-        - rust
+        - multirust
+        - rust-racer
     - name: "developer: install Scala tools"
       pacman: name={{ item }} state=installed
       sudo: yes
@@ -53,3 +54,10 @@
         - ltrace
         - lsof
         - valgrind
+    - name: "developer: install virtualization tools"
+      pacman: name={{ item }} state=installed
+      sudo: yes
+      with_items:
+        - vagrant
+        - virtualbox
+        - virtualbox-host-modules
