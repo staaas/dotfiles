@@ -26,3 +26,6 @@
 (global-company-mode)
 (setq company-idle-delay 0.2)
 (setq company-minimum-prefix-length 1)
+
+;; flycheck-mode
+(add-hook 'after-init-hook #'global-flycheck-mode)

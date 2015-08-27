@@ -5,7 +5,6 @@
 	ein
 	magit
 	yasnippet
-	auto-complete
 	autopair
 	find-file-in-repository
 	projectile

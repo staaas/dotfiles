@@ -26,6 +26,8 @@
         - python-virtualenvwrapper
         - python-virtualenv-clone
         - python2-virtualenv-clone
+        - flake8
+        - python2-flake8
     - name: "developer: install Rust tools"
       pacman: name={{ item }} state=installed
       sudo: yes
