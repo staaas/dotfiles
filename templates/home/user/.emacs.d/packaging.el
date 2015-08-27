@@ -12,6 +12,7 @@
 	;; python
 	python-mode
 	jedi
+	company-jedi
 	;; lisp
 	slime
 	;; rust

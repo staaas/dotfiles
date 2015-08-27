@@ -21,10 +21,12 @@
 
 (setq jedi:setup-keys t)
 
+(require 'company)
 (add-hook 'python-mode-hook
 	  (lambda ()
 	    (jedi:setup)
-	    (jedi:ac-setup)))
+	    (jedi:ac-setup)
+	    (add-to-list 'company-backends 'company-jedi)))
 
 ;; Python2/Flake8 as a default Python linter
 (setq flycheck-python-flake8-executable "/usr/bin/flake8-python2")
