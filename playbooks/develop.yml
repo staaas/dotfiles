@@ -1,0 +1,65 @@
+- hosts: localhost
+  tasks:
+    - name: "developer: install SCMs"
+      pacman: name={{ item }} state=installed
+      sudo: yes
+      with_items:
+        - git
+        - mercurial
+        - subversion
+    - name: "developer: copy .gitconfig"
+      copy: >
+        src=../templates/home/user/.gitconfig
+        dest=/home/{{ ansible_user_id }}/.gitconfig
+    - name: "developer: install Python and tools"
+      pacman: name={{ item }} state=installed
+      sudo: yes
+      with_items:
+        - python
+        - python2
+        - pypy
+        - pypy3
+        - ipython
+        - ipython2
+        - python-virtualenv
+        - python2-virtualenv
+        - python-virtualenvwrapper
+        - python-virtualenv-clone
+        - python2-virtualenv-clone
+        - flake8
+        - python2-flake8
+    - name: "developer: install Rust tools"
+      pacman: name={{ item }} state=installed
+      sudo: yes
+      with_items:
+        - multirust
+        - rust-racer
+    - name: "developer: install Scala tools"
+      pacman: name={{ item }} state=installed
+      sudo: yes
+      with_items:
+        - scala
+        - sbt
+        - eclipse
+        - eclipse-scala-ide
+    - name: "developer: install math tools"
+      pacman: name={{ item }} state=installed
+      sudo: yes
+      with_items:
+        - octave
+        - r
+    - name: "developer: install debug tools"
+      pacman: name={{ item }} state=installed
+      sudo: yes
+      with_items:
+        - strace
+        - ltrace
+        - lsof
+        - valgrind
+    - name: "developer: install virtualization tools"
+      pacman: name={{ item }} state=installed
+      sudo: yes
+      with_items:
+        - vagrant
+        - virtualbox
+        - virtualbox-host-modules

@@ -1,0 +1,13 @@
+[Unit]
+Description=Emacs: the extensible, self-documenting text editor
+After=gnome-keyring.service
+Requires=gnome-keyring.service
+
+[Service]
+Type=forking
+ExecStart=/usr/bin/emacs --daemon -f mu4e
+ExecStop=/usr/bin/emacsclient --eval "(kill-emacs)"
+Restart=always
+
+[Install]
+WantedBy=default.target

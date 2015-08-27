@@ -1,0 +1,91 @@
+- hosts: localhost
+  tasks:
+    - name: "desktop: install packages"
+      pacman: name={{ item }} state=installed
+      sudo: yes
+      with_items:
+        # base X11 packages
+        - xorg-server
+        - xorg-server-xephyr
+        - xorg-apps
+        - xf86-video-intel
+        # vital desktop stuff
+        - awesome
+        - vicious
+        - sbxkb
+        - i3lock
+        - gnome-keyring
+        - gnome-keyring-query  # from garage22
+        # terminal
+        - rxvt-unicode
+        - urxvt-perls
+        - the_silver_searcher
+        # desktop manager
+        - lightdm
+        - lightdm-gtk-greeter
+        # appearance
+        - lxappearance
+        - gnome-themes-standard
+        - zukitwo-themes  # garage22
+        # various software
+        - openssh
+        - wget
+        - mc
+        - gnu-netcat
+        - openconnect
+        - emacs
+        - firefox
+        - chromium
+        - luakit
+        - flashplugin
+        - thunderbird
+        - unzip
+        - libreoffice-still
+        - libreoffice-still-be
+        - libreoffice-still-ru
+        - evince
+        - gimp
+        - sxiv
+        - ntfsprogs
+        # sound
+        - pulseaudio
+        - pulseaudio-alsa
+        - alsa-utils
+        - pavucontrol
+        - lib32-libpulse  # mostly for Skype
+        - lib32-alsa-plugins  # mostly for Skype
+        # deadbeef and optional dependencies
+        - deadbeef
+        - ffmpeg
+        - libvorbis
+        - libmad
+        - flac
+        - vlc
+        # intel amt management
+        - remmina
+        - libvncserver
+        # messaging
+        - skype
+        - psi
+#    - name: "desktop: set default pulseaudio sink"
+#      shell: pactl set-default-sink alsa_output.usb-GYROCOM_C_C_Co.__LTD_Audiotrak_ProDigy_CUBE-01-CUBE.analog-stereo
+    - name: "desktop: install fonts"
+      pacman: name={{ item }} state=installed
+      sudo: yes
+      with_items:
+        - ttf-dejavu
+        - ttf-bitstream-vera
+        - ttf-inconsolata
+        - ttf-ubuntu-font-family
+        - terminus-font
+        - ttf-ms-fonts  # garage22
+    - name: "desktop: .Xprofile"
+      copy: >
+        src=../templates/home/user/.Xprofile
+        dest=/home/{{ ansible_user_id }}/.Xprofile
+    - name: "desktop: .icons"
+      copy: >
+        src=../templates/home/user/.icons/
+        dest=/home/{{ ansible_user_id }}/.icons/
+    - name: "desktop: default browser for Skype"
+      shell: xdg-mime default opera.desktop x-scheme-handler/http && xdg-mime default opera.desktop x-scheme-handler/https

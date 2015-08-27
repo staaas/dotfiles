@@ -1,0 +1,56 @@
+- hosts: localhost
+  tasks:
+    - name: "system: install sudo"
+      pacman: name=sudo state=installed
+      sudo: yes
+    - name: "system: add %wheel to sudoers"
+      copy: >
+        src=../templates/etc/sudoers.d/wheel
+        dest=/etc/sudoers.d/wheel owner=root group=root mode=0440
+      sudo: yes
+    - name: "system: install netctl and wireless tools"
+      pacman: name={{ item }} state=installed
+      sudo: yes
+      with_items:
+        - netctl
+        - dialog  # used by wifi-menu
+        - wpa_supplicant
+        - wpa_actiond
+        - wireless_tools
+    - name: "system: install btrfs progs"
+      pacman: name=btrfs-progs state=installed
+      sudo: yes
+    - name: "system: install ntp"
+      pacman: name=ntp state=installed
+      sudo: yes
+    - name: "system: enable ntp"
+      service: name=ntpd enabled=yes state=started
+      sudo: yes
+    - name: "system: install X"
+      pacman: name={{ item }} state=installed
+      sudo: yes
+      with_items:
+        - xorg-server
+        - xorg-server-xephyr
+        - xorg-apps
+        - xf86-video-intel
+    - name: "system: configure thinkpad for X.org"
+      copy: >
+        src=../templates/etc/X11/xorg.conf.d/20-thinkpad.conf
+        dest=/etc/X11/xorg.conf.d/20-thinkpad.conf owner=root group=root
+      sudo: yes
+    - name: "system: configure  keyboard for X.org"
+      copy: >
+        src=../templates/etc/X11/xorg.conf.d/11-keyboard.conf
+        dest=/etc/X11/xorg.conf.d/11-keyboard.conf owner=root group=root
+      sudo: yes
+    - name: "system: fontconfig"
+      copy: >
+        src=../templates/etc/fonts/local.conf
+        dest=/etc/fonts/local.conf owner=root group=root
+      sudo: yes
+    - name: "system: disable pcspeaker"
+      copy: >
+        src=../templates/etc/modprobe.d/pcspkr.conf
+        dest=/etc/modprobe.d/pcspkr.conf owner=root group=root
+      sudo: yes

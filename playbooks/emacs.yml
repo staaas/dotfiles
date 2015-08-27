@@ -1,0 +1,36 @@
+- hosts: localhost
+  tasks:
+    - name: "emacs: install packages"
+      pacman: name={{ item }} state=installed
+      sudo: yes
+      with_items:
+        - emacs
+        - python2-jedi-git  # garage22
+        - python-epc  # garage22
+        - python3-jedi-git  # garage22
+        - python-epc  # garage22
+    - name: "emacs: copy .emacs"
+      copy: >
+        src=../templates/home/user/.emacs
+        dest=/home/{{ ansible_user_id }}/.emacs
+    - name: "emacs: copy .emacs.d"
+      copy: >
+        src=../templates/home/user/.emacs.d
+        dest=/home/{{ ansible_user_id }}/.
+    - name: "emacs: emacs daemon service"
+      copy: >
+        src=../templates/home/user/.config/systemd/user/emacs.service
+        dest=/home/{{ ansible_user_id }}/.config/systemd/user/emacs.service
+    - include: sub_mail.yml  # mu4e + offlineimap
+    - name: "emacs: enable emacs daemon service"
+      command: systemctl --user enable emacs.service
+    - name: "emacs: start daemon service"
+      command: systemctl --user start emacs.service
+    - name: "emacs: copy emacsclient shortcut"
+      copy: >
+        src=../templates/usr/bin/e
+        dest=/usr/bin/e
+        mode=0555
+        owner=root
+        group=root
+      sudo: yes
