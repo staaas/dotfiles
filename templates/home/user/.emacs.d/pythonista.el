@@ -21,42 +21,12 @@
 
 (setq jedi:setup-keys t)
 
+(require 'company)
 (add-hook 'python-mode-hook
 	  (lambda ()
 	    (jedi:setup)
-	    (jedi:ac-setup)))
+	    (jedi:ac-setup)
+	    (add-to-list 'company-backends 'company-jedi)))
 
-
-;; Flymake settings for Python
-(require 'flymake)
-(require 'auto-complete)
-(defun flymake-python-init ()
-  (let* ((temp-file (flymake-init-create-temp-buffer-copy
-                     'flymake-create-temp-inplace))
-         (local-file (file-relative-name
-                      temp-file
-                      (file-name-directory buffer-file-name))))
-    (list "epylint" (list local-file))))
-
-(defun flymake-activate ()
-  "Activates flymake when real buffer and you have write access"
-  (if (and
-       (buffer-file-name)
-       (file-writable-p buffer-file-name))
-      (progn
-        (flymake-mode t)
-        ;; this is necessary since there is no flymake-mode-hook...
-        (local-set-key (kbd "C-c n") 'flymake-goto-next-error)
-        (local-set-key (kbd "C-c b") 'flymake-goto-prev-error))))
-
-(defun ca-flymake-show-help ()
-  "Prints error description in command buffer"
-  (when (get-char-property (point) 'flymake-overlay)
-    (let ((help (get-char-property (point) 'help-echo)))
-      (if help (message "%s" help)))))
-
-(add-hook 'post-command-hook 'ca-flymake-show-help)
-(add-to-list 'flymake-allowed-file-name-masks
-             '("\\.py\\'" flymake-python-init))
-(add-hook 'python-mode-hook 'flymake-activate)
-(add-hook 'python-mode-hook 'auto-complete-mode)
+;; Python2/Flake8 as a default Python linter
+(setq flycheck-python-flake8-executable "/usr/bin/flake8-python2")
