@@ -8,6 +8,7 @@
 	autopair
 	find-file-in-repository
 	projectile
+	neotree
 	company
 	;; python
 	python-mode
