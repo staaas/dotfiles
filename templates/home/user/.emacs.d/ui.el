@@ -10,3 +10,6 @@
 ;; Column and line numbers
 (column-number-mode 1)
 (global-linum-mode)
+
+;; Switching between windows
+(global-set-key (kbd "M-p") 'ace-window)

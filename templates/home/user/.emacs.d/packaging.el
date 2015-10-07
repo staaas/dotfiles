@@ -1,6 +1,7 @@
 ;; make more packages available with the package installer
 (setq to-install
       '(
+	ace-window  ;; switching between windows
 	flycheck
 	ein
 	magit
