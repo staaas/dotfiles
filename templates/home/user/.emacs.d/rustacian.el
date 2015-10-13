@@ -18,3 +18,4 @@
 
      ;; Key binding to auto complete and indent
      (local-set-key (kbd "TAB") #'racer-complete-or-indent)))
+(add-hook 'rust-mode-hook 'cargo-minor-mode)

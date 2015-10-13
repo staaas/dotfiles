@@ -23,6 +23,7 @@
 	racer
 	flycheck-rust
 	rust-mode
+	cargo
 	))
 
 (require 'package)
