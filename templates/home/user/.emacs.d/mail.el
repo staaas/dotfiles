@@ -12,6 +12,7 @@
  mu4e-refile-folder "/Archive")   ;; saved messages
 
 (setq mu4e-view-show-addresses t)  ;; show email addresses along with names
+(setq mu4e-headers-visible-lines 15)  ;; messages count in split view
 
 ;; rendering html
 (defun my-render-html-message ()

@@ -1,6 +1,7 @@
 ;; make more packages available with the package installer
 (setq to-install
       '(
+	ace-window  ;; switching between windows
 	flycheck
 	ein
 	magit
@@ -8,6 +9,7 @@
 	autopair
 	find-file-in-repository
 	projectile
+	neotree
 	company
 	;; python
 	python-mode
@@ -21,6 +23,7 @@
 	racer
 	flycheck-rust
 	rust-mode
+	cargo
 	))
 
 (require 'package)
