@@ -13,7 +13,7 @@
 	company
 	;; python
 	python-mode
-	jedi
+	jedi-core
 	company-jedi
 	;; lisp
 	slime

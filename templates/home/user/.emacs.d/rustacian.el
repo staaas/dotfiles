@@ -14,7 +14,7 @@
      (set (make-local-variable 'company-backends) '(company-racer))
 
      ;; Key binding to jump to method definition
-     (local-set-key (kbd "M-.") #'racer-find-definition)
+     (local-set-key (kbd "C-.") #'racer-find-definition)
 
      ;; Key binding to auto complete and indent
      (local-set-key (kbd "TAB") #'racer-complete-or-indent)))
