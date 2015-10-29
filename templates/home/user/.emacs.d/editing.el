@@ -29,3 +29,7 @@
 
 ;; flycheck-mode
 (add-hook 'after-init-hook #'global-flycheck-mode)
+
+;; use 4 spaces instead of tabs
+(setq-default indent-tabs-mode nil)
+(setq-default tab-width 4)
