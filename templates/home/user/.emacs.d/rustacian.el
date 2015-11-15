@@ -17,5 +17,8 @@
      (local-set-key (kbd "C-.") #'racer-find-definition)
 
      ;; Key binding to auto complete and indent
-     (local-set-key (kbd "TAB") #'racer-complete-or-indent)))
+     (local-set-key (kbd "TAB") #'racer-complete-or-indent)
+
+     ;; Key binding to auto complete and indent
+     (local-set-key (kbd "C-c C-f") #'rustfmt-format-buffer)))
 (add-hook 'rust-mode-hook 'cargo-minor-mode)

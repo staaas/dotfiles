@@ -24,6 +24,7 @@
 	flycheck-rust
 	rust-mode
 	cargo
+	rustfmt
 	))
 
 (require 'package)
