@@ -2,8 +2,6 @@
 (require 'python-mode)
 (require 'autopair)
 (add-to-list 'auto-mode-alist '("\\.py\\'" . python-mode))
-;; Insert a colon and indent accordingly.
-(setq py-electric-colon-active t)
 ;; Split window horizontally on C-c C-c (default is vertically)
 (setq py-split-windows-on-execute-function 'split-window-horizontally)
 ;; Opening braces/quotes are autopaired;
