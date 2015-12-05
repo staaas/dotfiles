@@ -5,10 +5,10 @@
       sudo: yes
       with_items:
         - emacs
-        - python2-jedi-git  # garage22
-        - python-epc  # garage22
-        - python3-jedi-git  # garage22
-        - python-epc  # garage22
+	- python-pip  # for anaconda-mode
+	- python2-pip  # for anaconda-mode
+	- flake8
+	- python2-flake8
     - name: "emacs: copy .emacs"
       copy: >
         src=../templates/home/user/.emacs

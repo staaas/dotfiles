@@ -13,8 +13,8 @@
 	company
 	;; python
 	python-mode
-	jedi-core
-	company-jedi
+	anaconda-mode
+	company-anaconda
 	;; lisp
 	slime
 	;; rust

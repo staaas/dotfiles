@@ -8,17 +8,11 @@
 ;; closing braces/quotes are autoskipped;
 (add-hook 'python-mode-hook 'autopair-mode)
 
-(require 'jedi-core)
-;; It's also required to run "pip install --user jedi" and "pip
-;; install --user epc" to get the Python side of the library work
-;; correctly.
-
 (require 'company)
 (add-hook 'python-mode-hook
 	  (lambda ()
-	    (local-set-key (kbd "C-.") #'jedi:goto-definition)
-	    (local-set-key (kbd "C-,") #'jedi:goto-definition-pop-marker)
-	    (local-set-key (kbd "C-c d") #'jedi:show-doc)
+	    (anaconda-mode)
+	    (eldoc-mode)
 	    (add-to-list 'company-backends 'company-jedi)))
 
 ;; Python2/Flake8 as a default Python linter
