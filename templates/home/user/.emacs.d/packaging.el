@@ -11,6 +11,7 @@
 	projectile
 	neotree
 	company
+	ag
 	;; python
 	python-mode
 	anaconda-mode
