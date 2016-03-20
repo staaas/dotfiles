@@ -1,1 +1,1 @@
-export SSH_AUTH_SOCK=$XDG_RUNTIME_DIR/keyring/ssh
+export SSH_AUTH_SOCK=$XDG_RUNTIME_DIR/S.ssh-agent
