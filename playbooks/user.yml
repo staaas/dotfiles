@@ -13,14 +13,6 @@
       command: systemctl --user enable user-env.service
     - name: "user: start user-env service"
       command: systemctl --user start user-env.service
-    - name: "user: copy gnome-keyring service"
-      copy: >
-        src=../templates/home/user/.config/systemd/user/gnome-keyring.service
-        dest=/home/{{ ansible_user_id }}/.config/systemd/user/gnome-keyring.service
-    - name: "user: enable gnome-keyring service"
-      command: systemctl --user enable gnome-keyring.service
-    - name: "user: start gnome-keyring service"
-      command: systemctl --user start gnome-keyring.service
 
     - name: "user: copy ssh-agent service"
       copy: >
