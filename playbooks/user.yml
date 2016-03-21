@@ -1,19 +1,5 @@
 - hosts: localhost
   tasks:
-    - name: "user: copy executable systemd-set-user-env"
-      copy: >
-        src=../templates/usr/bin/systemd-set-user-env
-        dest=/usr/bin/systemd-set-user-env owner=root group=root mode=0555
-      sudo: yes
-    - name: "user: copy user-env service"
-      copy: >
-        src=../templates/home/user/.config/systemd/user/user-env.service
-        dest=/home/{{ ansible_user_id }}/.config/systemd/user/user-env.service
-    - name: "user: enable user-env service"
-      command: systemctl --user enable user-env.service
-    - name: "user: start user-env service"
-      command: systemctl --user start user-env.service
-
     - name: "user: copy ssh-agent service"
       copy: >
         src=../templates/home/user/.config/systemd/user/ssh-agent.service

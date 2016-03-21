@@ -1,5 +1,0 @@
-#!/bin/bash
-
-dbus_file=$(ls ~/.dbus/session-bus/ -t1 | head -1)
-. ~/.dbus/session-bus/$dbus_file
-systemctl --user set-environment DBUS_SESSION_BUS_ADDRESS="$DBUS_SESSION_BUS_ADDRESS"
