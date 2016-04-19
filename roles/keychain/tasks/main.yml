@@ -1,0 +1,53 @@
+---
+- name: "create .gnupg"
+  file: path=/home/{{ ansible_user_id }}/.gnupg state=directory mode=0700
+- name: "copy gpg-agent.conf"
+  copy: >
+    src=templates/home/user/.gnupg/gpg-agent.conf
+    dest=/home/{{ ansible_user_id }}/.gnupg/gpg-agent.conf
+- name: "copy gpg-preset-passphrase-user"
+  template: >
+    src=templates/usr/bin/gpg-preset-passphrase-user
+    dest=/usr/bin/gpg-preset-passphrase-{{ ansible_user_id }}
+    owner=root
+    mode=ugo=rx
+  become: yes
+- name: "copy gpg-pam-exec-user"
+  template: >
+    src=templates/usr/bin/gpg-pam-exec-user
+    dest=/usr/bin/gpg-pam-exec-{{ ansible_user_id }}
+    owner=root
+    mode=ugo=rx
+  become: yes
+
+
+- name: "update auth pam_unix in pam conf"
+  lineinfile: >
+    dest=/etc/pam.d/system-auth
+    line="auth      requisite  pam_unix.so     try_first_pass nullok"
+    regexp="auth      (required|requisite)  pam_unix\.so     try_first_pass nullok"
+  become: yes
+- name: "add gpg-pam-exec-user to pam conf"
+  lineinfile: >
+    dest=/etc/pam.d/system-auth
+    line="auth optional pam_exec.so expose_authtok /usr/bin/gpg-pam-exec-{{ ansible_user_id }}"
+    insertafter="auth      requisite  pam_unix.so     try_first_pass nullok"
+  become: yes
+
+
+- name: "copy ssh-agent service"
+  copy: >
+    src=templates/home/user/.config/systemd/user/ssh-agent.service
+    dest=/home/{{ ansible_user_id }}/.config/systemd/user/ssh-agent.service
+- name: "ensure .zshrc.d exists"
+  file: path=/home/{{ ansible_user_id }}/.zshrc.d state=directory
+- name: "copy zsh condiguration preset for ssh-agent"
+  copy: >
+    src=templates/home/user/.zshrc.d/00-ssh-agent.sh
+    dest=/home/{{ ansible_user_id }}/.zshrc.d/00-ssh-agent.sh
+
+
+- name: "enable ssh-agent service"
+  command: systemctl --user enable ssh-agent.service
+- name: "start ssh-agent service"
+  command: systemctl --user start ssh-agent.service
