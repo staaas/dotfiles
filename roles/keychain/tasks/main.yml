@@ -43,10 +43,6 @@
   become: yes
 
 
-- name: "copy ssh-agent service"
-  copy: >
-    src=templates/home/user/.config/systemd/user/ssh-agent.service
-    dest=/home/{{ ansible_user_id }}/.config/systemd/user/ssh-agent.service
 - name: "ensure .zshrc.d exists"
   file: path=/home/{{ ansible_user_id }}/.zshrc.d state=directory
 - name: "copy zsh condiguration preset for ssh-agent"
@@ -55,6 +51,10 @@
     dest=/home/{{ ansible_user_id }}/.zshrc.d/00-ssh-agent.sh
 
 
+- name: "copy ssh-agent service"
+  copy: >
+    src=templates/home/user/.config/systemd/user/ssh-agent.service
+    dest=/home/{{ ansible_user_id }}/.config/systemd/user/ssh-agent.service
 - name: "enable ssh-agent service"
   command: systemctl --user enable ssh-agent.service
 - name: "start ssh-agent service"
