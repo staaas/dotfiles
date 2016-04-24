@@ -1,0 +1,43 @@
+---
+- name: "install packages"
+  pacman: name={{ item }} state=installed
+  become: yes
+  with_items:
+    - isync
+    - mu-git
+
+- name: "copy mbsyncrc"
+  template: >
+    src=templates/.mbsyncrc
+    dest=/home/{{ ansible_user_id }}/.mbsyncrc
+    mode=u=r
+
+- include: bootstrap_mailbox.yml
+  with_items: "{{ boxes }}"
+
+- include: bootstrap_mu.yml
+
+- name: "copy mbsync service"
+  copy: >
+    src=templates/.config/systemd/user/mbsync.service
+    dest=/home/{{ ansible_user_id }}/.config/systemd/user/mbsync.service
+- name: "enable mbsync service"
+  command: systemctl --user enable mbsync.service
+- name: "start mbsync service"
+  command: systemctl --user start mbsync.service
+
+- name: "copy mbsync timer"
+  copy: >
+    src=templates/.config/systemd/user/mbsync.timer
+    dest=/home/{{ ansible_user_id }}/.config/systemd/user/mbsync.timer
+- name: "enable mbsync timer"
+  command: systemctl --user enable mbsync.timer
+- name: "start mbsync timer"
+  command: systemctl --user start mbsync.timer
+
+- name: "ensure .emacs.d exists"
+  file: path=/home/{{ ansible_user_id }}/.emacs.d state=directory
+- name: "copy emacs' mail.el"
+  template: >
+    src=templates/.emacs.d/mail.el
+    dest=/home/{{ ansible_user_id }}/.emacs.d/mail.el

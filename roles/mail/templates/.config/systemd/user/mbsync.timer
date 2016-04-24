@@ -1,0 +1,6 @@
+[Timer]
+OnUnitInactiveSec=300s
+Unit=mbsync.service
+
+[Install]
+WantedBy=default.target

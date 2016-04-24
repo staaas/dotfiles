@@ -1,0 +1,18 @@
+- name: "check if mu home exists"
+  stat: path=/home/{{ ansible_user_id }}/.mu
+  register: muhome
+
+- name: "check if we need to create mu home"
+  set_fact:
+    muhome_doesnot_exist: "{{ muhome.stat.isdir is not defined or not muhome.stat.isdir }}"
+
+- name: "create mu home"
+  file: >
+    path=/home/{{ ansible_user_id }}/.mu
+    state=directory
+    mode=0700
+  when: muhome_doesnot_exist
+
+- name: "run mu index"
+  command: mu index -m ~/mail
+  when: muhome_doesnot_exist
