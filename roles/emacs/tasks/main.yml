@@ -1,0 +1,46 @@
+---
+- name: "install packages"
+  pacman: name={{ item }} state=installed
+  become: yes
+  with_items:
+    - emacs
+    - flake8
+    - python2-flake8
+
+- name: "copy .emacs"
+  copy: >
+    src=templates/home/user/.emacs
+    dest=/home/{{ ansible_user_id }}/.emacs
+- name: "ensure .emacs.d exists"
+  file: path=/home/{{ ansible_user_id }}/.emacs.d state=directory
+- name: "copy .emacs.d"
+  copy: >
+    src=templates/home/user/.emacs.d/{{ item }}
+    dest=/home/{{ ansible_user_id }}/.emacs.d/{{ item }}.
+  with_items:
+    - startup.el
+    - ui.el
+    - packaging.el
+    - editing.el
+    - project.el
+    - org.el
+    - pythonista.el
+    - rustacian.el
+
+- name: "copy daemon service"
+  copy: >
+    src=templates/.config/systemd/user/emacs.service
+    dest=/home/{{ ansible_user_id }}/.config/systemd/user/emacs.service
+- name: "enable daemon service"
+  command: systemctl --user enable emacs.service
+- name: "start daemon service"
+  command: systemctl --user start emacs.service
+
+- name: "copy emacsclient shortcut"
+  copy: >
+    src=templates/e
+    dest=/usr/bin/e
+    mode=0555
+    owner=root
+    group=root
+  become: yes
