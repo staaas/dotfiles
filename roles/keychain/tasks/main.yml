@@ -1,4 +1,12 @@
 ---
+- name: "install packages"
+  pacman: name={{ item }} state=installed
+  become: yes
+  with_items:
+    - gnupg
+    - openssh
+    - pass
+
 - name: "create .gnupg"
   file: path=/home/{{ ansible_user_id }}/.gnupg state=directory mode=0700
 - name: "copy gpg-agent.conf"
