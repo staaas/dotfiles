@@ -65,6 +65,13 @@
   service: name=lightdm enabled=yes
   become: yes
 
+- name: configure xkb input languages
+  copy: src=templates/xorg/10-xkb.conf dest=/etc/X11/xorg.conf.d/10-xkb.conf
+  become: yes
+- name: install language switcher
+  pacman: package=sbxkb state=present
+  become: yes
+
 - name: install awesomewm
   pacman: package=awesome state=present
   become: yes
