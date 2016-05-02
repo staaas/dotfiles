@@ -1,0 +1,11 @@
+---
+- name: install zsh
+  pacman: package=zsh state=present
+  become: yes
+- name: create .zshrc.d
+  file: path={{ ansible_env.HOME }}/.zshrc.d state=directory
+- name: copy .zshrc
+  template: src=templates/zshrc dest={{ ansible_env.HOME }}/.zshrc
+- name: set zsh as a default shell for {{ ansible_user_id }}
+  user: name={{ ansible_user_id }} shell=/usr/bin/zsh
+  become: yes
