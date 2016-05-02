@@ -1,0 +1,7 @@
+---
+- name: configure trackpoint
+  copy: src=templates/xorg/20-trackpoint.conf dest=/etc/X11/xorg.conf.d/20-trackpoint.conf
+  become: yes
+- name: disable trackpad
+  copy: src=templates/xorg/20-trackpad.conf dest=/etc/X11/xorg.conf.d/20-trackpad.conf
+  become: yes
