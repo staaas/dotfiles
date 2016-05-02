@@ -1,0 +1,90 @@
+---
+- name: install xorg
+  pacman: package={{ item }} state=present
+  become: yes
+  with_items:
+  - xorg-server
+  - xf86-video-intel
+  - xf86-input-evdev
+  - mesa-libgl
+- name: install xorg-apps
+  pacman: package={{ item }} state=present
+  with_items:  # also known as xorg-apps metapackage
+  - xorg-bdftopcf
+  - xorg-iceauth
+  - xorg-luit
+  - xorg-mkfontdir
+  - xorg-mkfontscale
+  - xorg-sessreg
+  - xorg-setxkbmap
+  - xorg-smproxy
+  - xorg-x11perf
+  - xorg-xauth
+  - xorg-xbacklight
+  - xorg-xcmsdb
+  - xorg-xcursorgen
+  - xorg-xdpyinfo
+  - xorg-xdriinfo
+  - xorg-xev
+  - xorg-xgamma
+  - xorg-xhost
+  - xorg-xinput
+  - xorg-xkbcomp
+  - xorg-xkbevd
+  - xorg-xkbutils
+  - xorg-xkill
+  - xorg-xlsatoms
+  - xorg-xlsclients
+  - xorg-xmodmap
+  - xorg-xpr
+  - xorg-xprop
+  - xorg-xrandr
+  - xorg-xrdb
+  - xorg-xrefresh
+  - xorg-xset
+  - xorg-xsetroot
+  - xorg-xvinfo
+  - xorg-xwd
+  - xorg-xwininfo
+  - xorg-xwud
+
+- name: install lightdm + greeter + locker
+  pacman: package={{ item }} state=present
+  become: yes
+  with_items:
+  - lightdm
+  - lightdm-gtk-greeter
+  - light-locker
+- name: enable lightdm gtk greeter by default
+  lineinfile: >
+    dest=/etc/lightdm/lightdm.conf
+    line="greeter-session=lightdm-gtk-greeter"
+    insertafter="^\[Seat\:\*\]$"
+  become: yes
+- name: enable lightdm
+  service: name=lightdm enabled=yes
+  become: yes
+
+- name: install awesomewm
+  pacman: package=awesome state=present
+  become: yes
+- name: install awesomewm widgets
+  pacman: package=vicious state=present
+  become: yes
+- name: ensure awesomewm configuration dir exists
+  file: path={{ ansible_env.HOME }}/.config/awesome state=directory recurse=yes
+- name: copy awesomewm theme
+  copy: src=templates/awesome/themes dest={{ ansible_env.HOME }}/.config/awesome/themes
+# - name: copy awesomewm config
+#   copy: src=templates/awesome/rc.lua dest={{ ansible_env.HOME }}/.config/awesome/rc.lua
+
+- name: install terminal emulator
+  pacman: package=rxvt-unicode state=present
+  become: yes
+
+- name: install browsers
+  pacman: package={{ item }} state=present
+  become: yes
+  with_items:
+  - firefox
+  - chromium
