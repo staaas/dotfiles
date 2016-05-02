@@ -1,0 +1,6 @@
+---
+- name: install git
+  pacman: package=git state=installed
+  become: yes
+- name: copy .gitconfig
+  copy: src=templates/gitconfig dest={{ ansible_env.HOME }}/.gitconfig
