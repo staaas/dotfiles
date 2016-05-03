@@ -1,4 +1,11 @@
 ---
+- name: install sudo
+  pacman: package=sudo
+  become: yes
+- name: add wheel group to sudoers
+  copy: src=templates/sudoers/10-wheel dest=/etc/sudoers.d/10-wheel
+  become: yes
+
 - name: install zsh
   pacman: package=zsh state=present
   become: yes
