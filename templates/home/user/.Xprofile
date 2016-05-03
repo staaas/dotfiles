@@ -5,5 +5,3 @@ xset dpms 0 0 300
 if [  -f $HOME/.Xmodmap ]; then
     /usr/bin/xmodmap $HOME/.Xmodmap
 fi
-
-start-pulseaudio-x11
