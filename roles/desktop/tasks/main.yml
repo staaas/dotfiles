@@ -88,6 +88,8 @@
 - name: install terminal emulator
   pacman: package=rxvt-unicode state=present
   become: yes
+- name: configure terminal emulator
+  copy: src=templates/Xdefaults dest={{ ansible_env.HOME }}/.Xdefaults
 
 - name: install pulseaudio
   pacman: package={{ item }} state=present
