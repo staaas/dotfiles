@@ -89,6 +89,14 @@
   pacman: package=rxvt-unicode state=present
   become: yes
 
+- name: install pulseaudio
+  pacman: package={{ item }} state=present
+  become: yes
+  with_items:
+  - pulseaudio
+  - pavucontrol
+  - pamixer
+
 - name: install browsers
   pacman: package={{ item }} state=present
   become: yes
