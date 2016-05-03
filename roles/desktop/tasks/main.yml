@@ -95,3 +95,17 @@
   with_items:
   - firefox
   - chromium
+
+- name: install fonts
+  pacman: package={{ item }} state=present
+  become: yes
+  with_items:
+  - ttf-anonymous-pro
+  - ttf-bitstream-vera
+  - ttf-dejavu
+  - ttf-droid
+  - ttf-freefont
+  - ttf-inconsolata
+  - ttf-liberation
+  - ttf-ubuntu-font-family
+  - ttf-symbola
