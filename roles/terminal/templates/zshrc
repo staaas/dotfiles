@@ -1,1 +1,14 @@
+# zsh basic configuration
+HISTFILE=~/.histfile
+HISTSIZE=1000
+SAVEHIST=1000
+setopt appendhistory extendedglob notify
+unsetopt autocd beep nomatch
+bindkey -e
+
+# zsh completion
+autoload -Uz compinit
+compinit
+
+# application-specific logic
 for f in .zshrc.d/*.sh(.N); do source $f; done
