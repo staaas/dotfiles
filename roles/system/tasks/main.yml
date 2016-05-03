@@ -1,0 +1,11 @@
+---
+- name: "install ntp"
+  pacman: name=ntp state=installed
+  become: yes
+- name: "enable ntp"
+  service: name=ntpd enabled=yes state=started
+  become: yes
+
+- name: "install btrfs progs"
+  pacman: name=btrfs-progs state=installed
+  become: yes
