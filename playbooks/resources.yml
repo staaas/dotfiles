@@ -1,12 +1,5 @@
 - hosts: localhost
   tasks:
-    - name: "resources: install tops"
-      pacman: name={{ item }} state=installed
-      sudo: yes
-      with_items:
-        - htop
-        - iotop
-        - powertop
     - name: "resources: install tlp"
       pacman: name={{ item }} state=installed
       sudo: yes
