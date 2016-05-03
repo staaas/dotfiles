@@ -86,8 +86,11 @@
 #   copy: src=templates/awesome/rc.lua dest={{ ansible_env.HOME }}/.config/awesome/rc.lua
 
 - name: install terminal emulator
-  pacman: package=rxvt-unicode state=present
+  pacman: package={{ item }} state=present
   become: yes
+  with_items:
+  - rxvt-unicode
+  - urxvt-perls
 - name: configure terminal emulator
   copy: src=templates/Xdefaults dest={{ ansible_env.HOME }}/.Xdefaults
 
