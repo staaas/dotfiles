@@ -16,3 +16,11 @@
 - name: set zsh as a default shell for {{ ansible_user_id }}
   user: name={{ ansible_user_id }} shell=/usr/bin/zsh
   become: yes
+
+- name: install resource monitors
+  pacman: name={{ item }} state=installed
+  become: yes
+  with_items:
+  - htop
+  - iotop
+  - powertop
