@@ -48,7 +48,7 @@ URxvt*scrollstyle:plain
 URxvt.perl-ext-common: default
 
 # TERM=rxvt
-URxvt*termName: rxvt-256color
+URxvt*termName: rxvt
 
 # urxvt-perls
 URxvt.perl-ext-common:      default,clipboard,url-select,keyboard-select
