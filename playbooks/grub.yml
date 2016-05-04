@@ -1,15 +1,5 @@
 - hosts: localhost
   tasks:
-    - name: "grub: install"
-      pacman: name=grub state=installed
-      sudo: yes
-    - name: "grub: copy grub config"
-      copy: >
-        src=../templates//etc/default/grub
-        dest=/etc/default/grub
-      sudo: yes
-      notify:
-      - generate grub config
     - name: "grub: copy hold_shift handler"
       copy: >
         src=../templates/etc/grub.d/31_hold_shift

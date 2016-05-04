@@ -44,7 +44,3 @@
         # messaging
         - skype
         - psi
-    - name: "desktop: .icons"
-      copy: >
-        src=../templates/home/user/.icons/
-        dest=/home/{{ ansible_user_id }}/.icons/
