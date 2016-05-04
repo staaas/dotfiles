@@ -5,3 +5,19 @@
 - name: disable trackpad
   copy: src=templates/xorg/20-trackpad.conf dest=/etc/X11/xorg.conf.d/20-trackpad.conf
   become: yes
+
+- name: install tlp
+  pacman: package=tlp state=installed
+  become: yes
+- name: configure SATA_LINKPWR_ON_BAT in tlp to be safe for btrfs
+  lineinfile: >
+    dest=/etc/default/tlp
+    line="SATA_LINKPWR_ON_BAT=max_performance"
+    regexp="^SATA_LINKPWR_ON_BAT="
+  become: yes
+- name: enable tlp
+  service: name=tlp enabled=yes state=started
+  become: yes
+- name: enable tlp-sleep
+  service: name=tlp-sleep enabled=yes
+  become: yes
