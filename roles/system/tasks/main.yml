@@ -9,3 +9,18 @@
 - name: "install btrfs progs"
   pacman: name=btrfs-progs state=installed
   become: yes
+
+- name:  install netctl and related tools
+  pacman: name={{ item }} state=installed
+  become: yes
+  with_items:
+  - netctl
+  - dialog  # used by wifi-menu
+  - wpa_supplicant
+  - wpa_actiond  # used by netctl-auto
+  - ifplugd  # used by netctl-ifplugd
+
+- name: enable netctl-auto
+  service: name=netctl-auto@{{ wlan0 }} enabled=yes state=started
+  become: yes
+  when: wlan0 != 'none'
