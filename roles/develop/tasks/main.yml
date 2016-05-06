@@ -4,3 +4,6 @@
   become: yes
 - name: copy .gitconfig
   copy: src=templates/gitconfig dest={{ ansible_env.HOME }}/.gitconfig
+
+- name: ensure ~/projects exists
+  file: path={{ ansible_env.HOME }}/projects state=directory
