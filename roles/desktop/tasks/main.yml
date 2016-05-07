@@ -34,17 +34,19 @@
   - ru.png
 
 - name: install awesomewm
-  pacman: package=awesome state=present
+  pacman: package={{ item }} state=present
   become: yes
-- name: install awesomewm widgets
-  pacman: package=vicious state=present
-  become: yes
+  with_items:
+  - awesome
+  - vicious
+  - alsa-utils  # volume widget
+  - wireless_tools  # wi-fi widget
 - name: ensure awesomewm configuration dir exists
   file: path={{ ansible_env.HOME }}/.config/awesome state=directory recurse=yes
-- name: copy awesomewm theme
-  copy: src=templates/awesome/themes dest={{ ansible_env.HOME }}/.config/awesome/themes
-# - name: copy awesomewm config
-#   copy: src=templates/awesome/rc.lua dest={{ ansible_env.HOME }}/.config/awesome/rc.lua
+- name: copy awesomewm config
+  copy: src=templates/awesome/rc.lua dest={{ ansible_env.HOME }}/.config/awesome/rc.lua
+- name: copy awesomewm wallpaper
+  copy: src=templates/awesome/background.jpg dest={{ ansible_env.HOME }}/.config/awesome/background.jpg
 
 - name: install terminal emulator
   pacman: package={{ item }} state=present
