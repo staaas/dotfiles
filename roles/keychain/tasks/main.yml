@@ -52,7 +52,8 @@
     src=templates/home/user/.zshrc.d/00-ssh-agent.sh
     dest=/home/{{ ansible_user_id }}/.zshrc.d/00-ssh-agent.sh
 
-
+- name: ensure .config/systemd/user exists
+  file: path={{ ansible_env.HOME }}/.config/systemd/user state=directory recurse=yes
 - name: "copy ssh-agent service"
   copy: >
     src=templates/home/user/.config/systemd/user/ssh-agent.service
