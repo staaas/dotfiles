@@ -1,0 +1,9 @@
+- name: install git/mercurial/svn
+  pacman: package={{ item }} state=installed
+  become: yes
+  with_items:
+  - git
+  - mercurial
+  - subversion
+- name: copy .gitconfig
+  copy: src=templates/gitconfig dest={{ ansible_env.HOME }}/.gitconfig

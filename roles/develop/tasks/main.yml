@@ -1,9 +1,21 @@
 ---
-- name: install git
-  pacman: package=git state=installed
-  become: yes
-- name: copy .gitconfig
-  copy: src=templates/gitconfig dest={{ ansible_env.HOME }}/.gitconfig
-
 - name: ensure ~/projects exists
   file: path={{ ansible_env.HOME }}/projects state=directory
+
+- include: scm.yml
+
+- name: install docker
+  pacman: package={{ item }} state=installed
+  become: yes
+  with_items:
+  - docker
+  - docker-compose
+- name: start docker daemon
+  service: name=docker enabled=yes state=started
+  become: yes
+
+- include: nix.yml
+
+- include: python.yml
+
+- include: rust.yml

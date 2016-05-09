@@ -1,0 +1,14 @@
+- name: install python and related packages
+  pacman: name={{ item }} state=installed
+  become: yes
+  with_items:
+  - python
+  - python2
+  - pypy
+  - pypy3
+  - ipython
+  - ipython2
+  - python-virtualenv
+  - python-virtualenvwrapper
+  - flake8
+  - python2-flake8

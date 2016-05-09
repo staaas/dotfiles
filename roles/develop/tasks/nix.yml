@@ -1,0 +1,38 @@
+- name: install nix develop tools
+  pacman: name={{ item }} state=installed
+  become: yes
+  with_items:
+  - strace
+  - ltrace
+  - lsof
+  - valgrind
+  - binutils
+
+- name: install base-devel
+  pacman: name={{ item }} state=installed
+  become: yes
+  with_items:
+  - autoconf
+  - automake
+  - binutils
+  - bison
+  - fakeroot
+  - file
+  - findutils
+  - flex
+  - gawk
+  - gcc
+  - gettext
+  - grep
+  - groff
+  - gzip
+  - libtool
+  - m4
+  - make
+  - patch
+  - pkg-config
+  - sed
+  - sudo
+  - texinfo
+  - util-linux
+  - which

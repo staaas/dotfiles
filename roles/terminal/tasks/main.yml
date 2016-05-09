@@ -29,10 +29,5 @@
   pacman: name={{ item }} state=installed
   become: yes
   with_items:
-  # building
-  - base-devel
-  - binutils
-  - cower
-  # other
   - wget
   - curl
