@@ -21,19 +21,25 @@
   copy: >
     src=templates/.config/systemd/user/mbsync.service
     dest=/home/{{ ansible_user_id }}/.config/systemd/user/mbsync.service
+  when: boxes
 - name: "enable mbsync service"
   command: systemctl --user enable mbsync.service
+  when: boxes
 - name: "start mbsync service"
   command: systemctl --user start mbsync.service
+  when: boxes
 
 - name: "copy mbsync timer"
   copy: >
     src=templates/.config/systemd/user/mbsync.timer
     dest=/home/{{ ansible_user_id }}/.config/systemd/user/mbsync.timer
+  when: boxes
 - name: "enable mbsync timer"
   command: systemctl --user enable mbsync.timer
+  when: boxes
 - name: "start mbsync timer"
   command: systemctl --user start mbsync.timer
+  when: boxes
 
 - name: "ensure .emacs.d exists"
   file: path=/home/{{ ansible_user_id }}/.emacs.d state=directory

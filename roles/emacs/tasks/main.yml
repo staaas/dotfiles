@@ -8,15 +8,15 @@
     - python2-flake8
 
 - name: "copy .emacs"
-  copy: >
-    src=templates/home/user/.emacs
+  template: >
+    src=templates/.emacs
     dest=/home/{{ ansible_user_id }}/.emacs
 - name: "ensure .emacs.d exists"
   file: path=/home/{{ ansible_user_id }}/.emacs.d state=directory
 - name: "copy .emacs.d"
   copy: >
-    src=templates/home/user/.emacs.d/{{ item }}
-    dest=/home/{{ ansible_user_id }}/.emacs.d/{{ item }}.
+    src=templates/.emacs.d/{{ item }}
+    dest=/home/{{ ansible_user_id }}/.emacs.d/{{ item }}
   with_items:
     - startup.el
     - ui.el
@@ -28,7 +28,7 @@
     - rustacian.el
 
 - name: "copy daemon service"
-  copy: >
+  template: >
     src=templates/.config/systemd/user/emacs.service
     dest=/home/{{ ansible_user_id }}/.config/systemd/user/emacs.service
 - name: "enable daemon service"

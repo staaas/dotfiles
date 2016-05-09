@@ -3,7 +3,8 @@ Description=Emacs: the extensible, self-documenting text editor
 
 [Service]
 Type=forking
-ExecStart=/usr/bin/emacs --daemon -f mu4e
+ExecStart=/usr/bin/emacs --daemon{% if boxes %} -f mu4e{% endif %}
+
 ExecStop=/usr/bin/emacsclient --eval "(kill-emacs)"
 Restart=always
 
