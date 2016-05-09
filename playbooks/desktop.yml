@@ -4,21 +4,11 @@
       pacman: name={{ item }} state=installed
       sudo: yes
       with_items:
-        - i3lock
         # appearance
         - lxappearance
         - gnome-themes-standard
         - zukitwo-themes  # garage22
         # various software
-        - openssh
-        - wget
-        - mc
-        - gnu-netcat
-        - openconnect
-        - luakit
-        - flashplugin
-        - thunderbird
-        - unzip
         - libreoffice-still
         - libreoffice-still-be
         - libreoffice-still-ru
@@ -26,11 +16,6 @@
         - gimp
         - sxiv
         - ntfsprogs
-        # sound
-        - pulseaudio-alsa
-        - alsa-utils
-        - lib32-libpulse  # mostly for Skype
-        - lib32-alsa-plugins  # mostly for Skype
         # deadbeef and optional dependencies
         - deadbeef
         - ffmpeg

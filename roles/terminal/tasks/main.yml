@@ -29,5 +29,8 @@
   pacman: name={{ item }} state=installed
   become: yes
   with_items:
+  - gnu-netcat
   - wget
   - curl
+  - mc
+  - unzip
