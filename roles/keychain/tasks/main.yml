@@ -13,6 +13,8 @@
   copy: >
     src=templates/home/user/.gnupg/gpg-agent.conf
     dest=/home/{{ ansible_user_id }}/.gnupg/gpg-agent.conf
+- name: add arch devs to gpg.conf
+  lineinfile: dest={{ ansible_env.HOME }}/.gnupg/gpg.conf line="keyring /etc/pacman.d/gnupg/pubring.gpg"
 - name: "copy gpg-preset-passphrase-user"
   template: >
     src=templates/usr/bin/gpg-preset-passphrase-user
