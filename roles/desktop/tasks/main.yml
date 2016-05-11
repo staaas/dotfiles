@@ -17,6 +17,12 @@
 - name: enable lightdm
   service: name=lightdm enabled=yes
   become: yes
+- name: enable lightdm gtk greeter indicators
+  lineinfile: >
+    dest=/etc/lightdm/lightdm-gtk-greeter.conf
+    line="indicators=~clock;~spacer;~power"
+    regexp="^#?indicators="
+  become: yes
 
 - name: configure xkb input languages
   copy: src=templates/xorg/10-xkb.conf dest=/etc/X11/xorg.conf.d/10-xkb.conf
