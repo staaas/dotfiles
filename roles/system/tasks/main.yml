@@ -24,3 +24,17 @@
   service: name=netctl-auto@{{ wlan0 }} enabled=yes state=started
   become: yes
   when: wlan0 != 'none'
+
+- name: install openvpn and related tools
+  pacman: name={{ item }} state=installed
+  become: yes
+  with_items:
+  - openvpn
+  - openresolv
+- name: copy update-resolv-conf
+  copy: >
+    src=templates/openvpn/update-resolv-conf
+    dest=/usr/bin/update-resolv-conf
+    mode=ugo=rx
+    owner=root
+  become: yes
