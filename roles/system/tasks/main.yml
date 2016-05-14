@@ -38,3 +38,7 @@
     mode=ugo=rx
     owner=root
   become: yes
+
+- name: install network-related utils
+  pacman: name=net-tools state=installed
+  become: yes
