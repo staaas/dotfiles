@@ -1,3 +1,8 @@
 - name: install Rust tools
   pacman: name=rustup state=installed
   become: yes
+
+- name: ensure .zshrc.d exists
+  file: path={{ ansible_env.HOME }}/.zshrc.d state=directory
+- name: add .cargo/bin to PATH
+  copy: content="export PATH=$PATH:~/.cargo/bin\n" dest={{ ansible_env.HOME }}/.zshrc.d/50-rust.sh
