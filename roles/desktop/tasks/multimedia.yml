@@ -1,0 +1,18 @@
+- name: install pulseaudio
+  pacman: package={{ item }} state=present
+  become: yes
+  with_items:
+  - pulseaudio
+  - pavucontrol
+  - pamixer
+- name: install multimedia packages
+  pacman: name={{ item }} state=installed
+  become: yes
+  with_items:
+  - deadbeef
+  - ffmpeg
+  - libvorbis
+  - libmad
+  - flac
+  - vlc
+
