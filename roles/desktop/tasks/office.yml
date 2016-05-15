@@ -1,0 +1,4 @@
+- name: install pdf reader
+  pacman: name=evince state=installed
+  become: yes
+

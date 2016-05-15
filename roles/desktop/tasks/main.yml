@@ -65,6 +65,8 @@
 
 - include: multimedia.yml
 
+- include: office.yml
+
 - name: install browsers
   pacman: package={{ item }} state=present
   become: yes

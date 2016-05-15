@@ -1,11 +1,12 @@
 - name: install pulseaudio
-  pacman: package={{ item }} state=present
+  pacman: package={{ item }} state=installed
   become: yes
   with_items:
   - pulseaudio
   - pavucontrol
   - pamixer
-- name: install multimedia packages
+
+- name: install audio packages
   pacman: name={{ item }} state=installed
   become: yes
   with_items:
@@ -16,3 +17,9 @@
   - flac
   - vlc
 
+- name: install imaging packages
+  pacman: name={{ item }} state=installed
+  become: yes
+  with_items:
+  - sxiv
+  - imagemagick
