@@ -1,0 +1,3 @@
+- name: install bittorrent client
+  pacman: name=transmission-gtk state=installed
+  become: yes

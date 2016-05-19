@@ -67,6 +67,8 @@
 
 - include: office.yml
 
+- include: p2p.yml
+
 - name: install browsers
   pacman: package={{ item }} state=present
   become: yes
