@@ -1,3 +1,5 @@
+-- Standard lua library
+local math = require("math")
 -- Standard awesome library
 local gears = require("gears")
 local awful = require("awful")
@@ -70,7 +72,25 @@ local layouts =
     awful.layout.suit.magnifier,
     awful.layout.suit.floating
 }
+
+-- Variables for screens/tags manipulations
+local screen_count = math.min(3, screen.count())
+local _tags_per_screen_count = {
+      [1] = {{ 1, 2, 3, 4, 5, 6, 7, 8, 9, 0 }},
+      [2] = {{ 1, 2, 3, 4 }, { 5, 6, 7, 8, 9, 0 }},
+      [3] = {{ 1, 2, 3, 4 }, { 5, 6, 7, 8 }, { 9, 0 }}
+}
+local tags_per_screen = _tags_per_screen_count[screen_count]
+local screen_by_tag = {}
+for screen, tags in ipairs(tags_per_screen) do
+  for _, tag in ipairs(tags) do screen_by_tag[tag] = screen end
+end
+local tag_index_by_name = {}
+for screen, tags in ipairs(tags_per_screen) do
+  for id, name in ipairs(tags) do tag_index_by_name[name] = id end
+end
 -- }}}
+
 
 -- {{{ Wallpaper
 if beautiful.wallpaper then
@@ -83,9 +103,9 @@ end
 -- {{{ Tags
 -- Define a tag table which hold all screen tags.
 tags = {}
-for s = 1, screen.count() do
+for s = 1, screen_count do
     -- Each screen has its own tag table.
-    tags[s] = awful.tag({ 1, 2, 3, 4, 5, 6, 7, 8, 9 }, s, layouts[1])
+    tags[s] = awful.tag(tags_per_screen[s], s, layouts[1])
 end
 -- }}}
 
@@ -153,7 +173,7 @@ vicious.register(batwidget, vicious.widgets.bat,
                  "BAT0") -- see /sys/class/power_supply for options
 -- }}}
 
-for s = 1, screen.count() do
+for s = 1, screen_count do
     -- Create a promptbox for each screen
     mypromptbox[s] = awful.widget.prompt()
     -- Create an imagebox widget which will contains an icon indicating which layout we're using.
@@ -288,16 +308,38 @@ clientkeys = awful.util.table.join(
         end)
 )
 
+function get_tag (name, other_screen)
+    local screen_id = screen_by_tag[name]
+    if not screen_id then
+        return nil
+    end
+
+    local tag_index = tag_index_by_name[name]
+    if not tag_index then
+        return nil
+    end
+
+    if screen_id ~= mouse.screen then
+      if other_screen then
+        awful.screen.focus(screen_id)
+      else
+        return nil
+      end
+    end
+
+    return awful.tag.gettags(screen_id)[tag_index]
+end
+
 -- Bind all key numbers to tags.
 -- Be careful: we use keycodes to make it works on any keyboard layout.
 -- This should map on the top row of your keyboard, usually 1 to 9.
-for i = 1, 9 do
+for i = 1, 10 do
+    local tag_name = math.fmod(i, 10)
     globalkeys = awful.util.table.join(globalkeys,
         -- View tag only.
         awful.key({ modkey }, "#" .. i + 9,
                   function ()
-                        local screen = mouse.screen
-                        local tag = awful.tag.gettags(screen)[i]
+                        local tag = get_tag(tag_name, true)
                         if tag then
                            awful.tag.viewonly(tag)
                         end
@@ -305,8 +347,7 @@ for i = 1, 9 do
         -- Toggle tag.
         awful.key({ modkey, "Control" }, "#" .. i + 9,
                   function ()
-                      local screen = mouse.screen
-                      local tag = awful.tag.gettags(screen)[i]
+                      local tag = get_tag(tag_name, false)
                       if tag then
                          awful.tag.viewtoggle(tag)
                       end
@@ -315,7 +356,7 @@ for i = 1, 9 do
         awful.key({ modkey, "Shift" }, "#" .. i + 9,
                   function ()
                       if client.focus then
-                          local tag = awful.tag.gettags(client.focus.screen)[i]
+                          local tag = get_tag(tag_name, true)
                           if tag then
                               awful.client.movetotag(tag)
                           end
@@ -325,7 +366,7 @@ for i = 1, 9 do
         awful.key({ modkey, "Control", "Shift" }, "#" .. i + 9,
                   function ()
                       if client.focus then
-                          local tag = awful.tag.gettags(client.focus.screen)[i]
+                          local tag = get_tag(tag_name, false)
                           if tag then
                               awful.client.toggletag(tag)
                           end
@@ -339,13 +380,12 @@ clientbuttons = awful.util.table.join(
     awful.button({ modkey }, 3, awful.mouse.client.resize))
 
 globalkeys = awful.util.table.join(globalkeys,
-    awful.key({ modkey  }, "grave", function () awful.util.spawn("light-locker-command --lock") end),
+    awful.key({ modkey }, "grave", function () awful.util.spawn("light-locker-command --lock") end),
     awful.key({ }, "XF86MonBrightnessDown", function () awful.util.spawn("xbacklight -dec 10") end),
     awful.key({ }, "XF86MonBrightnessUp", function () awful.util.spawn("xbacklight -inc 10") end),
     awful.key({ }, "XF86AudioRaiseVolume", function () awful.util.spawn("pamixer --increase 5") end),
     awful.key({ }, "XF86AudioLowerVolume", function () awful.util.spawn("pamixer --decrease 5") end),
     awful.key({ }, "XF86AudioMute", function () awful.util.spawn("pamixer --toggle-mute") end))
-
 
 -- Set keys
 root.keys(globalkeys)
