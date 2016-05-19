@@ -2,3 +2,10 @@
   pacman: name=evince state=installed
   become: yes
 
+- name: install libreoffice
+  pacman: name={{ item }} state=installed
+  become: yes
+  with_items:
+  - libreoffice-fresh
+  - libreoffice-fresh-be
+  - libreoffice-fresh-ru
