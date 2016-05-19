@@ -339,11 +339,13 @@ clientbuttons = awful.util.table.join(
     awful.button({ modkey }, 3, awful.mouse.client.resize))
 
 globalkeys = awful.util.table.join(globalkeys,
+    awful.key({ modkey  }, "grave", function () awful.util.spawn("light-locker-command --lock") end),
     awful.key({ }, "XF86MonBrightnessDown", function () awful.util.spawn("xbacklight -dec 10") end),
     awful.key({ }, "XF86MonBrightnessUp", function () awful.util.spawn("xbacklight -inc 10") end),
     awful.key({ }, "XF86AudioRaiseVolume", function () awful.util.spawn("pamixer --increase 5") end),
     awful.key({ }, "XF86AudioLowerVolume", function () awful.util.spawn("pamixer --decrease 5") end),
     awful.key({ }, "XF86AudioMute", function () awful.util.spawn("pamixer --toggle-mute") end))
+
 
 -- Set keys
 root.keys(globalkeys)
