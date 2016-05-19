@@ -1,6 +1,6 @@
-(setq racer-cmd "/usr/bin/racer")
-(setq racer-rust-src-path "/home/nott/repos/rust/src/")
-(setq exec-path (append exec-path '("/home/nott/.multirust/toolchains/beta/cargo/bin")))
+(setq racer-cmd "~/.cargo/bin/racer")
+(setq racer-rust-src-path "~/repos/rust/src/")
+(setq exec-path (append exec-path '("~/.cargo/bin")))
 
 (add-to-list 'auto-mode-alist '("\\.rs\\'" . rust-mode))
 
@@ -20,6 +20,5 @@
      ;; Key binding to auto complete and indent
      (local-set-key (kbd "TAB") #'racer-complete-or-indent)
 
-     ;; Key binding to auto complete and indent
-     (local-set-key (kbd "C-c C-f") #'rustfmt-format-buffer)))
+     (local-set-key (kbd "C-c <tab>") #'rust-format-buffer)))
 (add-hook 'rust-mode-hook 'cargo-minor-mode)

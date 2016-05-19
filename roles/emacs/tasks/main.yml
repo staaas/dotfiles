@@ -44,3 +44,10 @@
     owner=root
     group=root
   become: yes
+
+- name: "ensure ~/repos exists"
+  file: path={{ ansible_env.HOME }}/repos state=directory
+- name: "clone rust repo for racer-mode"
+  git: >
+    repo=https://github.com/rust-lang/rust.git
+    dest={{ ansible_env.HOME }}/repos/rust
