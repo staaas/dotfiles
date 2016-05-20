@@ -385,7 +385,8 @@ globalkeys = awful.util.table.join(globalkeys,
     awful.key({ }, "XF86MonBrightnessUp", function () awful.util.spawn("xbacklight -inc 10") end),
     awful.key({ }, "XF86AudioRaiseVolume", function () awful.util.spawn("pamixer --increase 5") end),
     awful.key({ }, "XF86AudioLowerVolume", function () awful.util.spawn("pamixer --decrease 5") end),
-    awful.key({ }, "XF86AudioMute", function () awful.util.spawn("pamixer --toggle-mute") end))
+    awful.key({ }, "XF86AudioMute", function () awful.util.spawn("pamixer --toggle-mute") end),
+    awful.key({ }, "XF86AudioMicMute", function () awful.util.spawn("pamixer --default-source --toggle-mute") end))
 
 -- Set keys
 root.keys(globalkeys)
