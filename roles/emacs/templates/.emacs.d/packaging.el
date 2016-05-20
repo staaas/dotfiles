@@ -16,9 +16,8 @@
 	password-store
 	auth-password-store
 	;; python
-	python-mode
-	anaconda-mode
-	company-anaconda
+	jedi-core
+	company-jedi
 	;; lisp
 	slime
 	;; rust
