@@ -12,3 +12,10 @@
   - python-virtualenvwrapper
   - flake8
   - python2-flake8
+
+- name: ensure .zshrc.d exists
+  file: path={{ ansible_env.HOME }}/.zshrc.d state=directory
+- name: source virtualenvwrapper in zshrc
+  copy: >
+    content="#!/usr/bin/bash\nsource /usr/bin/virtualenvwrapper.sh\n"
+    dest={{ ansible_env.HOME }}/.zshrc.d/50-virtualenvwrapper.sh
