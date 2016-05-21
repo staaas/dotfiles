@@ -12,6 +12,18 @@
 (require 'company)
 (add-hook 'python-mode-hook
           '(lambda ()
+
+             ;; activate venv automatically using variable project-venv-name from .dir-locals.el
+             (hack-local-variables)
+             (when (boundp 'project-venv-name)
+               (if (and (boundp 'venv-current-name) venv-current-name)
+                   (if (not (equal venv-current-name project-venv-name))
+                       (if (y-or-n-p (format "Do you want to switch from %s to %s" venv-current-name project-venv-name))
+                           (progn
+                             (jedi:stop-server)
+                             (venv-workon project-venv-name))))
+                 (venv-workon project-venv-name)))
+
              (add-to-list 'company-backends 'company-jedi)
 
              (local-set-key (kbd "C-c ?") 'jedi:show-doc)

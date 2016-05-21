@@ -16,6 +16,7 @@
 	password-store
 	auth-password-store
 	;; python
+	virtualenvwrapper
 	jedi-core
 	company-jedi
 	;; lisp
