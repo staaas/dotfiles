@@ -28,6 +28,18 @@
     line="SATA_LINKPWR_ON_BAT=max_performance"
     regexp="^SATA_LINKPWR_ON_BAT="
   become: yes
+- name: configure START_CHARGE_THRESH_BAT0 in tlp
+  lineinfile: >
+    dest=/etc/default/tlp
+    line="START_CHARGE_THRESH_BAT0=75"
+    regexp="#?START_CHARGE_THRESH_BAT0="
+  become: yes
+- name: configure STOP_CHARGE_THRESH_BAT0 in tlp
+  lineinfile: >
+    dest=/etc/default/tlp
+    line="STOP_CHARGE_THRESH_BAT0=90"
+    regexp="#?STOP_CHARGE_THRESH_BAT0="
+  become: yes
 - name: enable tlp
   service: name=tlp enabled=yes state=started
   become: yes
