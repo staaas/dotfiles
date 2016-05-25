@@ -43,6 +43,8 @@ end
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
 beautiful.init("/usr/share/awesome/themes/zenburn/theme.lua")
+beautiful.border_width = 1
+beautiful.border_focus = "#00BB00"
 
 -- This is used later as the default terminal and editor to run.
 terminal = "urxvt"
