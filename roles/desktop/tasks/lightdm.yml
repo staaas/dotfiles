@@ -1,0 +1,41 @@
+- name: install lightdm + greeter + locker
+  pacman: package={{ item }} state=present
+  become: yes
+  with_items:
+  - lightdm
+  - lightdm-gtk-greeter
+  - light-locker
+  - accountsservice
+- name: enable lightdm gtk greeter by default
+  lineinfile: >
+    dest=/etc/lightdm/lightdm.conf
+    line="greeter-session=lightdm-gtk-greeter"
+    insertafter="^\[Seat\:\*\]$"
+  become: yes
+- name: enable lightdm
+  service: name=lightdm enabled=yes
+  become: yes
+- name: enable lightdm gtk greeter indicators
+  lineinfile: >
+    dest=/etc/lightdm/lightdm-gtk-greeter.conf
+    line="indicators=~clock;~spacer;~power"
+    regexp="^#?indicators="
+  become: yes
+- name: ensure AccountsService icons directory exists
+  file: path=/var/lib/AccountsService/icons state=directory recurse=yes
+  become: yes
+- name: copy lightdm avatar
+  copy: >
+    src=templates/avatar.png
+    dest=/var/lib/AccountsService/icons/{{ ansible_user_id }}
+    mode=0644
+  become: yes
+- name: ensure AccountsService users directory exists
+  file: path=/var/lib/AccountsService/users state=directory recurse=yes
+  become: yes
+- name: configure lightdm avatar
+  copy: >
+    content="[User]\nIcon=/var/lib/AccountsService/icons/{{ ansible_user_id }}\n"
+    dest=/var/lib/AccountsService/users/{{ ansible_user_id }}
+    mode=0644
+  become: yes
