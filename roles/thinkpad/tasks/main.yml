@@ -9,15 +9,19 @@
 - name: replace prtsc key with right meta
   copy: src=templates/hwdb/90-kbd-rmeta-insteadof-prtsc.hwdb dest=/etc/udev/hwdb.d/90-kbd-rmeta-insteadof-prtsc.hwdb
   become: yes
-  register: hwdb
+  register: hwdb_rightmeta
+- name: increase trackpoint sensitivity
+  copy: src=templates/udev/10-trackpoint.rules dest=/etc/udev/rules.d/10-trackpoint.rules
+  become: yes
+  register: rules_trackpoint
 - name: update hwdb.bin
   command: udevadm hwdb --update
   become: yes
-  when: hwdb.changed
+  when: hwdb_rightmeta.changed or rules_trackpoint.changed
 - name: trigger udevadm
   command: udevadm trigger
   become: yes
-  when: hwdb.changed
+  when: hwdb_rightmeta.changed or rules_trackpoint.changed
 
 - name: install tlp
   pacman: package=tlp state=installed
