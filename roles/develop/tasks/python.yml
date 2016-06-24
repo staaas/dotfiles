@@ -19,3 +19,9 @@
   copy: >
     content="#!/usr/bin/bash\nsource /usr/bin/virtualenvwrapper.sh\n"
     dest={{ ansible_env.HOME }}/.zshrc.d/50-virtualenvwrapper.sh
+
+- name: install jupyter notebook
+  pacman: name={{ item }} state=installed
+  become: yes
+  with_items:
+  - jupyter-notebook
