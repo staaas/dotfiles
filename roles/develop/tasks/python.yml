@@ -25,3 +25,4 @@
   become: yes
   with_items:
   - jupyter-notebook
+  - jupyter-nbconvert
