@@ -19,6 +19,9 @@
 (el-get-bundle neotree)
 (el-get-bundle company-mode)
 (el-get-bundle ag)
+(el-get-bundle popwin
+  (progn (require 'popwin)
+         (popwin-mode 1)))
 
 ;; passwords & encryption
 (el-get-bundle password-store)
