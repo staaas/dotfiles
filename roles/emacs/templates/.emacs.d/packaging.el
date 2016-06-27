@@ -1,56 +1,42 @@
-;; make more packages available with the package installer
-(setq to-install
-      '(
-	ace-window  ;; switching between windows
-	flycheck
-	ein
-	magit
-	yasnippet
-	autopair
-	find-file-in-repository
-	projectile
-	neotree
-	company
-	ag
-	;; passwords & encryption
-	password-store
-	auth-password-store
-	;; python
-	virtualenvwrapper
-	jedi-core
-	company-jedi
-	;; lisp
-	slime
-	;; rust
-	rust-mode
-	company-racer
-	racer
-	flycheck-rust
-	rust-mode
-	cargo
-	rustfmt
-	))
+(add-to-list 'load-path "~/.emacs.d/el-get/el-get")
 
-(require 'package)
-(package-initialize)
+(unless (require 'el-get nil 'noerror)
+  (with-current-buffer
+      (url-retrieve-synchronously
+       "https://raw.githubusercontent.com/dimitri/el-get/master/el-get-install.el")
+    (goto-char (point-max))
+    (eval-print-last-sexp)))
 
-(add-to-list 'package-archives
-	     '("melpa" . "http://melpa.milkbox.net/packages/"))
-(add-to-list 'package-archives
-             '("marmalade" . "http://marmalade-repo.org/packages/") t)
+(add-to-list 'el-get-recipe-path "~/.emacs.d/el-get-user/recipes")
 
-(defun install-if-needed (package)
-  (unless (package-installed-p package)
-    (package-install package)))
+(el-get-bundle ace-window)
+(el-get-bundle flycheck)
+(el-get-bundle ein)
+(el-get-bundle magit)
+(el-get-bundle yasnippet)
+(el-get-bundle autopair)
+(el-get-bundle projectile)
+(el-get-bundle neotree)
+(el-get-bundle company-mode)
+(el-get-bundle ag)
 
-(defun my-filter (condp lst)
-  (delq nil
-	(mapcar (lambda (x) (and (funcall condp x) x)) lst)))
+;; 	;; passwords & encryption
+;; 	password-store  ;; missing
+;; 	auth-password-store  ;; missing
 
-(message "%s" "Refreshing package index")
-(if (my-filter (lambda (package) (not (package-installed-p package))) to-install)
-    (package-refresh-contents))
+;; python
+(el-get-bundle virtualenvwrapper)
+(el-get-bundle jedi-core)
+(el-get-bundle company-jedi)
 
-(message "%s" "Installing packages...")
-(mapc 'install-if-needed to-install)
-(message "%s" " done\n")
+;; lisp
+(el-get-bundle slime)
+
+;; rust
+(el-get-bundle rust-mode)
+(el-get-bundle emacs-racer)
+(el-get-bundle flycheck-rust)
+(el-get-bundle rust-mode)
+(el-get-bundle cargo)
+;; company-racer
+;; rustfmt
