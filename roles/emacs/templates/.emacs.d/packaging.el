@@ -28,8 +28,7 @@
 (el-get-bundle auth-password-store)
 
 ;; markups
-(el-get-bundle livedown
-  (require 'livedown))
+(el-get-bundle markdown-mode)
 
 ;; python
 (el-get-bundle virtualenvwrapper)
