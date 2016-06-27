@@ -1,18 +1,21 @@
-- name: "check if mailbox for {{ item.name }} exists"
-  stat: path=/home/{{ ansible_user_id }}/mail/{{ item.name }}
+- set_fact:
+    box: "{{ item }}"
+
+- name: "check if mailbox for {{ box.name }} exists"
+  stat: path=/home/{{ ansible_user_id }}/mail/{{ box.name }}
   register: mailbox
 
-- name: "check if we need to fetch {{ item.name }}"
+- name: "check if we need to fetch {{ box.name }}"
   set_fact:
     mailbox_doesnot_exist: "{{ mailbox.stat.isdir is not defined or not mailbox.stat.isdir }}"
 
-- name: "create maildir for {{ item.name }}"
+- name: "create maildir for {{ box.name }}"
   file: >
-    path=/home/{{ ansible_user_id }}/mail/{{ item.name }}
+    path=/home/{{ ansible_user_id }}/mail/{{ box.name }}
     state=directory
     mode=0700
   when: mailbox_doesnot_exist
 
-- name: "run mbsync {{ item.name }}"
-  command: mbsync {{ item.name }}
+- name: "run mbsync {{ box.name }}"
+  command: mbsync {{ box.name }}
   when: mailbox_doesnot_exist
