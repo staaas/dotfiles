@@ -21,7 +21,9 @@
 (el-get-bundle ag)
 (el-get-bundle popwin
   (progn (require 'popwin)
-         (popwin-mode 1)))
+         (popwin-mode 1)
+         (global-set-key (kbd "C-z") popwin:keymap)))
+(el-get-bundle direx)
 
 ;; passwords & encryption
 (el-get-bundle password-store)
@@ -34,6 +36,7 @@
 (el-get-bundle virtualenvwrapper)
 (el-get-bundle jedi-core)
 (el-get-bundle company-jedi)
+(el-get-bundle jedi-direx)
 
 ;; lisp
 (el-get-bundle slime)

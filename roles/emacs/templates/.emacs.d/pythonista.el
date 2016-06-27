@@ -28,7 +28,11 @@
 
              (local-set-key (kbd "C-c ?") 'jedi:show-doc)
              (local-set-key (kbd "C-c .") 'jedi:goto-definition)
-             (local-set-key (kbd "C-c ,") 'jedi:goto-definition-pop-marker)))
+             (local-set-key (kbd "C-c ,") 'jedi:goto-definition-pop-marker)
+
+             (local-set-key (kbd "C-c x") 'jedi-direx:pop-to-buffer)))
+
+(add-hook 'jedi-mode-hook 'jedi-direx:setup)
 
 ;; Python2/Flake8 as a default Python linter
 (setq flycheck-python-flake8-executable "/usr/bin/flake8-python2")
