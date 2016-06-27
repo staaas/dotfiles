@@ -26,6 +26,7 @@
     - org.el
     - pythonista.el
     - rustacian.el
+    - el-get-user
 
 - name: "copy daemon service"
   template: >

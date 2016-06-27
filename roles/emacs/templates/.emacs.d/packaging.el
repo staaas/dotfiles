@@ -20,9 +20,9 @@
 (el-get-bundle company-mode)
 (el-get-bundle ag)
 
-;; 	;; passwords & encryption
-;; 	password-store  ;; missing
-;; 	auth-password-store  ;; missing
+;; passwords & encryption
+(el-get-bundle password-store)
+(el-get-bundle auth-password-store)
 
 ;; python
 (el-get-bundle virtualenvwrapper)
