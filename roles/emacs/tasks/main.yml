@@ -6,6 +6,7 @@
     - emacs
     - flake8
     - python2-flake8
+    - nodejs-livedown
 
 - name: "copy .emacs"
   template: >

@@ -27,6 +27,10 @@
 (el-get-bundle password-store)
 (el-get-bundle auth-password-store)
 
+;; markups
+(el-get-bundle livedown
+  (require 'livedown))
+
 ;; python
 (el-get-bundle virtualenvwrapper)
 (el-get-bundle jedi-core)
