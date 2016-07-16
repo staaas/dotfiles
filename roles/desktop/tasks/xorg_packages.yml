@@ -5,6 +5,7 @@
   - xorg-server
   - xf86-video-intel
   - xf86-input-evdev
+  - xf86-input-synaptics
   - mesa-libgl
 - name: install xorg-apps
   pacman: package={{ item }} state=present
