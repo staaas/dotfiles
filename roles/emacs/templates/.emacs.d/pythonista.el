@@ -5,10 +5,6 @@
 ;; Split window horizontally on C-c C-c (default is vertically)
 (setq py-split-windows-on-execute-function 'split-window-horizontally)
 
-;; Opening braces/quotes are autopaired;
-;; closing braces/quotes are autoskipped;
-(add-hook 'python-mode-hook 'autopair-mode)
-
 (require 'company)
 (add-hook 'python-mode-hook
           '(lambda ()

@@ -14,7 +14,6 @@
 (el-get-bundle ein)
 (el-get-bundle magit)
 (el-get-bundle yasnippet)
-(el-get-bundle autopair)
 (el-get-bundle projectile)
 (el-get-bundle neotree)
 (el-get-bundle company-mode)
