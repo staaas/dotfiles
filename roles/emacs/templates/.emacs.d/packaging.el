@@ -23,6 +23,9 @@
          (popwin-mode 1)
          (global-set-key (kbd "C-z") popwin:keymap)))
 (el-get-bundle direx)
+(el-get-bundle editorconfig
+  (progn (require 'editorconfig)
+         (editorconfig-mode 1)))
 
 ;; passwords & encryption
 (el-get-bundle password-store)
