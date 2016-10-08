@@ -20,9 +20,12 @@
     content="#!/usr/bin/bash\nsource /usr/bin/virtualenvwrapper.sh\n"
     dest={{ ansible_env.HOME }}/.zshrc.d/50-virtualenvwrapper.sh
 
-- name: install jupyter notebook
+- name: install datascience tools
   pacman: name={{ item }} state=installed
   become: yes
   with_items:
   - jupyter-notebook
   - jupyter-nbconvert
+  - python-pandas
+  - python-seaborn
+  - python-scikit-learn

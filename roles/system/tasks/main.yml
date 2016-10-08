@@ -39,6 +39,11 @@
     owner=root
   become: yes
 
+- name: install 3g modem software
+  pacman: name={{ item }} state=installed
+  with_items:
+  - wvdial
+
 - name: install network-related utils
   pacman: name=net-tools state=installed
   become: yes

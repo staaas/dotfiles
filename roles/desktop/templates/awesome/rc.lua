@@ -388,7 +388,9 @@ globalkeys = awful.util.table.join(globalkeys,
     awful.key({ }, "XF86AudioRaiseVolume", function () awful.util.spawn("pamixer --increase 5") end),
     awful.key({ }, "XF86AudioLowerVolume", function () awful.util.spawn("pamixer --decrease 5") end),
     awful.key({ }, "XF86AudioMute", function () awful.util.spawn("pamixer --toggle-mute") end),
-    awful.key({ }, "XF86AudioMicMute", function () awful.util.spawn("pamixer --default-source --toggle-mute") end))
+    awful.key({ }, "XF86AudioMicMute", function () awful.util.spawn("pamixer --default-source --toggle-mute") end)),
+    -- temporary workaround for xorg+intel(sna) bug https://bugs.freedesktop.org/show_bug.cgi?id=94677
+    awful.key({ modkey }, "x", function () awful.util.spawn("xset s activate") end)
 
 -- Set keys
 root.keys(globalkeys)
