@@ -19,3 +19,5 @@
 - include: python.yml
 
 - include: rust.yml
+
+- include: frontend.yml

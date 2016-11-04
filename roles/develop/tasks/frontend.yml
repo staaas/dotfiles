@@ -1,0 +1,5 @@
+- name: install frontend packages
+  pacman: name={{ item }} state=installed
+  become: yes
+  with_items:
+  - sassc
