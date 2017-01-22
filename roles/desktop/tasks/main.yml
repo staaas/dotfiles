@@ -6,11 +6,6 @@
 - name: configure xkb input languages
   copy: src=templates/xorg/10-xkb.conf dest=/etc/X11/xorg.conf.d/10-xkb.conf
   become: yes
-- name: install language switcher
-  pacman: package=sbxkb state=present
-  become: yes
-- name: ensure flags icons directory exists
-  file: path={{ ansible_env.HOME }}/.icons/flags state=directory recurse=yes
 - name: copy flags for sbxkb
   copy: src=templates/flags/{{ item }} dest={{ ansible_env.HOME }}/.icons/flags/{{ item }}
   with_items:
