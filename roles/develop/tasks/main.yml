@@ -11,7 +11,7 @@
   - docker
   - docker-compose
 - name: start docker daemon
-  service: name=docker enabled=yes state=started
+  systemd: name=docker enabled=yes state=started
   become: yes
 
 - include: nix.yml

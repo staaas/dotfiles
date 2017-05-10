@@ -3,7 +3,7 @@
   pacman: name=ntp state=installed
   become: yes
 - name: "enable ntp"
-  service: name=ntpd enabled=yes state=started
+  systemd: name=ntpd enabled=yes state=started
   become: yes
 
 - name: "install btrfs progs"
@@ -21,7 +21,7 @@
   - ifplugd  # used by netctl-ifplugd
 
 - name: enable netctl-auto
-  service: name=netctl-auto@{{ wlan0 }} enabled=yes state=started
+  systemd: name=netctl-auto@{{ wlan0 }} enabled=yes state=started
   become: yes
   when: wlan0 != 'none'
 

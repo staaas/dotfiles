@@ -45,14 +45,14 @@
     regexp="#?STOP_CHARGE_THRESH_BAT0="
   become: yes
 - name: enable tlp
-  service: name=tlp enabled=yes state=started
+  systemd: name=tlp enabled=yes state=started
   become: yes
 - name: enable tlp-sleep
-  service: name=tlp-sleep enabled=yes
+  systemd: name=tlp-sleep enabled=yes
   become: yes
 - name: disable systemd-rfkill as it conflicts with tlp
-  service: name={{ item }} state=stopped enabled=no
+  systemd: name={{ item }} state=stopped enabled=no
   become: yes
   with_items:
-  - systemd-rfkill.service
+  - systemd-rfkill.systemd
   - systemd-rfkill.socket
