@@ -37,4 +37,5 @@
   - silver-searcher-git
   - dosfstools
   - dnsutils
+  - ripgrep
   - sshfs
