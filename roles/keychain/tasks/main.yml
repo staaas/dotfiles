@@ -58,7 +58,5 @@
   copy: >
     src=templates/home/user/.config/systemd/user/ssh-agent.service
     dest=/home/{{ ansible_user_id }}/.config/systemd/user/ssh-agent.service
-- name: "enable ssh-agent service"
-  command: systemctl --user enable ssh-agent.service
 - name: "start ssh-agent service"
-  command: systemctl --user start ssh-agent.service
+  systemd: name=ssh-agent user=yes state=started enabled=yes
