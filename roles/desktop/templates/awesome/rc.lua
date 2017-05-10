@@ -241,10 +241,6 @@ end)
 globalkeys = awful.util.table.join(
     awful.key({ modkey,           }, "s",      hotkeys_popup.show_help,
               {description="show help", group="awesome"}),
-    awful.key({ modkey,           }, "Left",   awful.tag.viewprev,
-              {description = "view previous", group = "tag"}),
-    awful.key({ modkey,           }, "Right",  awful.tag.viewnext,
-              {description = "view next", group = "tag"}),
     awful.key({ modkey,           }, "Escape", awful.tag.history.restore,
               {description = "go back", group = "tag"}),
 
@@ -430,7 +426,11 @@ globalkeys = awful.util.table.join(globalkeys,
     awful.key({ }, "XF86AudioRaiseVolume", function () awful.util.spawn("pamixer --increase 5") end),
     awful.key({ }, "XF86AudioLowerVolume", function () awful.util.spawn("pamixer --decrease 5") end),
     awful.key({ }, "XF86AudioMute", function () awful.util.spawn("pamixer --toggle-mute") end),
-    awful.key({ }, "XF86AudioMicMute", function () awful.util.spawn("pamixer --default-source --toggle-mute") end))
+    awful.key({ }, "XF86AudioMicMute", function () awful.util.spawn("pamixer --default-source --toggle-mute") end),
+    awful.key({ modkey }, "Up", function () awful.util.spawn(terminal .. " -e ncmpc", false) end),
+    awful.key({ modkey }, "Down", function () awful.util.spawn("mpc toggle", false) end),
+    awful.key({ modkey }, "Left", function () awful.util.spawn("mpc prev", false) end),
+    awful.key({ modkey }, "Right", function () awful.util.spawn("mpc next", false) end))
 
 -- Set keys
 root.keys(globalkeys)
