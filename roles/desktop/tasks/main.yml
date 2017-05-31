@@ -28,6 +28,8 @@
 - name: copy awesomewm wallpaper
   copy: src=templates/awesome/background.jpg dest={{ ansible_env.HOME }}/.config/awesome/background.jpg
 
+- include: i3.yml
+
 - name: install terminal emulator
   pacman: package={{ item }} state=present
   become: yes

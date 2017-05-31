@@ -1,0 +1,12 @@
+- name: install i3
+  pacman: package={{ item }} state=present
+  become: yes
+  with_items:
+  - i3-wm
+  - i3blocks
+  - i3lock
+  - i3status
+- name: ensure awesomewm configuration dir exists
+  file: path={{ ansible_env.HOME }}/.config/i3 state=directory recurse=yes
+- name: copy i3 config
+  copy: src=templates/i3/config dest={{ ansible_env.HOME }}/.config/i3/config
