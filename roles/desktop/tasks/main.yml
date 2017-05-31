@@ -6,12 +6,6 @@
 - name: configure xkb input languages
   copy: src=templates/xorg/10-xkb.conf dest=/etc/X11/xorg.conf.d/10-xkb.conf
   become: yes
-- name: copy flags for sbxkb
-  copy: src=templates/flags/{{ item }} dest={{ ansible_env.HOME }}/.icons/flags/{{ item }}
-  with_items:
-  - us.png
-  - by.png
-  - ru.png
 
 - name: install awesomewm
   pacman: package={{ item }} state=present
