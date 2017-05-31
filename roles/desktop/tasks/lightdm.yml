@@ -5,7 +5,7 @@
   - lightdm
   - lightdm-gtk-greeter
   - light-locker
-  - accountssystemd
+  - accountsservice
 - name: enable lightdm gtk greeter by default
   lineinfile: >
     dest=/etc/lightdm/lightdm.conf
