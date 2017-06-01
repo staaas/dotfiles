@@ -1,0 +1,3 @@
+---
+- name: kill dunst
+  command: pkill dunst
