@@ -146,6 +146,7 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 # misc key bindings
+bindsym $mod+backslash exec --no-startup-id i3lock -c 000000
 bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 10
 bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 10
 bindsym XF86AudioRaiseVolume exec --no-startup-id pamixer --increase 5
