@@ -6,6 +6,7 @@
   - i3blocks
   - i3lock
   - i3status
+  - perl-anyevent-i3
 - name: ensure awesomewm configuration dir exists
   file: path={{ ansible_env.HOME }}/.config/i3 state=directory recurse=yes
 - name: copy i3 config
