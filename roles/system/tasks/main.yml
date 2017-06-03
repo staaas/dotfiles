@@ -47,3 +47,14 @@
 - name: install network-related utils
   pacman: name=net-tools state=installed
   become: yes
+
+- name: "copy disable-xhci-wakeup service"
+  copy: >
+    src=templates/disable-xhci-wakeup.service
+    dest=/usr/lib/systemd/system/disable-xhci-wakeup.service
+    owner=root
+    group=root
+  become: yes
+- name: "start disable-xhci-wakeup service"
+  systemd: name=disable-xhci-wakeup state=started enabled=yes daemon_reload=yes
+  become: yes
