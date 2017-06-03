@@ -1,0 +1,11 @@
+[Unit]
+Description=Disable some ACPI wakeup triggers in /proc/acpi/wakeup
+
+[Service]
+Type=oneshot
+ExecStart=/bin/sh -c "echo XHCI > /proc/acpi/wakeup; echo IGBE > /proc/acpi/wakeup"
+ExecStop=/bin/sh -c "echo XHCI > /proc/acpi/wakeup; echo IGBE > /proc/acpi/wakeup"
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target
