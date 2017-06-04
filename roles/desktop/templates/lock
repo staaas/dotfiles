@@ -1,0 +1,4 @@
+#!/bin/sh
+setxkbmap us
+i3lock -n -c 200000
+setxkbmap us,by,ru grp:caps_toggle

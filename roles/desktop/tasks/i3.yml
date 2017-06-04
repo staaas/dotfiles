@@ -4,7 +4,6 @@
   with_items:
   - i3-wm
   - i3blocks
-  - i3lock
   - i3status
   - perl-anyevent-i3
 - name: ensure awesomewm configuration dir exists
@@ -20,3 +19,29 @@
 - name: copy dunst config
   copy: src=templates/dunstrc dest={{ ansible_env.HOME }}/.config/dunst/dunstrc
   notify: kill dunst
+
+- name: install i3lock and axuatolock
+  pacman: package={{ item }} state=present
+  become: yes
+  with_items:
+  - i3lock
+  - xautolock
+- name: write i3lock wrapper script
+  copy: src=templates/lock dest=/usr/bin/lock mode=0555 owner=root group=root
+  become: yes
+- name: "copy xautolock service"
+  copy: >
+    src=templates/systemd/user/xautolock.service
+    dest=/home/{{ ansible_user_id }}/.config/systemd/user/xautolock.service
+- name: "start xautolock service"
+  systemd: name=xautolock user=yes state=started enabled=yes daemon_reload=yes
+- name: "copy suspend lock service"
+  template: >
+    src=templates/systemd/suspend-lock.service
+    dest=/usr/lib/systemd/system/suspend-lock.service
+    owner=root
+    group=root
+  become: yes
+- name: "enable suspned-lock service"
+  systemd: name=suspend-lock enabled=yes daemon_reload=yes
+  become: yes

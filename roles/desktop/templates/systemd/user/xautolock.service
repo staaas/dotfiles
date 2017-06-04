@@ -1,0 +1,7 @@
+[Unit]
+Description=xautolock wrapper
+
+[Service]
+Type=simple
+Environment=DISPLAY=:0
+ExecStart=/usr/bin/xautolock -time 5 -locker "/usr/bin/lock" -detectsleep
