@@ -1,10 +1,9 @@
-- name: install lightdm + greeter + locker
+- name: install lightdm + greeter
   pacman: package={{ item }} state=present
   become: yes
   with_items:
   - lightdm
   - lightdm-gtk-greeter
-  - light-locker
   - accountsservice
 - name: enable lightdm gtk greeter by default
   lineinfile: >
