@@ -39,7 +39,6 @@
   become: yes
   with_items:
   - ttf-anonymous-pro
-  - ttf-bitstream-vera
   - ttf-dejavu
   - ttf-droid
   - ttf-freefont
