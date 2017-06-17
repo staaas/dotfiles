@@ -47,6 +47,9 @@
   - ttf-ubuntu-font-family
   - ttf-symbola
 
+- name: set default apps
+  copy: src=templates/mimeapps.list dest={{ ansible_env.HOME }}/.config/mimeapps.list
+
 - name: install Intel AMT management software
   pacman: package={{ item }} state=present
   become: yes
