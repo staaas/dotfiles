@@ -27,7 +27,7 @@
   (progn (require 'editorconfig)
          (editorconfig-mode 1)))
 (el-get-bundle frame-cmds)
-(el-get-bundle emacswiki/zoom-frm)
+(el-get-bundle zoom-frm)
 
 ;; passwords & encryption
 (el-get-bundle password-store)
