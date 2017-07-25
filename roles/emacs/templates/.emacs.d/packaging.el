@@ -14,8 +14,12 @@
 (el-get-bundle ein)
 (el-get-bundle magit)
 (el-get-bundle yasnippet)
-(el-get-bundle projectile)
-(el-get-bundle neotree)
+(el-get-bundle projectile
+  (progn (require 'projectile)
+         (projectile-global-mode)))
+(el-get-bundle neotree
+  (progn (require 'projectile)
+         (global-set-key [f8] 'neotree-toggle)))
 (el-get-bundle company-mode)
 (el-get-bundle ag)
 (el-get-bundle popwin
