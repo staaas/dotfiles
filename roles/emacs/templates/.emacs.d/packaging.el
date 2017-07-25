@@ -12,7 +12,9 @@
 (el-get-bundle ace-window)
 (el-get-bundle flycheck)
 (el-get-bundle ein)
-(el-get-bundle magit)
+(el-get-bundle magit
+  (progn (require 'magit)
+         (global-set-key (kbd "C-c g") 'magit-status)))
 (el-get-bundle yasnippet)
 (el-get-bundle projectile
   (progn (require 'projectile)
