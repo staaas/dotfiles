@@ -10,30 +10,46 @@
 (add-to-list 'el-get-recipe-path "~/.emacs.d/el-get-user/recipes")
 
 (el-get-bundle ace-window)
-(el-get-bundle flycheck)
+(el-get-bundle flycheck
+  (add-hook 'after-init-hook #'global-flycheck-mode))
 (el-get-bundle ein)
 (el-get-bundle magit
   (progn (require 'magit)
          (global-set-key (kbd "C-c g") 'magit-status)))
-(el-get-bundle yasnippet)
+(el-get-bundle yasnippet
+  (progn (require 'yasnippet)
+         (yas-global-mode 1)
+         (yas-load-directory "~/.emacs.d/snippets")))
 (el-get-bundle projectile
   (progn (require 'projectile)
          (projectile-mode)))
 (el-get-bundle neotree
   (progn (require 'projectile)
          (global-set-key [f8] 'neotree-toggle)))
-(el-get-bundle company-mode)
+(el-get-bundle company-mode
+  (global-company-mode))
 (el-get-bundle ag)
 (el-get-bundle popwin
   (progn (require 'popwin)
          (popwin-mode 1)
          (global-set-key (kbd "C-z") popwin:keymap)))
-(el-get-bundle direx)
+(el-get-bundle direx
+  (progn (require 'direx)
+         (push '(direx:direx-mode :position left :width 25 :dedicated t)
+               popwin:special-display-config)
+         (global-set-key (kbd "C-x C-j") 'direx:jump-to-directory-other-window)))
 (el-get-bundle editorconfig
   (progn (require 'editorconfig)
          (editorconfig-mode 1)))
 (el-get-bundle frame-cmds)
-(el-get-bundle zoom-frm)
+(el-get-bundle zoom-frm
+  (progn (require 'zoom-frm)
+         (define-key ctl-x-map [(control ?+)] 'zoom-in/out)
+         (define-key ctl-x-map [(control ?-)] 'zoom-in/out)
+         (define-key ctl-x-map [(control ?=)] 'zoom-in/out)
+         (define-key ctl-x-map [(control ?0)] 'zoom-in/out)
+         (toggle-zoom-frame)
+         (set-face-attribute 'default nil :height 100)))
 
 ;; passwords & encryption
 (el-get-bundle password-store)
@@ -61,3 +77,6 @@
 (el-get-bundle cargo)
 ;; company-racer
 ;; rustfmt
+
+;; apps
+(el-get-bundle circe)
