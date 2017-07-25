@@ -18,7 +18,7 @@
 (el-get-bundle yasnippet)
 (el-get-bundle projectile
   (progn (require 'projectile)
-         (projectile-global-mode)))
+         (projectile-mode)))
 (el-get-bundle neotree
   (progn (require 'projectile)
          (global-set-key [f8] 'neotree-toggle)))
