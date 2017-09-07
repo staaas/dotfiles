@@ -56,3 +56,15 @@
   with_items:
   - remmina
   - libvncserver
+
+- name: install syncthing
+  pacman: package={{ item }} state=present
+  become: yes
+  with_items:
+  - syncthing
+  - syncthing-gtk
+- name: enable syncthing
+  systemd: name=syncthing@{{ ansible_user_id }} state=started enabled=yes
+  become: yes
+- name: copy syncthing-gtk config
+  copy: src=templates/syncthing-gtk/config.json dest={{ ansible_env.HOME }}/.config/syncthing-gtk/config.json
