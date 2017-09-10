@@ -10,7 +10,7 @@
 - name: "create .gnupg"
   file: path=/home/{{ ansible_user_id }}/.gnupg state=directory mode=0700
 - name: add arch devs to gpg.conf
-  lineinfile: dest={{ ansible_env.HOME }}/.gnupg/gpg.conf line="keyring /etc/pacman.d/gnupg/pubring.gpg"
+  lineinfile: dest={{ ansible_env.HOME }}/.gnupg/gpg.conf line="keyring /etc/pacman.d/gnupg/pubring.gpg" create=yes
 
 - name: "ensure .zshrc.d exists"
   file: path=/home/{{ ansible_user_id }}/.zshrc.d state=directory
