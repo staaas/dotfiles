@@ -60,3 +60,11 @@
     dest=/home/{{ ansible_user_id }}/.config/systemd/user/ssh-agent.service
 - name: "start ssh-agent service"
   systemd: name=ssh-agent user=yes state=started enabled=yes
+
+- name: install yubikey tools
+  pacman: name={{ item }} state=installed
+  become: yes
+  with_items:
+    - yubikey-manager
+    - yubikey-personalization
+    - yubikey-personalization-gui
