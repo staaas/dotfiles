@@ -1,9 +1,0 @@
-#!/usr/bin/env bash
-
-# Don't pass in args so it never shows up in ps
-read token
-
-# ensure gpg-agent is up and running
-gpg-agent
-
-/usr/lib/gnupg/gpg-preset-passphrase -c {{ autounlock_keygrip }} <<< "$token"

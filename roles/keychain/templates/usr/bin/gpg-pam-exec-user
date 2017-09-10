@@ -1,7 +1,0 @@
-#!/usr/bin/env bash
-
-read token
-
-if [[ "$PAM_USER" = "{{ ansible_user_id }}" ]]; then
-    sudo -n -u "{{ ansible_user_id }}" /usr/bin/gpg-preset-passphrase-{{ ansible_user_id }} <<< "$token"
-fi
