@@ -34,7 +34,7 @@
   - curl
   - mc
   - unzip
-  - silver-searcher-git
+  - the_silver_searcher
   - dosfstools
   - bind-tools
   - ripgrep
