@@ -42,14 +42,6 @@
   (progn (require 'editorconfig)
          (editorconfig-mode 1)))
 (el-get-bundle frame-cmds)
-(el-get-bundle zoom-frm
-  (progn (require 'zoom-frm)
-         (define-key ctl-x-map [(control ?+)] 'zoom-in/out)
-         (define-key ctl-x-map [(control ?-)] 'zoom-in/out)
-         (define-key ctl-x-map [(control ?=)] 'zoom-in/out)
-         (define-key ctl-x-map [(control ?0)] 'zoom-in/out)
-         (toggle-zoom-frame)
-         (set-face-attribute 'default nil :height 100)))
 
 ;; passwords & encryption
 (el-get-bundle password-store)
