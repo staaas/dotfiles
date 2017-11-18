@@ -41,7 +41,6 @@
 (el-get-bundle editorconfig
   (progn (require 'editorconfig)
          (editorconfig-mode 1)))
-(el-get-bundle frame-cmds)
 
 ;; passwords & encryption
 (el-get-bundle password-store)
