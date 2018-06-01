@@ -61,10 +61,7 @@
 (el-get-bundle slime)
 
 ;; rust
-(el-get-bundle rust-mode)
-(el-get-bundle emacs-racer)
-(el-get-bundle flycheck-rust)
-(el-get-bundle rust-mode)
-(el-get-bundle cargo)
-;; company-racer
-;; rustfmt
+(el-get-bundle rust-mode
+  (add-to-list 'auto-mode-alist '("\\.rs\\'" . rust-mode)))
+(el-get-bundle cargo
+  (add-hook 'rust-mode-hook 'cargo-minor-mode))
