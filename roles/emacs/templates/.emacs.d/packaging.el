@@ -68,6 +68,3 @@
 (el-get-bundle cargo)
 ;; company-racer
 ;; rustfmt
-
-;; apps
-(el-get-bundle circe)
