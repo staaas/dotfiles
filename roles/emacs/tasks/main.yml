@@ -47,10 +47,3 @@
   file: path={{ ansible_env.HOME }}/.zshrc.d state=directory
 - name: set EDITOR=e -t
   copy: content='export EDITOR="e -t"\n' dest={{ ansible_env.HOME }}/.zshrc.d/50-editor-e.sh
-
-- name: "ensure ~/repos exists"
-  file: path={{ ansible_env.HOME }}/repos state=directory
-- name: "clone rust repo for racer-mode"
-  git: >
-    repo=https://github.com/rust-lang/rust.git
-    dest={{ ansible_env.HOME }}/repos/rust
