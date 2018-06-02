@@ -57,9 +57,6 @@
 (el-get-bundle company-jedi)
 (el-get-bundle jedi-direx)
 
-;; lisp
-(el-get-bundle slime)
-
 ;; rust
 (el-get-bundle rust-mode
   (add-to-list 'auto-mode-alist '("\\.rs\\'" . rust-mode)))
