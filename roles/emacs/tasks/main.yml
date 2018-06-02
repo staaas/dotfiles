@@ -23,10 +23,8 @@
     - ui.el
     - packaging.el
     - editing.el
-    - project.el
     - org.el
     - pythonista.el
-    - rustacian.el
     - el-get-user
 
 - name: "copy daemon service"
