@@ -51,14 +51,25 @@
 (el-get-bundle web-mode
   (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode)))
 
+;; language server
+(el-get-bundle lsp-mode)
+(el-get-bundle company-lsp
+  (push 'company-lsp company-backends))
+(el-get-bundle lsp-ui
+  (add-hook 'lsp-mode-hook 'lsp-ui-mode))
+
 ;; python
-(el-get-bundle virtualenvwrapper)
-(el-get-bundle jedi-core)
-(el-get-bundle company-jedi)
-(el-get-bundle jedi-direx)
+(el-get-bundle lsp-python
+  (progn (require 'lsp-mode)
+         (require 'lsp-python)
+         (add-hook 'python-mode-hook #'lsp-python-enable)))
 
 ;; rust
 (el-get-bundle rust-mode
   (add-to-list 'auto-mode-alist '("\\.rs\\'" . rust-mode)))
+(el-get-bundle lsp-rust
+  (progn (with-eval-after-load 'lsp-mode
+           (setq lsp-rust-rls-command nil)
+           (require 'lsp-rust))))
 (el-get-bundle cargo
   (add-hook 'rust-mode-hook 'cargo-minor-mode))

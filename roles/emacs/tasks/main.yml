@@ -14,7 +14,7 @@
     dest=/home/{{ ansible_user_id }}/.emacs
 - name: "ensure .emacs.d exists"
   file: path=/home/{{ ansible_user_id }}/.emacs.d state=directory
-- name: "copy .emacs.d"
+- name: "copy .emacs.d/*.el"
   copy: >
     src=templates/.emacs.d/{{ item }}
     dest=/home/{{ ansible_user_id }}/.emacs.d/{{ item }}
@@ -24,8 +24,11 @@
     - packaging.el
     - editing.el
     - org.el
-    - pythonista.el
-    - el-get-user
+
+- name: "copy user el-get recipes"
+  copy: >
+    src=templates/.emacs.d/el-get-user/
+    dest=/home/{{ ansible_user_id }}/.emacs.d/el-get-user/
 
 - name: "copy daemon service"
   template: >

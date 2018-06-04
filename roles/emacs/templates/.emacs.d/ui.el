@@ -13,3 +13,8 @@
 
 ;; Switching between windows
 (global-set-key (kbd "M-p") 'ace-window)
+
+;; ;; Python mode settings
+(require 'python)
+;; Split window horizontally on C-c C-c (default is vertically)
+(setq py-split-windows-on-execute-function 'split-window-horizontally)

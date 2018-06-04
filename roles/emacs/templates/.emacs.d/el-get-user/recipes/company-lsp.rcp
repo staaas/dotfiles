@@ -1,0 +1,4 @@
+(:name company-lsp
+       :type github
+       :description "Company completion backend for lsp-mode"
+       :pkgname "tigersoldier/company-lsp")
