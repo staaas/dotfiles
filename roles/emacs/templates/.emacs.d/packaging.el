@@ -13,7 +13,6 @@
   (global-set-key (kbd "M-p") 'ace-window))
 (el-get-bundle flycheck
   (add-hook 'after-init-hook #'global-flycheck-mode))
-(el-get-bundle ein)
 (el-get-bundle magit
   (progn (require 'magit)
          (global-set-key (kbd "C-c g") 'magit-status)))
