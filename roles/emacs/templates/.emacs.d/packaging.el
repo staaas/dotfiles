@@ -9,7 +9,8 @@
 
 (add-to-list 'el-get-recipe-path "~/.emacs.d/el-get-user/recipes")
 
-(el-get-bundle ace-window)
+(el-get-bundle ace-window  ;; Switching between windows
+  (global-set-key (kbd "M-p") 'ace-window))
 (el-get-bundle flycheck
   (add-hook 'after-init-hook #'global-flycheck-mode))
 (el-get-bundle ein)

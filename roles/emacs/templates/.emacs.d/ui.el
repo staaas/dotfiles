@@ -11,9 +11,6 @@
 (column-number-mode 1)
 (global-linum-mode)
 
-;; Switching between windows
-(global-set-key (kbd "M-p") 'ace-window)
-
 ;; ;; Python mode settings
 (require 'python)
 ;; Split window horizontally on C-c C-c (default is vertically)
