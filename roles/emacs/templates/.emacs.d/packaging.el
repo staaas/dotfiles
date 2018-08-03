@@ -42,10 +42,6 @@
   (progn (require 'editorconfig)
          (editorconfig-mode 1)))
 
-;; passwords & encryption
-(el-get-bundle password-store)
-(el-get-bundle auth-password-store)
-
 ;; markups
 (el-get-bundle markdown-mode)
 (el-get-bundle web-mode
