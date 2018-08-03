@@ -23,21 +23,9 @@
 (el-get-bundle projectile
   (progn (require 'projectile)
          (projectile-mode)))
-(el-get-bundle neotree
-  (progn (require 'projectile)
-         (global-set-key [f8] 'neotree-toggle)))
 (el-get-bundle company-mode
   (global-company-mode))
 (el-get-bundle ag)
-(el-get-bundle popwin
-  (progn (require 'popwin)
-         (popwin-mode 1)
-         (global-set-key (kbd "C-z") popwin:keymap)))
-(el-get-bundle direx
-  (progn (require 'direx)
-         (push '(direx:direx-mode :position left :width 25 :dedicated t)
-               popwin:special-display-config)
-         (global-set-key (kbd "C-x C-j") 'direx:jump-to-directory-other-window)))
 (el-get-bundle editorconfig
   (progn (require 'editorconfig)
          (editorconfig-mode 1)))
