@@ -57,7 +57,9 @@
 (el-get-bundle company-lsp
   (push 'company-lsp company-backends))
 (el-get-bundle lsp-ui
-  (add-hook 'lsp-mode-hook 'lsp-ui-mode))
+  (progn (add-hook 'lsp-mode-hook 'lsp-ui-mode)
+         (require 'lsp-ui)
+         (setq lsp-ui-sideline-enable nil)))
 
 ;; python
 (el-get-bundle lsp-python
