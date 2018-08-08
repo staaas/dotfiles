@@ -56,6 +56,7 @@
 (el-get-bundle lsp-rust
   (progn (with-eval-after-load 'lsp-mode
            (setq lsp-rust-rls-command nil)
-           (require 'lsp-rust))))
+           (require 'lsp-rust)
+           (add-hook 'rust-mode-hook #'lsp-rust-enable))))
 (el-get-bundle cargo
   (add-hook 'rust-mode-hook 'cargo-minor-mode))
