@@ -22,7 +22,8 @@
          (yas-load-directory "~/.emacs.d/snippets")))
 (el-get-bundle projectile
   (progn (require 'projectile)
-         (projectile-mode)))
+         (projectile-mode)
+         (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)))
 (el-get-bundle company-mode
   (global-company-mode))
 (el-get-bundle ag)
