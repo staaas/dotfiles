@@ -20,3 +20,7 @@
 ;; use 4 spaces instead of tabs
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 4)
+
+;; enable C-x C-u and C-x C-l
+(put 'upcase-region 'disabled nil)
+(put 'downcase-region 'disabled nil)
