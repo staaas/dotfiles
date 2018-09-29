@@ -31,7 +31,6 @@
   become: yes
   with_items:
   - firefox
-  - firefox-extension-ghostery
   - firefox-adblock-plus
   - firefox-noscript
   - chromium
