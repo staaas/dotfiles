@@ -9,12 +9,14 @@
 
 - include: i3.yml
 
-- name: install terminal emulator
+- name: install terminal emulators
   pacman: package={{ item }} state=present
   become: yes
   with_items:
   - rxvt-unicode
   - urxvt-perls
+  - alacritty
+  - alacritty-terminfo
 - name: configure terminal emulator
   copy: src=templates/Xdefaults dest={{ ansible_env.HOME }}/.Xdefaults
 
