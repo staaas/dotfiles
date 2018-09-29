@@ -17,8 +17,10 @@
   - urxvt-perls
   - alacritty
   - alacritty-terminfo
-- name: configure terminal emulator
+- name: configure terminal emulator urxvt
   copy: src=templates/Xdefaults dest={{ ansible_env.HOME }}/.Xdefaults
+- name: configure terminal emulator alacritty
+  copy: src=templates/alacritty/alacritty.yml dest={{ ansible_env.HOME }}/.config/alacritty/alacritty.yml
 
 - include: multimedia.yml
 
