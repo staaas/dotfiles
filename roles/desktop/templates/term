@@ -1,0 +1,3 @@
+#!/bin/sh
+export WINIT_HIDPI_FACTOR=1
+exec alacritty $@

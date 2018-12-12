@@ -21,6 +21,9 @@
   copy: src=templates/Xdefaults dest={{ ansible_env.HOME }}/.Xdefaults
 - name: configure terminal emulator alacritty
   copy: src=templates/alacritty/alacritty.yml dest={{ ansible_env.HOME }}/.config/alacritty/alacritty.yml
+- name: copy alacritty wrapper script
+  copy: src=templates/term dest=/usr/bin/term mode=0555 owner=root group=root
+  become: yes
 
 - include: multimedia.yml
 
