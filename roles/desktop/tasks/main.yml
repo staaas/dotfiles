@@ -8,6 +8,7 @@
   become: yes
 
 - include: i3.yml
+- include: sway.yml
 
 - name: install terminal emulators
   pacman: package={{ item }} state=present

@@ -1,0 +1,30 @@
+- name: install sway and related packages
+  pacman: package={{ item }} state=present
+  become: yes
+  with_items:
+  - sway-git
+  - i3status
+  - terminus-font  # font used in sway config
+  - light  # control screen backlight brightness
+  - mako  # notifications manager
+- name: ensure sway configuration dir exists
+  file: path={{ ansible_env.HOME }}/.config/sway state=directory recurse=yes
+- name: copy sway config
+  copy: src=templates/sway/config dest={{ ansible_env.HOME }}/.config/sway/config
+
+- name: install lock and idle solutions
+  pacman: package={{ item }} state=present
+  become: yes
+  with_items:
+  - swaylock-git
+  - swayidle-git
+- name: "copy suspend lock service"
+  template: >
+    src=templates/systemd/suspend-lock.service
+    dest=/usr/lib/systemd/system/suspend-lock.service
+    owner=root
+    group=root
+  become: yes
+- name: "enable suspned-lock service"
+  systemd: name=suspend-lock enabled=yes daemon_reload=yes
+  become: yes

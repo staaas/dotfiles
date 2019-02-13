@@ -1,0 +1,172 @@
+set $mod Mod4
+
+font pango:Terminus 8
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+# misc
+focus_follows_mouse no
+workspace_auto_back_and_forth no
+
+# start a terminal
+bindsym $mod+Return exec term
+
+# kill focused window
+bindsym $mod+Shift+c kill
+
+# start dmenu (a program launcher)
+bindsym $mod+d exec dmenu_run
+# There also is the (new) i3-dmenu-desktop which only displays applications
+# shipping a .desktop file. It is a wrapper around dmenu, so you need that
+# installed.
+# bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
+
+# change focus
+bindsym $mod+j focus left
+bindsym $mod+k focus down
+bindsym $mod+l focus up
+bindsym $mod+semicolon focus right
+
+# move focused window
+bindsym $mod+Shift+j move left
+bindsym $mod+Shift+k move down
+bindsym $mod+Shift+l move up
+bindsym $mod+Shift+colon move right
+
+# split in horizontal orientation
+bindsym $mod+h split h
+
+# split in vertical orientation
+bindsym $mod+v split v
+
+# enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen toggle
+
+# change container layout (stacked, tabbed, toggle split)
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+# toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+
+# change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+
+# focus the parent container
+bindsym $mod+a focus parent
+
+# focus the child container
+#bindsym $mod+d focus child
+
+# switch to workspace
+bindsym $mod+1 workspace 1
+bindsym $mod+2 workspace 2
+bindsym $mod+3 workspace 3
+bindsym $mod+4 workspace 4
+bindsym $mod+5 workspace 5
+bindsym $mod+6 workspace 6
+bindsym $mod+7 workspace 7
+bindsym $mod+8 workspace 8
+bindsym $mod+9 workspace 9
+bindsym $mod+0 workspace 10
+bindsym $mod+Escape workspace back_and_forth
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace 1
+bindsym $mod+Shift+2 move container to workspace 2
+bindsym $mod+Shift+3 move container to workspace 3
+bindsym $mod+Shift+4 move container to workspace 4
+bindsym $mod+Shift+5 move container to workspace 5
+bindsym $mod+Shift+6 move container to workspace 6
+bindsym $mod+Shift+7 move container to workspace 7
+bindsym $mod+Shift+8 move container to workspace 8
+bindsym $mod+Shift+9 move container to workspace 9
+bindsym $mod+Shift+0 move container to workspace 10
+
+bindsym $mod+Control+j move workspace to output left
+bindsym $mod+Control+k move workspace to output down
+bindsym $mod+Control+l move workspace to output up
+bindsym $mod+Control+colon move workspace to output right
+
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r restart
+# exit i3 (logs you out of your X session)
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+
+# resize window (you can also use the mouse for that)
+mode "resize" {
+        # These bindings trigger as soon as you enter the resize mode
+
+        # Pressing left will shrink the window’s width.
+        # Pressing right will grow the window’s width.
+        # Pressing up will shrink the window’s height.
+        # Pressing down will grow the window’s height.
+        bindsym j resize shrink width 10 px or 10 ppt
+        bindsym k resize grow height 10 px or 10 ppt
+        bindsym l resize shrink height 10 px or 10 ppt
+        bindsym semicolon resize grow width 10 px or 10 ppt
+
+        # same bindings, but for the arrow keys
+        bindsym Left resize shrink width 10 px or 10 ppt
+        bindsym Down resize grow height 10 px or 10 ppt
+        bindsym Up resize shrink height 10 px or 10 ppt
+        bindsym Right resize grow width 10 px or 10 ppt
+
+        # back to normal: Enter or Escape
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
+bindsym $mod+r mode "resize"
+
+# misc key bindings
+bindsym $mod+backslash exec --no-startup-id swaylock -e -n -c 002b36
+bindsym XF86MonBrightnessDown exec --no-startup-id light -U 10
+bindsym XF86MonBrightnessUp exec --no-startup-id light -A 10
+bindsym XF86AudioRaiseVolume exec --no-startup-id pamixer --increase 5
+bindsym XF86AudioLowerVolume exec --no-startup-id pamixer --decrease 5
+bindsym XF86AudioMute exec --no-startup-id pamixer --toggle-mute
+bindsym XF86AudioMicMute exec --no-startup-id pamixer --default-source --toggle-mute
+bindsym $mod+Up exec --no-startup-id term -e ncmpc
+bindsym $mod+Down exec --no-startup-id mpc toggle
+bindsym $mod+Left exec --no-startup-id mpc prev
+bindsym $mod+Right exec --no-startup-id mpc next
+bindsym $mod+Shift+p exec scrot -z -e 'mv $f /tmp/ && gimp /tmp/$f' --release
+bindsym $mod+n exec makoctl dismiss
+bindsym $mod+Shift+n makoctl invoke
+
+# Start i3bar to display a workspace bar (plus the system information i3status
+# finds out, if available)
+bar {
+        status_command i3status --config ~/.config/i3/status.conf
+        position top
+        tray_output eDP1
+        colors {
+            separator #586e75
+            background #000000
+            statusline #ffffff
+            focused_workspace #586e75 #586e75 #ffffff
+            active_workspace #073642 #073642 #ffffff
+            inactive_workspace #002b36 #002b36 #aea79f
+            urgent_workspace #77216f #77216f #ffffff
+        }
+}
+
+output * bg #000000 solid_color
+
+# class                 border  backgr. text    indicator child_border
+client.focused          #586e75 #586e75 #fdf6e3 #268bd2   #586e75
+client.focused_inactive #073642 #073642 #93a1a1 #002b36   #073642
+client.unfocused        #002b36 #002b36 #586e75 #002b36   #002b36
+client.urgent           #dc322f #dc322f #fdf6e3 #dc322f   #dc322f
+
+input 1:1:AT_Translated_Set_2_keyboard {
+    xkb_layout us,by,ru
+    xkb_options grp:caps_toggle
+}
+
+exec_always mako
+exec swayidle timeout 300 'swaylock -e -c 181818' timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' before-sleep 'swaylock -e -n -c 002b36'
+exec light -P 5
