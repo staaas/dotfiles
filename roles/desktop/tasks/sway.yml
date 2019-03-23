@@ -2,7 +2,7 @@
   pacman: package={{ item }} state=present
   become: yes
   with_items:
-  - sway-git
+  - sway
   - i3status
   - terminus-font  # font used in sway config
   - light  # control screen backlight brightness
@@ -16,8 +16,8 @@
   pacman: package={{ item }} state=present
   become: yes
   with_items:
-  - swaylock-git
-  - swayidle-git
+  - swaylock
+  - swayidle
 - name: "copy suspend lock service"
   template: >
     src=templates/systemd/suspend-lock.service
