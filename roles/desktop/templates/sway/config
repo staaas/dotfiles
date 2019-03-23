@@ -9,44 +9,82 @@ floating_modifier $mod
 focus_follows_mouse no
 workspace_auto_back_and_forth no
 
+{% macro bindsym_multi(keys) -%}
+{% for key in keys %}
+bindsym {{ caller(key) }}
+{%- endfor %}
+{%- endmacro %}
+
 # start a terminal
 bindsym $mod+Return exec term
 
 # kill focused window
-bindsym $mod+Shift+c kill
+{% call(key) bindsym_multi(['c', 'Cyrillic_es']) %}
+$mod+Shift+{{key}} kill
+{% endcall %}
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec dmenu_run
+{% call(key) bindsym_multi(['d', 'Cyrillic_ve']) %}
+$mod+{{key}} exec dmenu_run
+{% endcall %}
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 
 # change focus
-bindsym $mod+j focus left
-bindsym $mod+k focus down
-bindsym $mod+l focus up
-bindsym $mod+semicolon focus right
+{% call(key) bindsym_multi(['j', 'Cyrillic_o']) %}
+$mod+{{key}} focus left
+{% endcall %}
+{% call(key) bindsym_multi(['k', 'Cyrillic_el']) %}
+$mod+{{key}} focus down
+{% endcall %}
+{% call(key) bindsym_multi(['l', 'Cyrillic_de']) %}
+$mod+{{key}} focus up
+{% endcall %}
+{% call(key) bindsym_multi(['semicolon', 'Cyrillic_zhe']) %}
+$mod+{{key}} focus right
+{% endcall %}
 
 # move focused window
-bindsym $mod+Shift+j move left
-bindsym $mod+Shift+k move down
-bindsym $mod+Shift+l move up
-bindsym $mod+Shift+colon move right
+{% call(key) bindsym_multi(['j', 'Cyrillic_o']) %}
+$mod+Shift+{{key}} move left
+{% endcall %}
+{% call(key) bindsym_multi(['k', 'Cyrillic_el']) %}
+$mod+Shift+{{key}} move down
+{% endcall %}
+{% call(key) bindsym_multi(['l', 'Cyrillic_de']) %}
+$mod+Shift+{{key}} move up
+{% endcall %}
+{% call(key) bindsym_multi(['colon', 'Shift+Cyrillic_zhe']) %}
+$mod+{{key}} move right
+{% endcall %}
 
 # split in horizontal orientation
-bindsym $mod+h split h
+{% call(key) bindsym_multi(['h', 'Cyrillic_er']) %}
+$mod+{{key}} split h
+{% endcall %}
 
 # split in vertical orientation
-bindsym $mod+v split v
+{% call(key) bindsym_multi(['v', 'Cyrillic_em']) %}
+$mod+{{key}} split v
+{% endcall %}
 
 # enter fullscreen mode for the focused container
-bindsym $mod+f fullscreen toggle
+{% call(key) bindsym_multi(['f', 'Cyrillic_a']) %}
+$mod+{{key}} fullscreen toggle
+{% endcall %}
 
 # change container layout (stacked, tabbed, toggle split)
-bindsym $mod+s layout stacking
-bindsym $mod+w layout tabbed
-bindsym $mod+e layout toggle split
+{% call(key) bindsym_multi(['s', 'Cyrillic_yeru']) %}
+$mod+{{key}} layout stacking
+{% endcall %}
+{% call(key) bindsym_multi(['w', 'Cyrillic_tse']) %}
+$mod+{{key}} layout tabbed
+{% endcall %}
+{% call(key) bindsym_multi(['e', 'Cyrillic_u']) %}
+$mod+{{key}} layout toggle split
+{% endcall %}
 
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
@@ -55,7 +93,9 @@ bindsym $mod+Shift+space floating toggle
 bindsym $mod+space focus mode_toggle
 
 # focus the parent container
-bindsym $mod+a focus parent
+{% call(key) bindsym_multi(['a', 'Cyrillic_ef']) %}
+$mod+{{key}} focus parent
+{% endcall %}
 
 # focus the child container
 #bindsym $mod+d focus child
@@ -85,15 +125,27 @@ bindsym $mod+Shift+8 move container to workspace 8
 bindsym $mod+Shift+9 move container to workspace 9
 bindsym $mod+Shift+0 move container to workspace 10
 
-bindsym $mod+Control+j move workspace to output left
-bindsym $mod+Control+k move workspace to output down
-bindsym $mod+Control+l move workspace to output up
-bindsym $mod+Control+colon move workspace to output right
+{% call(key) bindsym_multi(['j', 'Cyrillic_o']) %}
+$mod+Control+{{key}} move workspace to output left
+{% endcall %}
+{% call(key) bindsym_multi(['k', 'Cyrillic_el']) %}
+$mod+Control+{{key}} move workspace to output down
+{% endcall %}
+{% call(key) bindsym_multi(['l', 'Cyrillic_de']) %}
+$mod+Control+{{key}} move workspace to output up
+{% endcall %}
+{% call(key) bindsym_multi(['semicolon', 'Cyrillic_zhe']) %}
+$mod+Control+{{key}} move workspace to output right
+{% endcall %}
 
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
-bindsym $mod+Shift+r restart
+{% call(key) bindsym_multi(['r']) %}
+$mod+Shift+{{key}} restart
+{% endcall %}
 # exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+{% call(key) bindsym_multi(['e']) %}
+$mod+Shift+{{key}} exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+{% endcall %}
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -103,10 +155,18 @@ mode "resize" {
         # Pressing right will grow the window’s width.
         # Pressing up will shrink the window’s height.
         # Pressing down will grow the window’s height.
-        bindsym j resize shrink width 10 px or 10 ppt
-        bindsym k resize grow height 10 px or 10 ppt
-        bindsym l resize shrink height 10 px or 10 ppt
-        bindsym semicolon resize grow width 10 px or 10 ppt
+        {% call(key) bindsym_multi(['j', 'Cyrillic_o']) %}
+{{key}} resize shrink width 10 px or 10 ppt
+        {% endcall %}
+        {% call(key) bindsym_multi(['k', 'Cyrillic_el']) %}
+{{key}} resize grow height 10 px or 10 ppt
+        {% endcall %}
+        {% call(key) bindsym_multi(['l', 'Cyrillic_de']) %}
+{{key}} resize shrink height 10 px or 10 ppt
+        {% endcall %}
+        {% call(key) bindsym_multi(['semicolon', 'Cyrillic_zhe']) %}
+{{key}} resize grow width 10 px or 10 ppt
+        {% endcall %}
 
         # same bindings, but for the arrow keys
         bindsym Left resize shrink width 10 px or 10 ppt
@@ -119,7 +179,9 @@ mode "resize" {
         bindsym Escape mode "default"
 }
 
-bindsym $mod+r mode "resize"
+{% call(key) bindsym_multi(['r']) %}
+$mod+{{key}} mode "resize"
+{% endcall %}
 
 # misc key bindings
 bindsym $mod+backslash exec --no-startup-id swaylock -e -n -c 002b36
@@ -133,9 +195,15 @@ bindsym $mod+Up exec --no-startup-id term -e ncmpc
 bindsym $mod+Down exec --no-startup-id mpc toggle
 bindsym $mod+Left exec --no-startup-id mpc prev
 bindsym $mod+Right exec --no-startup-id mpc next
-bindsym $mod+Shift+p exec scrot -z -e 'mv $f /tmp/ && gimp /tmp/$f' --release
-bindsym $mod+n exec makoctl dismiss
-bindsym $mod+Shift+n makoctl invoke
+{% call(key) bindsym_multi(['p', 'Cyrillic_ze']) %}
+$mod+Shift+{{key}} exec scrot -z -e 'mv $f /tmp/ && gimp /tmp/$f' --release
+{% endcall %}
+{% call(key) bindsym_multi(['n', 'Cyrillic_te']) %}
+$mod+{{key}} exec makoctl dismiss
+{% endcall %}
+{% call(key) bindsym_multi(['n', 'Cyrillic_te']) %}
+$mod+Shift+{{key}} makoctl invoke
+{% endcall %}
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)

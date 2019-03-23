@@ -10,7 +10,7 @@
 - name: ensure sway configuration dir exists
   file: path={{ ansible_env.HOME }}/.config/sway state=directory recurse=yes
 - name: copy sway config
-  copy: src=templates/sway/config dest={{ ansible_env.HOME }}/.config/sway/config
+  template: src=templates/sway/config dest={{ ansible_env.HOME }}/.config/sway/config
 
 - name: install lock and idle solutions
   pacman: package={{ item }} state=present
