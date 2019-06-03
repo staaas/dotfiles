@@ -1,3 +1,7 @@
+# Workaround that sets DPI 96x96 in XWayland
+# (see https://github.com/swaywm/sway/issues/3499)
+exec xrdb -load ~/.Xresources
+
 set $mod Mod4
 
 font pango:Terminus 8
