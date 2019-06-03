@@ -197,7 +197,7 @@ bindsym $mod+Down exec --no-startup-id mpc toggle
 bindsym $mod+Left exec --no-startup-id mpc prev
 bindsym $mod+Right exec --no-startup-id mpc next
 {% call(key) bindsym_multi(['p', 'Cyrillic_ze']) %}
-$mod+Shift+{{key}} exec scrot -z -e 'mv $f /tmp/ && gimp /tmp/$f' --release
+$mod+Shift+{{key}} exec gimp-screenshot
 {% endcall %}
 {% call(key) bindsym_multi(['n', 'Cyrillic_te']) %}
 $mod+{{key}} exec makoctl dismiss

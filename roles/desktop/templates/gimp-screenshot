@@ -1,0 +1,4 @@
+#!/usr/bin/sh
+filename=`mktemp`
+grim $filename
+exec gimp $filename

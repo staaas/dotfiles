@@ -9,9 +9,18 @@
   - terminus-font  # font used in sway config
   - light  # control screen backlight brightness
   - mako  # notifications manager
+  - grim  # screenshots
 - name: ensure sway configuration dir exists
   file: path={{ ansible_env.HOME }}/.config/sway state=directory recurse=yes
 - name: copy sway config
   template: src=templates/sway/config dest={{ ansible_env.HOME }}/.config/sway/config
 - name: write .Xresources  # will be loaded in sway config
   copy: src=templates/Xresources dest={{ ansible_env.HOME }}/.Xresources
+- name: create grim-wrapper
+  copy: >
+    src=templates/gimp-screenshot
+    dest=/usr/bin/gimp-screenshot
+    mode=0555
+    owner=root
+    group=root
+  become: yes
