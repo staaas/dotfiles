@@ -211,7 +211,7 @@ $mod+Shift+{{key}} makoctl invoke
 bar {
         status_command i3status --config ~/.config/i3/status.conf
         position top
-        tray_output eDP1
+        tray_output eDP-1
         colors {
             separator #586e75
             background #000000
