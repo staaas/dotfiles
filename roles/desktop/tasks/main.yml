@@ -14,12 +14,8 @@
   pacman: package={{ item }} state=present
   become: yes
   with_items:
-  - rxvt-unicode
-  - urxvt-perls
   - alacritty
   - alacritty-terminfo
-- name: configure terminal emulator urxvt
-  copy: src=templates/Xdefaults dest={{ ansible_env.HOME }}/.Xdefaults
 - name: configure terminal emulator alacritty
   copy: src=templates/alacritty/alacritty.yml dest={{ ansible_env.HOME }}/.config/alacritty/alacritty.yml
 - name: copy alacritty wrapper script
