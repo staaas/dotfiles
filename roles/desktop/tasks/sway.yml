@@ -3,6 +3,7 @@
   become: yes
   with_items:
   - sway
+  - swaybg
   - swaylock
   - swayidle
   - i3status
