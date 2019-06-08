@@ -13,79 +13,41 @@ floating_modifier $mod
 focus_follows_mouse no
 workspace_auto_back_and_forth no
 
-{% macro bindsym_multi(keys) -%}
-{% for key in keys %}
-bindsym {{ caller(key) }}
-{%- endfor %}
-{%- endmacro %}
-
 # start a terminal
 bindsym $mod+Return exec term
 
 # kill focused window
-{% call(key) bindsym_multi(['c', 'Cyrillic_es']) %}
-$mod+Shift+{{key}} kill
-{% endcall %}
+bindsym --to-code $mod+Shift+c kill
 
 # start dmenu (a program launcher)
 set $menu dmenu_run
-{% call(key) bindsym_multi(['d', 'Cyrillic_ve']) %}
-$mod+{{key}} exec $menu
-{% endcall %}
+bindsym --to-code $mod+d exec $menu
 
 # change focus
-{% call(key) bindsym_multi(['j', 'Cyrillic_o']) %}
-$mod+{{key}} focus left
-{% endcall %}
-{% call(key) bindsym_multi(['k', 'Cyrillic_el']) %}
-$mod+{{key}} focus down
-{% endcall %}
-{% call(key) bindsym_multi(['l', 'Cyrillic_de']) %}
-$mod+{{key}} focus up
-{% endcall %}
-{% call(key) bindsym_multi(['semicolon', 'Cyrillic_zhe']) %}
-$mod+{{key}} focus right
-{% endcall %}
+bindsym --to-code $mod+j focus left
+bindsym --to-code $mod+k focus down
+bindsym --to-code $mod+l focus up
+bindsym --to-code $mod+semicolon focus right
 
 # move focused window
-{% call(key) bindsym_multi(['j', 'Cyrillic_o']) %}
-$mod+Shift+{{key}} move left
-{% endcall %}
-{% call(key) bindsym_multi(['k', 'Cyrillic_el']) %}
-$mod+Shift+{{key}} move down
-{% endcall %}
-{% call(key) bindsym_multi(['l', 'Cyrillic_de']) %}
-$mod+Shift+{{key}} move up
-{% endcall %}
-{% call(key) bindsym_multi(['colon', 'Shift+Cyrillic_zhe']) %}
-$mod+{{key}} move right
-{% endcall %}
+bindsym --to-code $mod+Shift+j move left
+bindsym --to-code $mod+Shift+k move down
+bindsym --to-code $mod+Shift+l move up
+bindsym --to-code $mod+colon move right
 
 # split in horizontal orientation
-{% call(key) bindsym_multi(['h', 'Cyrillic_er']) %}
-$mod+{{key}} split h
-{% endcall %}
+bindsym --to-code $mod+h split h
 
 # split in vertical orientation
-{% call(key) bindsym_multi(['v', 'Cyrillic_em']) %}
-$mod+{{key}} split v
-{% endcall %}
+bindsym --to-code $mod+v split v
 
 # enter fullscreen mode for the focused container
-{% call(key) bindsym_multi(['f', 'Cyrillic_a']) %}
-$mod+{{key}} fullscreen toggle
-{% endcall %}
+bindsym --to-code $mod+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
-{% call(key) bindsym_multi(['s', 'Cyrillic_yeru']) %}
-$mod+{{key}} layout stacking
-{% endcall %}
-{% call(key) bindsym_multi(['w', 'Cyrillic_tse']) %}
-$mod+{{key}} layout tabbed
-{% endcall %}
-{% call(key) bindsym_multi(['e', 'Cyrillic_u']) %}
-$mod+{{key}} layout toggle split
-{% endcall %}
+bindsym --to-code $mod+s layout stacking
+bindsym --to-code $mod+w layout tabbed
+bindsym --to-code $mod+e layout toggle split
 
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
@@ -94,9 +56,7 @@ bindsym $mod+Shift+space floating toggle
 bindsym $mod+space focus mode_toggle
 
 # focus the parent container
-{% call(key) bindsym_multi(['a', 'Cyrillic_ef']) %}
-$mod+{{key}} focus parent
-{% endcall %}
+bindsym --to-code $mod+a focus parent
 
 # focus the child container
 #bindsym $mod+d focus child
@@ -126,27 +86,15 @@ bindsym $mod+Shift+8 move container to workspace 8
 bindsym $mod+Shift+9 move container to workspace 9
 bindsym $mod+Shift+0 move container to workspace 10
 
-{% call(key) bindsym_multi(['j', 'Cyrillic_o']) %}
-$mod+Control+{{key}} move workspace to output left
-{% endcall %}
-{% call(key) bindsym_multi(['k', 'Cyrillic_el']) %}
-$mod+Control+{{key}} move workspace to output down
-{% endcall %}
-{% call(key) bindsym_multi(['l', 'Cyrillic_de']) %}
-$mod+Control+{{key}} move workspace to output up
-{% endcall %}
-{% call(key) bindsym_multi(['semicolon', 'Cyrillic_zhe']) %}
-$mod+Control+{{key}} move workspace to output right
-{% endcall %}
+bindsym --to-code $mod+Control+j move workspace to output left
+bindsym --to-code $mod+Control+k move workspace to output down
+bindsym --to-code $mod+Control+l move workspace to output up
+bindsym --to-code $mod+Control+semicolon move workspace to output right
 
 # reload the configuration file
-{% call(key) bindsym_multi(['r']) %}
-$mod+Shift+{{key}} reload
-{% endcall %}
+bindsym --to-code $mod+Shift+r reload
 # exit sway (logs you out of your Wayland session)
-{% call(key) bindsym_multi(['e']) %}
-$mod+Shift+{{key}} exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'
-{% endcall %}
+bindsym --to-code $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -156,18 +104,10 @@ mode "resize" {
         # Pressing right will grow the window’s width.
         # Pressing up will shrink the window’s height.
         # Pressing down will grow the window’s height.
-        {% call(key) bindsym_multi(['j', 'Cyrillic_o']) %}
-{{key}} resize shrink width 10 px or 10 ppt
-        {% endcall %}
-        {% call(key) bindsym_multi(['k', 'Cyrillic_el']) %}
-{{key}} resize grow height 10 px or 10 ppt
-        {% endcall %}
-        {% call(key) bindsym_multi(['l', 'Cyrillic_de']) %}
-{{key}} resize shrink height 10 px or 10 ppt
-        {% endcall %}
-        {% call(key) bindsym_multi(['semicolon', 'Cyrillic_zhe']) %}
-{{key}} resize grow width 10 px or 10 ppt
-        {% endcall %}
+        bindsym --to-code j resize shrink width 10 px or 10 ppt
+        bindsym --to-code k resize grow height 10 px or 10 ppt
+        bindsym --to-code l resize shrink height 10 px or 10 ppt
+        bindsym --to-code semicolon resize grow width 10 px or 10 ppt
 
         # same bindings, but for the arrow keys
         bindsym Left resize shrink width 10 px or 10 ppt
@@ -180,9 +120,7 @@ mode "resize" {
         bindsym Escape mode "default"
 }
 
-{% call(key) bindsym_multi(['r']) %}
-$mod+{{key}} mode "resize"
-{% endcall %}
+bindsym --to-code $mod+r mode "resize"
 
 # misc key bindings
 bindsym $mod+backslash exec --no-startup-id swaylock -e -n -c 002b36
@@ -196,15 +134,9 @@ bindsym $mod+Up exec --no-startup-id term -e ncmpc
 bindsym $mod+Down exec --no-startup-id mpc toggle
 bindsym $mod+Left exec --no-startup-id mpc prev
 bindsym $mod+Right exec --no-startup-id mpc next
-{% call(key) bindsym_multi(['p', 'Cyrillic_ze']) %}
-$mod+Shift+{{key}} exec gimp-screenshot
-{% endcall %}
-{% call(key) bindsym_multi(['n', 'Cyrillic_te']) %}
-$mod+{{key}} exec makoctl dismiss
-{% endcall %}
-{% call(key) bindsym_multi(['n', 'Cyrillic_te']) %}
-$mod+Shift+{{key}} makoctl invoke
-{% endcall %}
+bindsym --to-code $mod+Shift+p exec gimp-screenshot
+bindsym --to-code $mod+n exec makoctl dismiss
+bindsym --to-code $mod+Shift+n makoctl invoke
 
 # Start swaybar to display a workspace bar (plus the system information i3status
 # finds out, if available)
