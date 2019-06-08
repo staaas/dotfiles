@@ -1,0 +1,12 @@
+---
+boxes:
+  - name: rudakou
+    host: imap.gmail.com
+    user: rudakou
+    passcmd: "pass show personal/mail/rudakou"
+    patterns: '* ![Gmail]* "[Gmail]/Sent Mail" "[Gmail]/Starred" "[Gmail]/All Mail"'
+  - name: nottcc
+    host: nott.cc
+    user: stas
+    passcmd: "pass show personal/mail/nottcc"
+    certfile: "{{ ansible_env.HOME }}/.cert/nott.cc.pem"
