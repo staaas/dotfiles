@@ -1,12 +1,13 @@
 ---
 - name: "install packages"
-  pacman: name={{ item }} state=installed
-  become: yes
-  with_items:
+  pacman:
+    state: installed
+    package:
     - emacs
     - flake8
     - python2-flake8
     - markdown
+  become: yes
 
 - name: "copy .emacs"
   template: >
