@@ -1,10 +1,11 @@
 - name: install lightdm + greeter
-  pacman: package={{ item }} state=present
+  pacman:
+    state: present
+    package:
+    - lightdm
+    - lightdm-gtk-greeter
+    - accountsservice
   become: yes
-  with_items:
-  - lightdm
-  - lightdm-gtk-greeter
-  - accountsservice
 - name: enable lightdm gtk greeter by default
   lineinfile: >
     dest=/etc/lightdm/lightdm.conf

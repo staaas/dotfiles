@@ -11,11 +11,12 @@
 - include: sway.yml
 
 - name: install terminal emulators
-  pacman: package={{ item }} state=present
+  pacman:
+    state: present
+    package:
+    - alacritty
+    - alacritty-terminfo
   become: yes
-  with_items:
-  - alacritty
-  - alacritty-terminfo
 - name: configure terminal emulator alacritty
   copy: src=templates/alacritty/alacritty.yml dest={{ ansible_env.HOME }}/.config/alacritty/alacritty.yml
 - name: copy alacritty wrapper script
@@ -29,43 +30,47 @@
 - include: p2p.yml
 
 - name: install browsers
-  pacman: package={{ item }} state=present
+  pacman:
+    state:  present
+    package:
+    - firefox
+    - firefox-adblock-plus
+    - firefox-noscript
+    - chromium
   become: yes
-  with_items:
-  - firefox
-  - firefox-adblock-plus
-  - firefox-noscript
-  - chromium
 
 - name: install fonts
-  pacman: package={{ item }} state=present
+  pacman:
+    state: present
+    package:
+    - ttf-anonymous-pro
+    - ttf-dejavu
+    - ttf-droid
+    - ttf-freefont
+    - ttf-inconsolata
+    - ttf-liberation
+    - ttf-ubuntu-font-family
+    - ttf-symbola
   become: yes
-  with_items:
-  - ttf-anonymous-pro
-  - ttf-dejavu
-  - ttf-droid
-  - ttf-freefont
-  - ttf-inconsolata
-  - ttf-liberation
-  - ttf-ubuntu-font-family
-  - ttf-symbola
 
 - name: set default apps
   copy: src=templates/mimeapps.list dest={{ ansible_env.HOME }}/.config/mimeapps.list
 
 - name: install Intel AMT management software
-  pacman: package={{ item }} state=present
+  pacman:
+    state: present
+    package:
+    - remmina
+    - libvncserver
   become: yes
-  with_items:
-  - remmina
-  - libvncserver
 
 - name: install syncthing
-  pacman: package={{ item }} state=present
+  pacman:
+    state: present
+    package:
+    - syncthing
+    - syncthing-gtk
   become: yes
-  with_items:
-  - syncthing
-  - syncthing-gtk
 - name: enable syncthing
   systemd: name=syncthing@{{ ansible_user_id }} state=started enabled=yes
   become: yes

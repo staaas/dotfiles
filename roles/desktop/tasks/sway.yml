@@ -1,16 +1,17 @@
 - name: install sway and related packages
-  pacman: package={{ item }} state=present
+  pacman:
+    state: present
+    package:
+    - sway
+    - swaybg
+    - swaylock
+    - swayidle
+    - i3status
+    - terminus-font  # font used in sway config
+    - light  # control screen backlight brightness
+    - mako  # notifications manager
+    - grim  # screenshots
   become: yes
-  with_items:
-  - sway
-  - swaybg
-  - swaylock
-  - swayidle
-  - i3status
-  - terminus-font  # font used in sway config
-  - light  # control screen backlight brightness
-  - mako  # notifications manager
-  - grim  # screenshots
 - name: ensure sway configuration dir exists
   file: path={{ ansible_env.HOME }}/.config/sway state=directory recurse=yes
 - name: copy sway config

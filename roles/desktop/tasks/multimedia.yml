@@ -1,27 +1,30 @@
 - name: install pulseaudio
-  pacman: package={{ item }} state=installed
+  pacman:
+    state: installed
+    package:
+    - pulseaudio
+    - pavucontrol
+    - pamixer
   become: yes
-  with_items:
-  - pulseaudio
-  - pavucontrol
-  - pamixer
 
 - name: install audio packages
-  pacman: name={{ item }} state=installed
+  pacman:
+    state: installed
+    package:
+    - deadbeef
+    - ffmpeg
+    - libvorbis
+    - libmad
+    - flac
+    - vlc
   become: yes
-  with_items:
-  - deadbeef
-  - ffmpeg
-  - libvorbis
-  - libmad
-  - flac
-  - vlc
 
 - name: install imaging packages
-  pacman: name={{ item }} state=installed
+  pacman:
+    state: installed
+    package:
+    - sxiv
+    - imagemagick
+    - gimp
+    - scrot
   become: yes
-  with_items:
-  - sxiv
-  - imagemagick
-  - gimp
-  - scrot

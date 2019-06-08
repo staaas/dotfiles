@@ -3,9 +3,10 @@
   become: yes
 
 - name: install libreoffice
-  pacman: name={{ item }} state=installed
+  pacman:
+    state: installed
+    package:
+    - libreoffice-fresh
+    - libreoffice-fresh-be
+    - libreoffice-fresh-ru
   become: yes
-  with_items:
-  - libreoffice-fresh
-  - libreoffice-fresh-be
-  - libreoffice-fresh-ru
