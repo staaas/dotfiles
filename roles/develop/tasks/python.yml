@@ -1,17 +1,18 @@
 - name: install python and related packages
-  pacman: name={{ item }} state=installed
+  pacman:
+    state: installed
+    package:
+    - python
+    - python2
+    - pypy
+    - pypy3
+    - ipython
+    - ipython2
+    - python-virtualenv
+    - python-virtualenvwrapper
+    - flake8
+    - python2-flake8
   become: yes
-  with_items:
-  - python
-  - python2
-  - pypy
-  - pypy3
-  - ipython
-  - ipython2
-  - python-virtualenv
-  - python-virtualenvwrapper
-  - flake8
-  - python2-flake8
 
 - name: ensure .zshrc.d exists
   file: path={{ ansible_env.HOME }}/.zshrc.d state=directory
@@ -21,11 +22,12 @@
     dest={{ ansible_env.HOME }}/.zshrc.d/50-virtualenvwrapper.sh
 
 - name: install datascience tools
-  pacman: name={{ item }} state=installed
+  pacman:
+    state: installed
+    package:
+    - jupyter-notebook
+    - jupyter-nbconvert
+    - python-pandas
+    - python-seaborn
+    - python-scikit-learn
   become: yes
-  with_items:
-  - jupyter-notebook
-  - jupyter-nbconvert
-  - python-pandas
-  - python-seaborn
-  - python-scikit-learn

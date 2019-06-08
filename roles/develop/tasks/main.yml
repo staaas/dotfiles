@@ -5,11 +5,12 @@
 - include: scm.yml
 
 - name: install docker
-  pacman: package={{ item }} state=installed
+  pacman:
+    state: installed
+    package:
+    - docker
+    - docker-compose
   become: yes
-  with_items:
-  - docker
-  - docker-compose
 - name: start docker daemon
   systemd: name=docker enabled=yes state=started
   become: yes
