@@ -1,11 +1,12 @@
 ---
 - name: "install packages"
-  pacman: name={{ item }} state=installed
-  become: yes
-  with_items:
+  pacman:
+    state: installed
+    package:
     - gnupg
     - openssh
     - pass
+  become: yes
 
 - name: "create .gnupg"
   file: path=/home/{{ ansible_user_id }}/.gnupg state=directory mode=0700
@@ -27,9 +28,10 @@
   systemd: name=gpg-agent scope=user state=started enabled=yes
 
 - name: install yubikey tools
-  pacman: name={{ item }} state=installed
-  become: yes
-  with_items:
+  pacman:
+    state: installed
+    package:
     - yubikey-manager
     - yubikey-personalization
     - yubikey-personalization-gui
+  become: yes
