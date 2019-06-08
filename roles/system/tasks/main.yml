@@ -11,14 +11,15 @@
   become: yes
 
 - name:  install netctl and related tools
-  pacman: name={{ item }} state=installed
+  pacman:
+    state: installed
+    package:
+    - netctl
+    - dialog  # used by wifi-menu
+    - wpa_supplicant
+    - wpa_actiond  # used by netctl-auto
+    - ifplugd  # used by netctl-ifplugd
   become: yes
-  with_items:
-  - netctl
-  - dialog  # used by wifi-menu
-  - wpa_supplicant
-  - wpa_actiond  # used by netctl-auto
-  - ifplugd  # used by netctl-ifplugd
 
 - name: enable netctl-auto
   systemd: name=netctl-auto@{{ wlan0 }} enabled=yes state=started
@@ -26,11 +27,12 @@
   when: wlan0 != 'none'
 
 - name: install openvpn and related tools
-  pacman: name={{ item }} state=installed
+  pacman:
+    state: installed
+    package:
+    - openvpn
+    - openresolv
   become: yes
-  with_items:
-  - openvpn
-  - openresolv
 - name: copy update-resolv-conf
   copy: >
     src=templates/openvpn/update-resolv-conf
@@ -40,9 +42,8 @@
   become: yes
 
 - name: install 3g modem software
-  pacman: name={{ item }} state=installed
-  with_items:
-  - wvdial
+  pacman: package=wvdial state=installed
+  become: yes
 
 - name: install network-related utils
   pacman: name=net-tools state=installed
