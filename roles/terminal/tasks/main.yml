@@ -18,26 +18,28 @@
   become: yes
 
 - name: install resource monitors
-  pacman: name={{ item }} state=installed
+  pacman:
+    state: installed
+    package:
+    - htop
+    - iotop
+    - powertop
   become: yes
-  with_items:
-  - htop
-  - iotop
-  - powertop
 
 - name: install frequently used applications
-  pacman: name={{ item }} state=installed
+  pacman:
+    state: installed
+    package:
+    - gnu-netcat
+    - wget
+    - curl
+    - mc
+    - unzip
+    - the_silver_searcher
+    - dosfstools
+    - bind-tools
+    - ripgrep
+    - sshfs
   become: yes
-  with_items:
-  - gnu-netcat
-  - wget
-  - curl
-  - mc
-  - unzip
-  - the_silver_searcher
-  - dosfstools
-  - bind-tools
-  - ripgrep
-  - sshfs
 
 - include: mpd.yml
