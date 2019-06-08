@@ -17,7 +17,7 @@
   notify: restart mpd
 
 - name: start mpd
-  systemd: name=mpd user=yes state=started enabled=yes
+  systemd: name=mpd scope=user state=started enabled=yes
 
 - name: ensure .config/ncmpc exists
   file: path={{ ansible_env.HOME }}/.config/mpd state=directory recurse=yes

@@ -24,7 +24,7 @@
     dest=/home/{{ ansible_user_id }}/.zshrc.d/00-ssh-agent.sh
 
 - name: "start gpg-agent service"
-  systemd: name=gpg-agent user=yes state=started enabled=yes
+  systemd: name=gpg-agent scope=user state=started enabled=yes
 
 - name: install yubikey tools
   pacman: name={{ item }} state=installed

@@ -36,7 +36,7 @@
     src=templates/.config/systemd/user/emacs.service
     dest=/home/{{ ansible_user_id }}/.config/systemd/user/emacs.service
 - name: "start daemon service"
-  systemd: name=emacs user=yes state=started enabled=yes
+  systemd: name=emacs scope=user state=started enabled=yes
 
 - name: "copy emacsclient shortcut"
   copy: >
