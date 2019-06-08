@@ -1,0 +1,8 @@
+- hosts: localhost
+  roles:
+    - system
+    - terminal
+    - desktop
+    - thinkpad
+    - keychain
+    - emacs

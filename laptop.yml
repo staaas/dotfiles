@@ -1,5 +1,0 @@
-- hosts: localhost
-  roles:
-    - keychain
-    - mail
-    - emacs
