@@ -54,5 +54,5 @@
   systemd: name={{ item }} state=stopped enabled=no
   become: yes
   with_items:
-  - systemd-rfkill.systemd
+  - systemd-rfkill.service
   - systemd-rfkill.socket
