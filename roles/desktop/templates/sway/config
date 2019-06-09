@@ -3,6 +3,7 @@
 exec xrdb -load ~/.Xresources
 
 set $mod Mod4
+set $primscreen eDP-1
 
 font pango:Terminus 8
 
@@ -143,7 +144,7 @@ bindsym --to-code $mod+Shift+n makoctl invoke
 bar {
         status_command i3status --config ~/.config/i3/status.conf
         position top
-        tray_output eDP-1
+        tray_output $primscreen
         colors {
             separator #586e75
             background #000000
@@ -156,7 +157,7 @@ bar {
 }
 
 output * bg #000000 solid_color
-output eDP-1 pos 0 2000
+output $primscreen pos 0 2000
 
 # class                 border  backgr. text    indicator child_border
 client.focused          #586e75 #586e75 #fdf6e3 #268bd2   #586e75
@@ -168,6 +169,9 @@ input 1:1:AT_Translated_Set_2_keyboard {
     xkb_layout us,by,ru
     xkb_options grp:caps_toggle
 }
+
+bindswitch --locked lid:off output $primscreen enable
+bindswitch --locked lid:on output $primscreen disable
 
 exec_always mako
 exec swayidle timeout 300 'swaylock -e -n -c 002b36' timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' before-sleep 'swaylock -e -n -c 002b36'
