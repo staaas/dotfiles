@@ -156,6 +156,7 @@ bar {
 }
 
 output * bg #000000 solid_color
+output eDP-1 pos 0 2000
 
 # class                 border  backgr. text    indicator child_border
 client.focused          #586e75 #586e75 #fdf6e3 #268bd2   #586e75
