@@ -164,7 +164,7 @@ client.focused_inactive #073642 #073642 #93a1a1 #002b36   #073642
 client.unfocused        #002b36 #002b36 #586e75 #002b36   #002b36
 client.urgent           #dc322f #dc322f #fdf6e3 #dc322f   #dc322f
 
-input 1:1:AT_Translated_Set_2_keyboard {
+input * {
     xkb_layout us,by,ru
     xkb_options grp:caps_toggle
 }
