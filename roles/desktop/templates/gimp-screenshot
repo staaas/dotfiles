@@ -1,4 +1,4 @@
 #!/usr/bin/sh
 filename=`mktemp`
-grim $filename
+grim -g "$(slurp)" $filename
 exec gimp $filename

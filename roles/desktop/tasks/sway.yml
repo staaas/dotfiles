@@ -11,6 +11,7 @@
     - light  # control screen backlight brightness
     - mako  # notifications manager
     - grim  # screenshots
+    - slurp  # select part of the screen
   become: yes
 - name: ensure sway configuration dir exists
   file: path={{ ansible_env.HOME }}/.config/sway state=directory recurse=yes
