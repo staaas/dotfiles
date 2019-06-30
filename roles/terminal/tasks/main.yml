@@ -40,6 +40,7 @@
     - bind-tools
     - ripgrep
     - sshfs
+    - translate-shell
   become: yes
 
 - include: mpd.yml
