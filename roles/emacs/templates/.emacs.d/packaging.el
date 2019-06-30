@@ -35,6 +35,10 @@
 (el-get-bundle markdown-mode)
 (el-get-bundle web-mode
   (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode)))
+(el-get-bundle plantuml-mode
+  (progn (add-to-list 'auto-mode-alist '("\\.plantuml?\\'" . plantuml-mode))
+         (setq plantuml-default-exec-mode 'jar)
+         (setq plantuml-jar-path "/opt/plantuml/plantuml.jar")))
 
 ;; language server
 (el-get-bundle lsp-mode)
