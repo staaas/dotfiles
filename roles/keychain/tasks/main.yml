@@ -31,9 +31,6 @@
     dest={{ ansible_env.HOME }}/.ssh/config
     line='Match host * exec "gpg-connect-agent UPDATESTARTUPTTY /bye"'
 
-- name: "start gpg-agent service"
-  systemd: name=gpg-agent scope=user state=started enabled=yes
-
 - name: install yubikey tools
   pacman:
     state: installed
