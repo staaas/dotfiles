@@ -90,7 +90,7 @@ bindsym $mod+Shift+0 move container to workspace 10
 bindsym --to-code $mod+Control+j move workspace to output left
 bindsym --to-code $mod+Control+k move workspace to output down
 bindsym --to-code $mod+Control+l move workspace to output up
-bindsym --to-code $mod+Control+semicolon move workspace to output right
+bindsym --to-code $mod+Control+apostrophe exec --no-startup-id ~/.config/sway/sway-move-all-to-current-display.py
 
 # reload the configuration file
 bindsym --to-code $mod+Shift+r reload

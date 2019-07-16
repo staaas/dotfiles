@@ -27,3 +27,7 @@
     owner=root
     group=root
   become: yes
+- name: copy script sway-move-all-to-current-display.py
+  copy: >
+    src=templates/sway/sway-move-all-to-current-display.py
+    dest={{ ansible_env.HOME }}/.config/sway/sway-move-all-to-current-display.py mode=0555
