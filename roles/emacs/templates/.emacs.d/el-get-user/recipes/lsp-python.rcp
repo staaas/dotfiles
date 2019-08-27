@@ -1,3 +1,0 @@
-(:name lsp-python
-       :type github
-       :pkgname "emacs-lsp/lsp-python")

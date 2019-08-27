@@ -1,3 +1,0 @@
-(:name lsp-rust
-       :type github
-       :pkgname "emacs-lsp/lsp-rust")

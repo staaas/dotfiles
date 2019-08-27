@@ -1,0 +1,22 @@
+(source melpa)
+(source "gnuhttp" "http://elpa.gnu.org/packages/")
+
+(depends-on "ace-window")
+(depends-on "flycheck")
+(depends-on "magit")
+(depends-on "yasnippet")
+(depends-on "projectile")
+(depends-on "company")
+(depends-on "ripgrep")
+(depends-on "editorconfig")
+
+(depends-on "markdown-mode")
+(depends-on "web-mode")
+(depends-on "plantuml-mode")
+
+(depends-on "lsp-mode")
+(depends-on "company-lsp")
+(depends-on "lsp-ui")
+
+(depends-on "rust-mode")
+(depends-on "cargo")

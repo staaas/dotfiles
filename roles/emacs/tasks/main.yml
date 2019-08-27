@@ -4,6 +4,7 @@
     state: installed
     package:
     - emacs
+    - cask  # dependency management - installed from AUR
     - flake8
     - python2-flake8
     - markdown
@@ -21,16 +22,17 @@
     src=templates/.emacs.d/{{ item }}
     dest=/home/{{ ansible_user_id }}/.emacs.d/{{ item }}
   with_items:
+    - Cask
     - startup.el
     - ui.el
     - packaging.el
     - editing.el
     - org.el
 
-- name: "copy user el-get recipes"
-  copy: >
-    src=templates/.emacs.d/el-get-user/
-    dest=/home/{{ ansible_user_id }}/.emacs.d/el-get-user/
+- name: "cask install"
+  shell: "cask install --verbose"
+  args:
+    chdir: "/home/{{ ansible_user_id }}/.emacs.d"
 
 - name: "copy daemon service"
   template: >

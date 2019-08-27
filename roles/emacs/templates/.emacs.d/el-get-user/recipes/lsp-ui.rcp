@@ -1,4 +1,0 @@
-(:name lsp-ui
-       :type github
-       :description "Higher level UI modules of lsp-mode, like flycheck support and code lenses"
-       :pkgname "emacs-lsp/lsp-ui")
