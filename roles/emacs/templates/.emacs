@@ -1,5 +1,3 @@
 (load-file "~/.emacs.d/startup.el")
-(load-file "~/.emacs.d/ui.el")
-(load-file "~/.emacs.d/packaging.el")
-(load-file "~/.emacs.d/editing.el")
-(load-file "~/.emacs.d/org.el")
+(load-file "~/.emacs.d/builtin.el")
+(load-file "~/.emacs.d/external.el")

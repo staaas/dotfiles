@@ -24,10 +24,8 @@
   with_items:
     - Cask
     - startup.el
-    - ui.el
-    - packaging.el
-    - editing.el
-    - org.el
+    - builtin.el
+    - external.el
 
 - name: "cask install"
   shell: "cask install --verbose"
