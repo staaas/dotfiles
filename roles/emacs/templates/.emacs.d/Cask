@@ -7,6 +7,7 @@
 (depends-on "yasnippet")
 (depends-on "projectile")
 (depends-on "company")
+(depends-on "ag")
 (depends-on "ripgrep")
 (depends-on "editorconfig")
 
