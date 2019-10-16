@@ -31,3 +31,6 @@
   copy: >
     src=templates/sway/sway-move-all-to-current-display.py
     dest={{ ansible_env.HOME }}/.config/sway/sway-move-all-to-current-display.py mode=0555
+- name: Add user to group video to make utility light work without sudo
+  user: name={{ ansible_user_id }} groups=video append=yes
+  become: yes
