@@ -174,5 +174,5 @@ bindswitch --locked lid:off output $primscreen disable
 bindswitch --locked lid:on output $primscreen enable
 
 exec_always mako
-exec swayidle timeout 300 'swaylock -e -n -c 002b36' before-sleep 'swaylock -e -n -c 002b36'
+exec swayidle timeout 300 'swaylock -e -n -c 002b36' timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' before-sleep 'swaylock -e -n -c 002b36'
 exec light -P 5
