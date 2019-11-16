@@ -1,2 +1,2 @@
 #!/usr/bin/sh
-/usr/bin/emacsclient -c $@
+exec /usr/bin/emacs -nw -Q $@

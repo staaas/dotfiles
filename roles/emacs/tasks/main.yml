@@ -32,13 +32,6 @@
   args:
     chdir: "/home/{{ ansible_user_id }}/.emacs.d"
 
-- name: "copy daemon service"
-  template: >
-    src=templates/.config/systemd/user/emacs.service
-    dest=/home/{{ ansible_user_id }}/.config/systemd/user/emacs.service
-- name: "start daemon service"
-  systemd: name=emacs scope=user state=started enabled=yes
-
 - name: "copy emacsclient shortcut"
   copy: >
     src=templates/e
@@ -51,4 +44,4 @@
 - name: ensure .zshrc.d exists
   file: path={{ ansible_env.HOME }}/.zshrc.d state=directory
 - name: set EDITOR=e -t
-  copy: content='export EDITOR="e -t"\n' dest={{ ansible_env.HOME }}/.zshrc.d/50-editor-e.sh
+  copy: content='export EDITOR="emacs -nw -Q"\n' dest={{ ansible_env.HOME }}/.zshrc.d/50-editor-e.sh
