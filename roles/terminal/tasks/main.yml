@@ -41,6 +41,7 @@
     - ripgrep
     - sshfs
     - translate-shell
+    - fd
   become: yes
 
 - include: mpd.yml
