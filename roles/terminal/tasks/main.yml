@@ -42,6 +42,7 @@
     - sshfs
     - translate-shell
     - fd
+    - bandwhich
   become: yes
 
 - include: mpd.yml
