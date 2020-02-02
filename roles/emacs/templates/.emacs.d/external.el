@@ -6,6 +6,9 @@
 
 (require 'magit)
 (global-set-key (kbd "C-c g") 'magit-status)
+(custom-set-faces
+ ; disable section highlight
+ '(magit-section-highlight ((((type tty)) nil))))
 
 (require 'yasnippet)
 (yas-global-mode 1)
