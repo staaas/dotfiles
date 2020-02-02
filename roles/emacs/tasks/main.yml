@@ -7,7 +7,7 @@
     - cask  # dependency management - installed from AUR
     - flake8
     - python2-flake8
-    - markdown
+    - discount  # previously known as markdown, also provides markdown binary
     - plantuml
   become: yes
 
