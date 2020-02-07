@@ -36,3 +36,7 @@
 - name: Add user to group video to make utility light work without sudo
   user: name={{ ansible_user_id }} groups=video append=yes
   become: yes
+- name: Autostart sway when logging in on TTY1
+  copy: >
+    src=templates/sway/00-sway.sh
+    dest=/home/{{ ansible_user_id }}/.zshrc.d/00-sway.sh
