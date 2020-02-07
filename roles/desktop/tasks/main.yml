@@ -61,16 +61,3 @@
     - remmina
     - libvncserver
   become: yes
-
-- name: install syncthing
-  pacman:
-    state: present
-    package:
-    - syncthing
-    - syncthing-gtk
-  become: yes
-- name: enable syncthing
-  systemd: name=syncthing@{{ ansible_user_id }} state=started enabled=yes
-  become: yes
-- name: copy syncthing-gtk config
-  copy: src=templates/syncthing-gtk/config.json dest={{ ansible_env.HOME }}/.config/syncthing-gtk/config.json
