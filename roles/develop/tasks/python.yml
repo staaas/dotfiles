@@ -12,6 +12,7 @@
     - python-virtualenvwrapper
     - flake8
     - python2-flake8
+    - python-poetry
   become: yes
 
 - name: ensure .zshrc.d exists
