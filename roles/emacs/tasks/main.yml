@@ -41,7 +41,6 @@
     group=root
   become: yes
 
-- name: ensure .zshrc.d exists
-  file: path={{ ansible_env.HOME }}/.zshrc.d state=directory
-- name: set EDITOR=e -t
-  copy: content='export EDITOR="emacs -nw -Q"\n' dest={{ ansible_env.HOME }}/.zshrc.d/50-editor-e.sh
+- name: set EDITOR=emacs
+  copy: content='set -x EDITOR "emacs -nw -Q"\n' dest=/etc/fish/conf.d/50-editor.sh
+  become: yes

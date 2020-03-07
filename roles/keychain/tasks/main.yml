@@ -17,16 +17,14 @@
     src=templates/home/user/.gnupg/gpg-agent.conf
     dest={{ ansible_env.HOME }}/.gnupg/gpg-agent.conf
 
-- name: "ensure .zshrc.d exists"
-  file: path=/home/{{ ansible_user_id }}/.zshrc.d state=directory
-- name: "copy zsh condiguration preset for ssh-agent"
+- name: "copy fish condiguration preset for ssh-agent"
   copy: >
-    src=templates/home/user/.zshrc.d/10-ssh-agent.sh
-    dest=/home/{{ ansible_user_id }}/.zshrc.d/10-ssh-agent.sh
+    src=templates/ssh-agent.fish
+    dest={{ ansible_env.HOME }}/.config/fish/conf.d/10-ssh-agent.fish
 
 - name: "ensure .ssh exists"
   file: path={{ ansible_env.HOME }}/.ssh state=directory mode=0700
-- name: configure openssh to update startup tty before calling gpg-agent (relies on GPG_TTY from .zshrc.d/00-ssh-agent.sh)
+- name: configure openssh to update startup tty before calling gpg-agent (relies on GPG_TTY from ssh-agent.fish)
   lineinfile: >
     dest={{ ansible_env.HOME }}/.ssh/config
     line='Match host * exec "gpg-connect-agent UPDATESTARTUPTTY /bye"'
