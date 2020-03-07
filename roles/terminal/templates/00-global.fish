@@ -1,3 +1,6 @@
+# disable "greeting"
+set fish_greeting
+
 function fish_prompt --description 'Write out the prompt'
     set -l last_pipestatus $pipestatus
 
