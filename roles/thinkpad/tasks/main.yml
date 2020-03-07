@@ -26,29 +26,11 @@
 - name: install tlp
   pacman: package=tlp state=installed
   become: yes
-- name: configure SATA_LINKPWR_ON_BAT in tlp to be safe for btrfs
-  lineinfile: >
-    dest=/etc/default/tlp
-    line="SATA_LINKPWR_ON_BAT=max_performance"
-    regexp="^SATA_LINKPWR_ON_BAT="
-  become: yes
-- name: configure START_CHARGE_THRESH_BAT0 in tlp
-  lineinfile: >
-    dest=/etc/default/tlp
-    line="START_CHARGE_THRESH_BAT0=75"
-    regexp="#?START_CHARGE_THRESH_BAT0="
-  become: yes
-- name: configure STOP_CHARGE_THRESH_BAT0 in tlp
-  lineinfile: >
-    dest=/etc/default/tlp
-    line="STOP_CHARGE_THRESH_BAT0=90"
-    regexp="#?STOP_CHARGE_THRESH_BAT0="
+- name: configure tlp
+  copy: src=templates/tlp.conf dest=/etc/tlp.d/thinkpad.conf
   become: yes
 - name: enable tlp
   systemd: name=tlp enabled=yes state=started
-  become: yes
-- name: enable tlp-sleep
-  systemd: name=tlp-sleep enabled=yes
   become: yes
 - name: disable systemd-rfkill as it conflicts with tlp
   systemd: name={{ item }} state=stopped enabled=no
