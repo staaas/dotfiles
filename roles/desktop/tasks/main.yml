@@ -11,9 +11,7 @@
 - name: install terminal emulators
   pacman:
     state: present
-    package:
-    - alacritty
-    - alacritty-terminfo
+    package: alacritty
   become: yes
 - name: configure terminal emulator alacritty
   copy: src=templates/alacritty/alacritty.yml dest={{ ansible_env.HOME }}/.config/alacritty/alacritty.yml
