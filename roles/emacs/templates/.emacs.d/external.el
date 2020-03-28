@@ -17,6 +17,7 @@
 (require 'projectile)
 (projectile-mode)
 (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
+(define-key projectile-command-map (kbd "s s") #'projectile-ripgrep)
 
 (require 'editorconfig)
 (editorconfig-mode 1)

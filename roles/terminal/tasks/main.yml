@@ -39,7 +39,6 @@
     - curl
     - mc
     - unzip
-    - the_silver_searcher
     - dosfstools
     - bind-tools
     - ripgrep
