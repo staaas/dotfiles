@@ -1,4 +1,14 @@
 ---
+- name: "install grub"
+  pacman: name=grub state=installed
+  become: yes
+- name: "skip filesystem balance on reboot"
+  lineinfile: >
+    dest=/etc/default/grub
+    line='GRUB_CMDLINE_LINUX="rootflags=skip_balance"'
+    regexp="GRUB_CMDLINE_LINUX="
+  become: yes
+
 - name: "install ntp"
   pacman: name=ntp state=installed
   become: yes
