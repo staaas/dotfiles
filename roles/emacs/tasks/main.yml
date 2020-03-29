@@ -42,5 +42,5 @@
   become: yes
 
 - name: set EDITOR=emacs
-  copy: content='set -x EDITOR "emacs -nw -Q"\n' dest=/etc/fish/conf.d/50-editor.sh
+  copy: content='set -x EDITOR "emacs -nw -Q"\n' dest=/etc/fish/conf.d/50-editor.fish
   become: yes
