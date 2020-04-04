@@ -35,6 +35,14 @@
     - chromium
   become: yes
 
+- name: install IM clients
+  pacman:
+    state: present
+    package:
+    - riot-desktop
+    - weechat
+    - weechat-matrix
+
 - name: install fonts
   pacman:
     state: present
