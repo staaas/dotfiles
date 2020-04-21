@@ -7,6 +7,7 @@
     - swaylock
     - swayidle
     - i3status
+    - bemenu  # program launcher
     - terminus-font  # font used in sway config
     - light  # control screen backlight brightness
     - mako  # notifications manager

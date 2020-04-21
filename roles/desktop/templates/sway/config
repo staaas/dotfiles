@@ -20,8 +20,8 @@ bindsym $mod+Return exec term
 # kill focused window
 bindsym --to-code $mod+Shift+c kill
 
-# start dmenu (a program launcher)
-set $menu dmenu_run
+# start bemenu (a program launcher)
+set $menu bemenu-run --prompt "" --hf "#abe047"
 bindsym --to-code $mod+d exec $menu
 
 # change focus
