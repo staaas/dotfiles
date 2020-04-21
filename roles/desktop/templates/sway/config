@@ -21,7 +21,7 @@ bindsym $mod+Return exec term
 bindsym --to-code $mod+Shift+c kill
 
 # start bemenu (a program launcher)
-set $menu bemenu-run --prompt "" --hf "#abe047"
+set $menu bemenu-run --prompt "" --hf "#abe047" --fn "pango:Terminus 9"
 bindsym --to-code $mod+d exec $menu
 
 # change focus
