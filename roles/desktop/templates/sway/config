@@ -21,7 +21,7 @@ bindsym $mod+Return exec term
 bindsym --to-code $mod+Shift+c kill
 
 # start bemenu (a program launcher)
-set $menu bemenu-run --prompt "" --hf "#abe047" --nb "#000000" --fb "#000000" --line-height 20
+set $menu bemenu-run --prompt "" --hf "#ffffff" --nf "#999999" --nb "#000000" --fb "#000000" --line-height 20
 bindsym --to-code $mod+d exec $menu
 
 # change focus
