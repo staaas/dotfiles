@@ -1,5 +1,5 @@
 ;; default font size
-(set-face-attribute 'default nil :height 100)
+(set-frame-font "Roboto Mono Light 10")
 
 ;; Pretty buffer names for duplicate filenames
 (require 'uniquify) 
