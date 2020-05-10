@@ -52,3 +52,7 @@
 ;; Add a way to open links in Chrome (which is non-default browser)
 ;; by prefixing URLs with chrome:, e.g. chrome:https://mozilla.org
 (org-link-set-parameters "chrome" :follow (lambda (path) (browse-url-chrome path)))
+;; Better experience when working with images
+(setq org-display-inline-images t)
+(setq org-redisplay-inline-images t)
+(setq org-startup-with-inline-images "inlineimages")
