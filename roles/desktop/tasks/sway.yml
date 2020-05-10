@@ -8,7 +8,7 @@
     - swayidle
     - i3status
     - bemenu  # program launcher
-    - terminus-font  # font used in sway config
+    - ttf-roboto-mono  # font used in sway config
     - light  # control screen backlight brightness
     - mako  # notifications manager
     - grim  # screenshots

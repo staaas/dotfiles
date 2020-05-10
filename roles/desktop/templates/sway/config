@@ -5,7 +5,7 @@ exec xrdb -load ~/.Xresources
 set $mod Mod4
 set $primscreen eDP-1
 
-font pango:Terminus 8
+font pango:Roboto Mono 8
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -21,7 +21,7 @@ bindsym $mod+Return exec term
 bindsym --to-code $mod+Shift+c kill
 
 # start bemenu (a program launcher)
-set $menu bemenu-run --prompt "" --hf "#ffffff" --nf "#999999" --nb "#000000" --fb "#000000" --line-height 20
+set $menu bemenu-run --prompt "" --hf "#ffffff" --nf "#999999" --nb "#000000" --fb "#000000" --line-height 20 --fn "Roboto Mono 9"
 bindsym --to-code $mod+d exec $menu
 
 # change focus
