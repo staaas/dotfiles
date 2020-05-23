@@ -5,7 +5,6 @@
   copy: src=templates/xorg/10-xkb.conf dest=/etc/X11/xorg.conf.d/10-xkb.conf
   become: yes
 
-- include: i3.yml
 - include: sway.yml
 
 - name: install terminal emulators
