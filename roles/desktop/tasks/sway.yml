@@ -9,6 +9,7 @@
     - i3status
     - pipewire
     - pipewire-pulse
+    - wl-clipboard
     - bemenu  # program launcher
     - ttf-roboto  # font used in sway config (1/2)
     - ttf-roboto-mono  # font used in sway config (2/2)
