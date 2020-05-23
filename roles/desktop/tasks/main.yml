@@ -30,8 +30,9 @@
     state:  present
     package:
     - firefox
-    - firefox-adblock-plus
-    - firefox-noscript
+    - firefox-ublock-origin
+    - firefox-extension-privacybadger
+    - firefox-extension-https-everywhere
     - chromium
   become: yes
 
