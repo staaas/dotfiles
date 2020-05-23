@@ -75,6 +75,14 @@ bindsym $mod+9 workspace 9
 bindsym $mod+0 workspace 10
 bindsym $mod+Escape workspace back_and_forth
 
+# bindings for my compact desktop keyboard (miya pro)
+bindsym Control+F1 workspace 1
+bindsym Control+F2 workspace 2
+bindsym Control+F3 workspace 3
+bindsym Control+F4 workspace 4
+bindsym Control+F5 workspace 5
+bindsym Control+grave workspace back_and_forth
+
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace 1
 bindsym $mod+Shift+2 move container to workspace 2
