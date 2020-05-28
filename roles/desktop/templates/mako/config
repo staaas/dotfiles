@@ -1,10 +1,12 @@
 actions=1
 
 # Format
-border-color=#002b36
-border-size=2
+border-size=6
+border-radius=6
 background-color=#454545f0
+border-color=#454545f0
 text-color=#ffffff
 
 [urgency=high]
 background-color=#EA6C73f5
+border-color=#EA6C73f0
