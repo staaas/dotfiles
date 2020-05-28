@@ -22,6 +22,10 @@
   file: path={{ ansible_env.HOME }}/.config/sway state=directory recurse=yes
 - name: copy sway config
   template: src=templates/sway/config dest={{ ansible_env.HOME }}/.config/sway/config
+- name: ensure mako configuration dir exists
+  file: path={{ ansible_env.HOME }}/.config/mako state=directory recurse=yes
+- name: copy mako config
+  template: src=templates/mako/config dest={{ ansible_env.HOME }}/.config/mako/config
 - name: copy i3status config
   template: src=templates/sway/status.conf dest={{ ansible_env.HOME }}/.config/sway/status.conf
 - name: write .Xresources  # will be loaded in sway config

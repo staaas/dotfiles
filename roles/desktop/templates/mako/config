@@ -1,0 +1,10 @@
+actions=1
+
+# Format
+border-color=#002b36
+border-size=2
+background-color=#454545f0
+text-color=#ffffff
+
+[urgency=high]
+background-color=#EA6C73f5
