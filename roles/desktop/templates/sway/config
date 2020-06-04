@@ -100,11 +100,6 @@ bindsym --to-code $mod+Control+k move workspace to output down
 bindsym --to-code $mod+Control+l move workspace to output up
 bindsym --to-code $mod+Control+apostrophe exec --no-startup-id ~/.config/sway/sway-move-all-to-current-display.py
 
-# reload the configuration file
-bindsym --to-code $mod+Shift+r reload
-# exit sway (logs you out of your Wayland session)
-bindsym --to-code $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'
-
 # resize window (you can also use the mouse for that)
 mode "resize" {
         # These bindings trigger as soon as you enter the resize mode
