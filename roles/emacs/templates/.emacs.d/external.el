@@ -28,7 +28,7 @@
 
 (add-to-list 'auto-mode-alist '("\\.plantuml?\\'" . plantuml-mode))
 (setq plantuml-default-exec-mode 'jar)
-(setq plantuml-jar-path "/opt/plantuml/plantuml.jar")
+(setq plantuml-jar-path "/usr/share/java/plantuml/plantuml.jar")
 
 (add-hook 'lsp-mode-hook 'lsp-ui-mode)
 (require 'lsp-ui)
