@@ -38,6 +38,13 @@
 (put 'upcase-region 'disabled nil)
 (put 'downcase-region 'disabled nil)
 
+;; isearch settings
+(setq search-highlight t)
+(setq search-whitespace-regexp ".*?")
+(setq isearch-lax-whitespace t)
+(setq isearch-regexp-lax-whitespace nil)
+(setq isearch-lazy-highlight t)
+
 ;; Python mode settings
 (require 'python)
 ;; Split window horizontally on C-c C-c (default is vertically)
