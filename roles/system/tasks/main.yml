@@ -9,11 +9,8 @@
     regexp="GRUB_CMDLINE_LINUX="
   become: yes
 
-- name: "install ntp"
-  pacman: name=ntp state=installed
-  become: yes
-- name: "enable ntp"
-  systemd: name=ntpd enabled=yes state=started
+- name: "enable systemd-timesyncd"
+  systemd: name=systemd-timesyncd enabled=yes state=started
   become: yes
 
 - name: "install btrfs progs"
