@@ -36,6 +36,7 @@
 (setq lsp-ui-sideline-enable nil)
 (add-hook 'python-mode-hook #'lsp)
 (add-hook 'rust-mode-hook #'lsp)
+(setq lsp-rust-server 'rust-analyzer)
 (add-hook 'rust-mode-hook 'cargo-minor-mode)
 (add-to-list 'auto-mode-alist '("\\.rs\\'" . rust-mode))
 

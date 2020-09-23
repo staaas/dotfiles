@@ -1,3 +1,6 @@
 - name: install Rust tools
   pacman: name=rustup state=installed
   become: yes
+- name: install Rust analyzer
+  pacman: name=rust-analyzer state=installed
+  become: yes
