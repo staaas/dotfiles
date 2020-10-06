@@ -1,6 +1,3 @@
-;; default font size
-(set-frame-font "Roboto Mono Light 10")
-
 ;; Pretty buffer names for duplicate filenames
 (require 'uniquify) 
 (setq 

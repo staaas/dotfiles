@@ -1,6 +1,8 @@
 (require 'cask)
 (cask-initialize)
 
+(load-theme 'nord t)
+
 (global-set-key (kbd "M-p") 'ace-window)
 (add-hook 'after-init-hook #'global-flycheck-mode)
 

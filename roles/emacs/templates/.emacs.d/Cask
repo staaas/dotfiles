@@ -9,6 +9,7 @@
 (depends-on "company")
 (depends-on "rg")
 (depends-on "editorconfig")
+(depends-on "nord-theme")
 
 (depends-on "markdown-mode")
 (depends-on "web-mode")
