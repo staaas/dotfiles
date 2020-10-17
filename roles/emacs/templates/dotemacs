@@ -89,6 +89,28 @@
 ;; Configuration of external packages
 ;; ----------------------------------
 
+(use-package gkroam
+  :ensure t
+  :init
+  (make-directory "~/brain/" t)
+  (setq gkroam-root-dir "~/brain/")
+  (setq gkroam-prettify-p t
+        gkroam-show-brackets-p t
+        gkroam-use-default-filename t
+        gkroam-window-margin 4)
+  :bind
+  (("C-c r I" . gkroam-index)
+   ("C-c r d" . gkroam-daily)
+   ("C-c r f" . gkroam-find)
+   ("C-c r i" . gkroam-insert)
+   ("C-c r c" . gkroam-capture)
+   ("C-c r e" . gkroam-link-edit)
+   ("C-c r n" . gkroam-smart-new)
+   ("C-c r p" . gkroam-toggle-prettify)
+   ("C-c r t" . gkroam-toggle-brackets)
+   ("C-c r D" . gkroam-toggle-dynamic)
+   ("C-c r g" . gkroam-update)))
+
 (use-package magit
   :bind (("C-x g" . magit-status)))
 
