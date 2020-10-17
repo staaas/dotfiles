@@ -15,19 +15,14 @@
 
 - name: "copy .emacs"
   template: >
-    src=templates/.emacs
+    src=templates/dotemacs
     dest=/home/{{ ansible_user_id }}/.emacs
 - name: "ensure .emacs.d exists"
   file: path=/home/{{ ansible_user_id }}/.emacs.d state=directory
-- name: "copy .emacs.d/*.el"
+- name: "copy Caskfile"
   copy: >
-    src=templates/.emacs.d/{{ item }}
-    dest=/home/{{ ansible_user_id }}/.emacs.d/{{ item }}
-  with_items:
-    - Cask
-    - startup.el
-    - builtin.el
-    - external.el
+    src=templates/Cask
+    dest=/home/{{ ansible_user_id }}/.emacs.d/Cask
 
 - name: "cask install"
   shell: "cask install --verbose"
