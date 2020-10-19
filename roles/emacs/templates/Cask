@@ -1,6 +1,8 @@
 (source melpa)
 (source "gnuhttp" "http://elpa.gnu.org/packages/")
 
+(depends-on "use-package")
+
 (depends-on "ace-window")
 (depends-on "flycheck")
 (depends-on "magit")
