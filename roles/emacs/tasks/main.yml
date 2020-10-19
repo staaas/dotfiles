@@ -9,8 +9,6 @@
     - python2-flake8
     - discount  # previously known as markdown, also provides markdown binary
     - plantuml
-    - ttf-roboto  # font used in emacs config (1/2)
-    - ttf-roboto-mono  # font used in emacs config (2/2)
   become: yes
 
 - name: "copy .emacs"
