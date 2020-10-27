@@ -75,6 +75,7 @@
 
 ;; Org mode settings
 (use-package org
+  :hook (org-mode . org-indent-mode)
   :init
   (define-key global-map "\C-cl" 'org-store-link)
   (define-key global-map "\C-ca" 'org-agenda)
