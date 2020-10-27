@@ -81,7 +81,8 @@
   (define-key global-map "\C-ca" 'org-agenda)
   (setq
     org-log-done t
-    org-agenda-files '("~/org"))
+    org-agenda-files '("~/org")
+    org-export-with-section-numbers nil)
   ;; eval plantuml diagrams without asking for confirmations
   (defun stas/org-confirm-babel-evaluate (lang body)
     (not (string= lang "plantuml")))
