@@ -13,7 +13,7 @@
 
 - name: "copy .emacs"
   template: >
-    src=templates/dotemacs
+    src=templates/dotemacs.el
     dest=/home/{{ ansible_user_id }}/.emacs
 - name: "ensure .emacs.d exists"
   file: path=/home/{{ ansible_user_id }}/.emacs.d state=directory
