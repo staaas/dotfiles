@@ -96,6 +96,7 @@
       (after-init . org-roam-mode)
       :custom
       (org-roam-directory "~/brain")
+      (org-roam-db-location "~/.emacs.d/.org-roam.db")
       :bind (:map org-roam-mode-map
               (("C-c n l" . org-roam)
                ("C-c n f" . org-roam-find-file)
