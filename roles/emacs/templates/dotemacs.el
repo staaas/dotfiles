@@ -97,6 +97,23 @@
       :custom
       (org-roam-directory "~/org")
       (org-roam-db-location "~/.emacs.d/.org-roam.db")
+      (org-roam-capture-templates
+       '(("o" "other" plain (function org-roam-capture--get-point)
+	  "%?"
+	  :file-name "%<%Y%m%d%H%M%S>-${slug}"
+	  :head "#+title: ${title}\n#+TODO: TODO(t) | DONE(d) SCHEDULED(s) RESCHEDULED(r)\n\n"
+	  :unnarrowed t)
+	 ("n" "notes" plain (function org-roam-capture--get-point)
+	  "%?"
+	  :file-name "%<%Y%m%d%H%M%S>-${slug}"
+	  :head "#+title: ${title}\n#+TODO: TODO(t) | DONE(d) SCHEDULED(s) RESCHEDULED(r)\n\n- Source ::\n- Author ::\n- Tags ::\n\n* [[file:_takeaways.org][Takeaways]]\n\n"
+	  :unnarrowed t)))
+       (org-roam-dailies-capture-templates
+	'(("d" "daily" plain (function org-roam-capture--get-point)
+	  "%?"
+	  :file-name "%<%Y-%m-%d>"
+	  :head "#+title: %<%Y-%m-%d>\n#+TODO: TODO(t) | DONE(d) SCHEDULED(s) RESCHEDULED(r)\n\n* Tasks\n\n* Brain\n\n* Meeting Notes\n\n"
+	  :immediate-finish t)))
       :bind (:map org-roam-mode-map
               (("C-c n l" . org-roam)
                ("C-c n f" . org-roam-find-file)
