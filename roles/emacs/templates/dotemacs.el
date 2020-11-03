@@ -97,7 +97,6 @@
       :custom
       (org-roam-directory "~/org")
       (org-roam-db-location "~/.emacs.d/.org-roam.db")
-      (org-roam-completion-system 'ido)
       :bind (:map org-roam-mode-map
               (("C-c n l" . org-roam)
                ("C-c n f" . org-roam-find-file)
