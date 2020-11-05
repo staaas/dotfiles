@@ -100,14 +100,19 @@
       (org-roam-capture-templates
        '(("o" "other" plain (function org-roam-capture--get-point)
 	  "%?"
-	  :file-name "%<%Y%m%d%H%M%S>-${slug}"
+	  :file-name "${slug}-%<%Y%m%d%H%M%S>"
 	  :head "#+title: ${title}\n#+TODO: TODO(t) | DONE(d) SCHEDULED(s) RESCHEDULED(r)\n\n"
 	  :unnarrowed t)
 	 ("n" "notes" plain (function org-roam-capture--get-point)
 	  "%?"
-	  :file-name "%<%Y%m%d%H%M%S>-${slug}"
+	  :file-name "${slug}-%<%Y%m%d%H%M%S>"
 	  :head "#+title: ${title}\n#+TODO: TODO(t) | DONE(d) SCHEDULED(s) RESCHEDULED(r)\n\n- Source ::\n- Author ::\n- Tags ::\n\n* [[file:_takeaways.org][Takeaways]]\n\n"
-	  :unnarrowed t)))
+	  :unnarrowed t))
+	'(("d" "daily" plain (function org-roam-capture--get-point)
+	  "%?"
+	  :file-name "${slug}"
+	  :head "#+title: ${title}\n#+TODO: TODO(t) | DONE(d) SCHEDULED(s) RESCHEDULED(r)\n\n* Tasks\n\n* Brain\n\n* Meeting Notes\n\n"
+	  :immediate-finish t)))
        (org-roam-dailies-capture-templates
 	'(("d" "daily" plain (function org-roam-capture--get-point)
 	  "%?"
