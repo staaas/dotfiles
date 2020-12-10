@@ -172,7 +172,7 @@ smart_borders on
 
 input * {
     xkb_layout us,by,ru
-    xkb_options grp:caps_toggle
+    xkb_options grp:win_space_toggle
 }
 
 input 2:7:SynPS/2_Synaptics_TouchPad events disabled
