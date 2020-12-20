@@ -2,6 +2,10 @@
   pacman: name=evince state=installed
   become: yes
 
+- name: install markdown editor
+  pacman: name=ghostwriter state=installed
+  become: yes
+
 - name: install libreoffice
   pacman:
     state: installed
