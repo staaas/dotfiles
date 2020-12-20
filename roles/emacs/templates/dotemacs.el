@@ -131,6 +131,8 @@
               (("C-c n i" . org-roam-insert))
               (("C-c n I" . org-roam-insert-immediate))))
 
+(use-package ox-gfm)
+
 (use-package magit
   :bind (("C-x g" . magit-status)))
 
