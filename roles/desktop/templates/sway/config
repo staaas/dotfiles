@@ -128,6 +128,7 @@ bindsym --to-code $mod+r mode "resize"
 
 # misc key bindings
 bindsym $mod+backslash exec --no-startup-id swaylock -e -n -c 002b36
+bindsym $mod+backspace exec --no-startup-id swaylock -e -n -c 002b36
 bindsym XF86MonBrightnessDown exec --no-startup-id light -U 10
 bindsym XF86MonBrightnessUp exec --no-startup-id light -A 10
 bindsym --locked XF86AudioRaiseVolume exec --no-startup-id pamixer --increase 5
