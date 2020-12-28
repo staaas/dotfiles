@@ -1,0 +1,40 @@
+icons = "awesome5"
+
+[theme]
+name = "plain"
+[theme.overrides]
+separator = "  "
+
+[[block]]
+block = "keyboard_layout"
+driver = "sway"
+
+[[block]]
+block = "net"
+device = "wlp3s0"
+format = "{signal_strength} {ssid}"
+interval = 2
+
+[[block]]
+block = "battery"
+format = "{percentage}% {time}"
+interval = 10
+
+[[block]]
+block = "backlight"
+
+[[block]]
+block = "sound"
+device_kind = "sink"
+show_volume_when_muted = true
+
+[[block]]
+block = "sound"
+device_kind = "source"
+format = ""
+show_volume_when_muted = true
+
+[[block]]
+block = "time"
+interval = 60
+format = "%Y-%m-%d %H:%M"

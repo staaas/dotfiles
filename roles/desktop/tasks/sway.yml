@@ -6,7 +6,7 @@
     - swaybg
     - swaylock
     - swayidle
-    - i3status
+    - i3status-rust
     - wl-clipboard
     - bemenu  # program launcher
     - ttf-roboto  # font used in sway config (1/2)
@@ -24,8 +24,8 @@
   file: path={{ ansible_env.HOME }}/.config/mako state=directory recurse=yes
 - name: copy mako config
   template: src=templates/mako/config dest={{ ansible_env.HOME }}/.config/mako/config
-- name: copy i3status config
-  template: src=templates/sway/status.conf dest={{ ansible_env.HOME }}/.config/sway/status.conf
+- name: copy i3status-rs config
+  template: src=templates/sway/status.toml dest={{ ansible_env.HOME }}/.config/sway/status.toml
 - name: write .Xresources  # will be loaded in sway config
   copy: src=templates/Xresources dest={{ ansible_env.HOME }}/.Xresources
 - name: create grim-wrapper
