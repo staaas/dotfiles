@@ -10,6 +10,7 @@
 (depends-on "projectile")
 (depends-on "company")
 (depends-on "org-roam")
+(depends-on "ob-http")
 (depends-on "ox-gfm")
 (depends-on "rg")
 (depends-on "editorconfig")
