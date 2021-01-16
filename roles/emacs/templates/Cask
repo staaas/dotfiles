@@ -9,6 +9,7 @@
 (depends-on "yasnippet")
 (depends-on "projectile")
 (depends-on "company")
+(depends-on "org-download")
 (depends-on "org-roam")
 (depends-on "ob-http")
 (depends-on "ox-gfm")

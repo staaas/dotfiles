@@ -91,6 +91,10 @@
 ;; Configuration of external packages
 ;; ----------------------------------
 
+(use-package org-download
+  :config
+  (add-hook 'dired-mode-hook 'org-download-enable))
+
 (use-package org-roam
       :hook
       (after-init . org-roam-mode)
