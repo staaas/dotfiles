@@ -24,7 +24,6 @@
     - netctl
     - dialog  # used by wifi-menu
     - wpa_supplicant
-    - wpa_actiond  # used by netctl-auto
     - ifplugd  # used by netctl-ifplugd
   become: yes
 
@@ -32,25 +31,6 @@
   systemd: name=netctl-auto@{{ wlan0 }} enabled=yes state=started
   become: yes
   when: wlan0 != 'none'
-
-- name: install openvpn and related tools
-  pacman:
-    state: installed
-    package:
-    - openvpn
-    - openresolv
-  become: yes
-- name: copy update-resolv-conf
-  copy: >
-    src=templates/openvpn/update-resolv-conf
-    dest=/usr/bin/update-resolv-conf
-    mode=ugo=rx
-    owner=root
-  become: yes
-
-- name: install 3g modem software
-  pacman: package=wvdial state=installed
-  become: yes
 
 - name: install network-related utils
   pacman: name=net-tools state=installed
