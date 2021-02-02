@@ -23,6 +23,7 @@
     - ttf-roboto  # font used in sway config (1/2)
     - ttf-roboto-mono  # font used in sway config (2/2)
     - light  # control screen backlight brightness
+    - kanshi  # output profile management
     - mako  # notifications manager
     - grim  # screenshots
     - slurp  # select part of the screen
@@ -38,6 +39,10 @@
   template: src=templates/mako/config dest={{ ansible_env.HOME }}/.config/mako/config
 - name: copy i3status-rs config
   template: src=templates/sway/status.toml dest={{ ansible_env.HOME }}/.config/sway/status.toml
+- name: ensure kanshi configuration dir exists
+  file: path={{ ansible_env.HOME }}/.config/kanshi state=directory recurse=yes
+- name: copy kanshi config
+  template: src=templates/kanshi/config dest={{ ansible_env.HOME }}/.config/kanshi/config
 - name: write .Xresources  # will be loaded in sway config
   copy: src=templates/Xresources dest={{ ansible_env.HOME }}/.Xresources
 - name: create grim-wrapper
