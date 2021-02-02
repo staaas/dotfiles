@@ -21,7 +21,7 @@
   systemd: name=mpd scope=user state=started enabled=yes
 
 - name: ensure .config/ncmpc exists
-  file: path={{ ansible_env.HOME }}/.config/mpd state=directory recurse=yes
+  file: path={{ ansible_env.HOME }}/.config/ncmpc state=directory recurse=yes
 
 - name: copy ncmpc config
   copy: src=templates/ncmpc.conf dest={{ ansible_env.HOME }}/.config/ncmpc/config
