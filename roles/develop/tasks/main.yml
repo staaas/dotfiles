@@ -15,6 +15,14 @@
   systemd: name=docker enabled=yes state=started
   become: yes
 
+- name: Install K8s packages
+  pacman:
+    state: installed
+    package:
+    - kubectl
+    - kubectx
+  become: yes
+
 - include: nix.yml
 
 - include: python.yml
