@@ -5,7 +5,7 @@
     package:
     - gnupg
     - openssh
-    - pass
+    - pass-git
   become: yes
 
 - name: "create .gnupg"
