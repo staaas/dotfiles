@@ -19,6 +19,7 @@
     - i3status-rust
     - wl-clipboard
     - bemenu  # program launcher
+    - bemenu-wlroots  # wlroots backend for bemenu
     - ttf-roboto  # font used in sway config (1/2)
     - ttf-roboto-mono  # font used in sway config (2/2)
     - light  # control screen backlight brightness
