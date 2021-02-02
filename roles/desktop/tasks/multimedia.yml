@@ -27,6 +27,8 @@
     dest=/etc/pulse/default.pa
     line="load-module module-switch-on-connect"
   become: yes
+- name: enable and start pulseaudio service
+  systemd: name=pulseaudio scope=user state=started enabled=yes
 
 - name: install audio packages
   pacman:
