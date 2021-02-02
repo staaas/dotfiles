@@ -52,7 +52,10 @@
   copy: >
     src=templates/sway/sway-move-all-to-current-display.py
     dest={{ ansible_env.HOME }}/.config/sway/sway-move-all-to-current-display.py mode=0555
-- name: Add user to group video to make utility light work without sudo
+- name: Create backlight udev rules so group video can control backlight without sudo
+  template: src=templates/udev/backlight.rules dest=/etc/udev/rules.d/20-backlight.rules
+  become: yes
+- name: Add user to group video to make utility light work
   user: name={{ ansible_user_id }} groups=video append=yes
   become: yes
 - name: Autostart sway when logging in on TTY1
