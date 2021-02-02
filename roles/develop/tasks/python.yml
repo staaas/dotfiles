@@ -4,14 +4,10 @@
     package:
     - python
     - python2
-    - pypy
-    - pypy3
     - ipython
-    - ipython2
     - python-virtualenv
     - python-virtualenvwrapper
     - flake8
-    - python2-flake8
     - python-poetry
   become: yes
 
