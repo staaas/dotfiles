@@ -31,8 +31,12 @@
     - chromium
   become: yes
 
-- name: install IM client Element
-  pacman: package=element-desktop state=present
+- name: install IM clients
+  pacman:
+    state: present
+    package:
+    - element-desktop
+    - telegram-desktop
 
 - name: install fonts
   pacman:
