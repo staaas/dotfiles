@@ -1,10 +1,4 @@
 ---
-- include: xorg_packages.yml
-
-- name: configure xkb input languages
-  copy: src=templates/xorg/10-xkb.conf dest=/etc/X11/xorg.conf.d/10-xkb.conf
-  become: yes
-
 - include: sway.yml
 
 - name: install terminal emulators

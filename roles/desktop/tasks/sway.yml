@@ -1,3 +1,13 @@
+- name: install xorg and related packages
+  pacman:
+    state: present
+    package:
+    - xf86-input-evdev
+    - xf86-input-synaptics
+    - xorg-xwayland
+    - mesa
+  become: yes
+
 - name: install sway and related packages
   pacman:
     state: present
