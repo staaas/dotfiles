@@ -51,7 +51,6 @@
     - ttf-inconsolata
     - ttf-liberation
     - ttf-ubuntu-font-family
-    - ttf-symbola
   become: yes
 
 - name: set default apps
