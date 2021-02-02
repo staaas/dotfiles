@@ -12,6 +12,8 @@
     state: present
     package: alacritty
   become: yes
+- name: ensure .config/alacritty exists
+  file: path={{ ansible_env.HOME }}/.config/alacritty state=directory recurse=yes
 - name: configure terminal emulator alacritty
   copy: src=templates/alacritty/alacritty.yml dest={{ ansible_env.HOME }}/.config/alacritty/alacritty.yml
 - name: copy alacritty wrapper script
