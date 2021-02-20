@@ -11,7 +11,7 @@
   file: path={{ ansible_env.HOME }}/.config/mpd state=directory recurse=yes
 
 - name: ensure music dir exists
-  file: path={{ ansible_env.HOME }}/music state=directory
+  file: path={{ ansible_env.HOME }}/Music state=directory
 
 - name: copy mpd.conf
   copy: src=templates/mpd.conf dest={{ ansible_env.HOME }}/.config/mpd/mpd.conf
