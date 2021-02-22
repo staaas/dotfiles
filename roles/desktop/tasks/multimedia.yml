@@ -13,22 +13,22 @@
   service: name=bluetooth state=started enabled=yes
   become: yes
 
-- name: install pulseaudio
+- name: install pipewire
   pacman:
     state: installed
     package:
-    - pulseaudio
+    - pipewire
+    - pipewire-pulse
     - pavucontrol
     - pamixer
-    - pulseaudio-modules-bt-git
   become: yes
-- name: enable pulseaudio module switch-on-connect for bluetooth devices
-  lineinfile: >
-    dest=/etc/pulse/default.pa
-    line="load-module module-switch-on-connect"
+- name: install xdg-desktop-portal that uses pipewire
+  pacman:
+    state: installed
+    package:
+    - xdg-desktop-portal
+    - xdg-desktop-portal-wlr
   become: yes
-- name: enable and start pulseaudio service
-  systemd: name=pulseaudio scope=user state=started enabled=yes
 
 - name: install audio packages
   pacman:
