@@ -22,9 +22,8 @@
  inhibit-splash-screen t)
 
 (require 'cask)
-(cask-initialize)
-(load-theme 'nord t)
 (require 'use-package)
+(cask-initialize)
 
 ;; Configuration of builtin emacs features
 ;; ---------------------------------------
