@@ -22,8 +22,8 @@
  inhibit-splash-screen t)
 
 (require 'cask)
-(require 'use-package)
 (cask-initialize)
+(require 'use-package)
 
 ;; Configuration of builtin emacs features
 ;; ---------------------------------------
