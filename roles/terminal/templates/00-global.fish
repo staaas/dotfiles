@@ -22,3 +22,6 @@ function fish_prompt --description 'Write out the prompt'
     set -l normal (set_color normal)
     echo -n -s (set_color --bold $user_color) "$USER" @ (prompt_hostname) $normal ' ' (set_color --bold blue) $prompt_workdir $normal (fish_vcs_prompt) $normal ' ' $prompt_status $suffix " "
 end
+
+# configure colors in man pages
+set -x MANPAGER "less -R --use-color -Dd+g -Du+b"

@@ -15,7 +15,7 @@
 - name: set fish as a default shell for root
   user: name=root shell=/usr/bin/fish
   become: yes
-- name: configure fish_prompt
+- name: add global fish configuration file (prompt, manpager, etc.)
   copy: src=templates/00-global.fish dest=/etc/fish/conf.d/00-global.fish
   become: yes
 - name: "ensure fish conf.d exists"
