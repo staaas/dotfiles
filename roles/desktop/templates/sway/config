@@ -164,8 +164,6 @@ bar {
 # Outputs
 output * bg #000000 solid_color
 output $primscreen pos 0 0
-# kanshi manages output profiles (e.g. at home, on the go, etc.)
-exec kanshi
 
 # class                 border  backgr. text    indicator child_border
 client.focused          #586e75 #586e75 #fdf6e3 #268bd2   #586e75
