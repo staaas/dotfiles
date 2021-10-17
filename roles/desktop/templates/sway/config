@@ -163,6 +163,7 @@ bar {
 
 # Outputs
 output * bg #000000 solid_color
+output $primscreen pos 0 0
 # kanshi manages output profiles (e.g. at home, on the go, etc.)
 exec kanshi
 
