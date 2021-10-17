@@ -165,6 +165,12 @@ bar {
 output * bg #000000 solid_color
 output $primscreen pos 0 0
 
+# Clamshell Mode (aka Closed Display mode)
+# Based on https://github.com/swaywm/sway/wiki#clamshell-mode
+bindswitch --reload --locked lid:on output $laptopscreen disable
+bindswitch --reload --locked lid:off output $laptopscreen enable
+exec_always ~/.config/sway/restore-lid-state.sh $laptopscreen
+
 # class                 border  backgr. text    indicator child_border
 client.focused          #586e75 #586e75 #fdf6e3 #268bd2   #586e75
 client.focused_inactive #073642 #073642 #93a1a1 #002b36   #073642
