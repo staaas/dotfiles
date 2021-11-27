@@ -31,3 +31,7 @@
   with_items:
   - systemd-rfkill.service
   - systemd-rfkill.socket
+
+- name: mask service systemd-backlight@backlight:acpi_video0.service which produced errors in logs
+  systemd: name=systemd-backlight@backlight:acpi_video0.service masked=yes
+  become: yes
