@@ -15,7 +15,7 @@ focus_follows_mouse no
 workspace_auto_back_and_forth no
 
 # start a terminal
-bindsym $mod+Return exec term
+bindsym $mod+Return exec alacritty
 
 # kill focused window
 bindsym --to-code $mod+Shift+c kill
@@ -136,13 +136,14 @@ bindsym --locked XF86AudioLowerVolume exec --no-startup-id pamixer --decrease 5
 bindsym --locked XF86AudioMute exec --no-startup-id pamixer --toggle-mute
 bindsym --locked XF86AudioMicMute exec --no-startup-id pamixer --default-source --toggle-mute
 bindsym --locked XF86Eject exec --no-startup-id pamixer --default-source --toggle-mute
-bindsym $mod+Up exec --no-startup-id term -e ncmpc
+bindsym $mod+Up exec --no-startup-id alacritty -t ncmpc -e ncmpc
 bindsym --locked $mod+Down exec --no-startup-id mpc toggle
 bindsym --locked $mod+Left exec --no-startup-id mpc prev
 bindsym --locked $mod+Right exec --no-startup-id mpc next
 bindsym --to-code $mod+Shift+p exec gimp-screenshot
 bindsym --to-code $mod+n exec makoctl dismiss
 bindsym --to-code $mod+Shift+n makoctl invoke
+bindsym $mod+m exec --no-startup-id alacritty -t aerc -e aerc
 
 # Start swaybar to display a workspace bar (plus the system information i3status
 # finds out, if available)

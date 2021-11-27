@@ -38,6 +38,29 @@
     - element-desktop
     - telegram-desktop
 
+- name: install email client aerc
+  pacman:
+    state: present
+    package:
+    - aerc
+    - dante  # optional dependency for aerc, provides script socksify
+    - w3m  # optional dependency for aerc
+    - neovim  # used for composing emails
+- name: ensure .config/aerc exists
+  file: path={{ ansible_env.HOME }}/.config/aerc state=directory recurse=yes
+- name: copy initial config for aerc if not exists
+  copy: src=/usr/share/aerc/aerc.conf dest={{ ansible_env.HOME }}/.config/aerc/aerc.conf force=no
+- name: use nvim for composing emails in aerc
+  lineinfile: >
+    dest={{ ansible_env.HOME }}/.config/aerc/aerc.conf
+    line="editor=nvim"
+    regexp="editor="
+- name: display html emails in aerc
+  lineinfile: >
+    dest={{ ansible_env.HOME }}/.config/aerc/aerc.conf
+    line="text/html=/usr/share/aerc/filters/html"
+    regexp="^#?text/html="
+
 - name: install fonts
   pacman:
     state: present
