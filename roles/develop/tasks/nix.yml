@@ -33,6 +33,7 @@
     - patch
     - pkg-config
     - sed
+    - socat
     - sudo
     - texinfo
     - util-linux
