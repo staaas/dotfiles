@@ -46,7 +46,6 @@
     - translate-shell
     - fd
     - bandwhich
-    - broot
   become: yes
 
 - include: mpd.yml
