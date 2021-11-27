@@ -23,6 +23,14 @@
     - kubectx
   become: yes
 
+- name: Install jq and yq
+  pacman:
+    state: installed
+    package:
+    - jq
+    - yq
+  become: yes
+
 - include: nix.yml
 
 - include: python.yml
