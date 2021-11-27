@@ -37,6 +37,7 @@
     - gnu-netcat
     - wget
     - curl
+    - lm_sensors
     - mc
     - unzip
     - dosfstools
