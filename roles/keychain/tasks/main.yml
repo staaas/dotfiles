@@ -13,11 +13,19 @@
   file: path=/home/{{ ansible_user_id }}/.gnupg state=directory mode=0700
 - name: add arch devs to gpg.conf
   lineinfile: dest={{ ansible_env.HOME }}/.gnupg/gpg.conf line="keyring /etc/pacman.d/gnupg/pubring.gpg" create=yes
-- name: "enable ssh support in gpg agent"
+- name: "configure gpg agent"
   copy: >
     src=templates/home/user/.gnupg/gpg-agent.conf
     dest={{ ansible_env.HOME }}/.gnupg/gpg-agent.conf
 
+- name: ensure .local/share/systemd/user exists
+  file: path={{ ansible_env.HOME }}/.local/share/systemd/user state=directory recurse=yes
+- name: "copy ssh-agent user service"
+  copy: >
+    src=templates/ssh-agent.service
+    dest={{ ansible_env.HOME }}/.local/share/systemd/user/ssh-agent.service
+- name: start ssh-agent user service
+  systemd: name=ssh-agent scope=user state=started enabled=yes daemon_reload=yes
 - name: "copy fish condiguration preset for ssh-agent"
   copy: >
     src=templates/ssh-agent.fish
