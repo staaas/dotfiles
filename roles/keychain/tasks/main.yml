@@ -3,10 +3,12 @@
   pacman:
     state: installed
     package:
+    - age
     - gnupg
     - openssh
     - pass-git
     - pcsclite  # provides pcscd.service needed by ykman
+    - libfido2  # yubikey support for openssh
   become: yes
 
 - name: "create .gnupg"
