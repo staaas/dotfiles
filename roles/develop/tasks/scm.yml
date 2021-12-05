@@ -7,4 +7,4 @@
     - subversion
   become: yes
 - name: copy .gitconfig
-  copy: src=templates/gitconfig dest={{ ansible_env.HOME }}/.gitconfig
+  template: src=templates/gitconfig dest={{ ansible_env.HOME }}/.gitconfig
