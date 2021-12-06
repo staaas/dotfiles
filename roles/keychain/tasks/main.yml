@@ -15,10 +15,6 @@
   file: path=/home/{{ ansible_user_id }}/.gnupg state=directory mode=0700
 - name: add arch devs to gpg.conf
   lineinfile: dest={{ ansible_env.HOME }}/.gnupg/gpg.conf line="keyring /etc/pacman.d/gnupg/pubring.gpg" create=yes
-- name: "configure gpg agent"
-  copy: >
-    src=templates/home/user/.gnupg/gpg-agent.conf
-    dest={{ ansible_env.HOME }}/.gnupg/gpg-agent.conf
 
 - name: ensure .local/share/systemd/user exists
   file: path={{ ansible_env.HOME }}/.local/share/systemd/user state=directory recurse=yes
