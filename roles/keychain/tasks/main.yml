@@ -6,7 +6,7 @@
     - age
     - gnupg
     - openssh
-    - pass-git
+    - pass
     - pcsclite  # provides pcscd.service needed by ykman
     - libfido2  # yubikey support for openssh
   become: yes
