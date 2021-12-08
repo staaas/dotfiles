@@ -185,9 +185,12 @@
 (use-package lsp-ui
   :commands lsp-ui-mode
   :config
-  (setq
-   lsp-ui-sideline-enable nil
-   lsp-rust-server 'rust-analyzer))
+  (setq lsp-ui-sideline-enable nil))
+
+(use-package rust-mode
+  :mode ("\\.rs\\$" . rust-mode)
+  :init
+  (setq lsp-rust-server 'rust-analyzer))
 
 (use-package rust-mode
   :mode ("\\.rs\\$" . rust-mode))
