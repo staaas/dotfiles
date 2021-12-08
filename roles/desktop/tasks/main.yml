@@ -37,6 +37,8 @@
     package:
     - element-desktop
     - telegram-desktop
+    - weechat
+    - weechat-matrix
 
 - name: install email client aerc
   pacman:
