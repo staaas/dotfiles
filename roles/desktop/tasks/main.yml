@@ -28,6 +28,7 @@
     - firefox-ublock-origin
     - firefox-extension-privacybadger
     - firefox-extension-https-everywhere
+    - firefox-extension-multi-account-containers  # from AUR
     - chromium
   become: yes
 
