@@ -21,7 +21,6 @@
 (depends-on "plantuml-mode")
 
 (depends-on "lsp-mode")
-(depends-on "company-lsp")
 (depends-on "lsp-ui")
 
 (depends-on "rust-mode")
