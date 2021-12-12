@@ -50,4 +50,10 @@
     - bandwhich
   become: yes
 
+- name: install bind as it contains dig
+  pacman: package=bind state=installed
+  become: yes
+- name: configure dig via .digrc
+  copy: content='+noall +answer\n' dest={{ ansible_env.HOME }}/.digrc
+
 - include: mpd.yml
