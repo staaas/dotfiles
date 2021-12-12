@@ -95,44 +95,31 @@
   (add-hook 'dired-mode-hook 'org-download-enable))
 
 (use-package org-roam
+      :init
+      (setq org-roam-v2-ack t)
+      (setq org-roam-capture-templates
+	    '(("d" "default" plain "%?" :target
+	       (file+head "${slug}-%<%Y%m%d%H%M%S>.org"
+			  "#+title: ${title}\n#+TODO: TODO(t) | DONE(d) SCHEDULED(s) RESCHEDULED(r)\n\n")
+	       :unnarrowed t)))
+      (setq org-roam-dailies-capture-templates
+	    '(("d" "default" plain "%?" :target
+	       (file+head "%<%Y-%m-%d>.org"
+			  "#+title: %<%Y-%m-%d>\n#+TODO: TODO(t) | DONE(d) SCHEDULED(s) RESCHEDULED(r)\n\n* Tasks\n* Meeting Notes\n")
+	       :unnarrowed t)))
       :hook
-      (after-init . org-roam-mode)
+      (after-init . org-roam-db-autosync-mode)
       :custom
       (org-roam-directory "~/org")
       (org-roam-db-location "~/.emacs.d/.org-roam.db")
-      (org-roam-capture-templates
-       '(("o" "other" plain (function org-roam-capture--get-point)
-	  "%?"
-	  :file-name "${slug}-%<%Y%m%d%H%M%S>"
-	  :head "#+title: ${title}\n#+TODO: TODO(t) | DONE(d) SCHEDULED(s) RESCHEDULED(r)\n\n"
-	  :unnarrowed t)
-	 ("n" "notes" plain (function org-roam-capture--get-point)
-	  "%?"
-	  :file-name "${slug}-%<%Y%m%d%H%M%S>"
-	  :head "#+title: ${title}\n#+TODO: TODO(t) | DONE(d) SCHEDULED(s) RESCHEDULED(r)\n\n- Source ::\n- Author ::\n- Tags ::\n\n* [[file:_takeaways.org][Takeaways]]\n\n"
-	  :unnarrowed t))
-	'(("d" "daily" plain (function org-roam-capture--get-point)
-	  "%?"
-	  :file-name "${slug}"
-	  :head "#+title: ${title}\n#+TODO: TODO(t) | DONE(d) SCHEDULED(s) RESCHEDULED(r)\n\n* Tasks\n\n* Brain\n\n* Meeting Notes\n\n"
-	  :immediate-finish t)))
-       (org-roam-dailies-capture-templates
-	'(("d" "daily" plain (function org-roam-capture--get-point)
-	  "%?"
-	  :file-name "%<%Y-%m-%d>"
-	  :head "#+title: %<%Y-%m-%d>\n#+TODO: TODO(t) | DONE(d) SCHEDULED(s) RESCHEDULED(r)\n\n* Tasks\n\n* Brain\n\n* Meeting Notes\n\n"
-	  :immediate-finish t)))
-      :bind (:map org-roam-mode-map
-              (("C-c n l" . org-roam)
-               ("C-c n f" . org-roam-find-file)
-               ("C-c n g" . org-roam-graph)
-               ("C-c n d" . org-roam-dailies-find-date)
-               ("C-c n r" . org-roam-dailies-find-tomorrow)
-               ("C-c n t" . org-roam-dailies-find-today)
-               ("C-c n y" . org-roam-dailies-find-yesterday))
+       :bind (("C-c n l" . org-roam-buffer-toggle)
+              ("C-c n f" . org-roam-node-find)
+              ("C-c n d" . org-roam-dailies-goto-date)
+              ("C-c n r" . org-roam-dailies-goto-tomorrow)
+              ("C-c n t" . org-roam-dailies-goto-today)
+              ("C-c n y" . org-roam-dailies-goto-yesterday)
               :map org-mode-map
-              (("C-c n i" . org-roam-insert))
-              (("C-c n I" . org-roam-insert-immediate))))
+              ("C-c n i" . org-roam-node-insert)))
 
 (use-package ob-http)
 
