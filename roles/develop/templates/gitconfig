@@ -1,7 +1,7 @@
 [user]
   name = Stas Rudakou
   email = stas@garage22.net
-  signingKey = {{ ansible_env.HOME }}/.ssh/id_ecdsa_sk.pub
+  signingKey = {{ ansible_env.HOME }}/.ssh/id_ed25519_sk.pub
 [alias]
   co = checkout
   ci = commit
