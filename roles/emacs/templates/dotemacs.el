@@ -165,9 +165,20 @@
   (org-babel-do-load-languages 'org-babel-load-languages '((plantuml . t))))
 
 (use-package lsp-mode
-  :hook ((python-mode . lsp)
-	 (rust-mode . lsp))
+  :hook ((rust-mode . lsp))
   :commands lsp)
+
+(use-package lsp-pyright
+  :config
+  (setq
+   lsp-pyright-disable-organize-imports nil
+   lsp-pyright-auto-import-completions nil
+   lsp-pyright-diagnostic-mode "openFilesOnly"
+   lsp-pyright-auto-search-paths nil
+   lsp-pyright-typechecking-mode "off")
+  :hook (python-mode . (lambda ()
+                          (require 'lsp-pyright)
+                          (lsp))))
 
 (use-package lsp-ui
   :commands lsp-ui-mode

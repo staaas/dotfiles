@@ -6,6 +6,7 @@
     - emacs
     - cask  # dependency management - installed from AUR
     - flake8
+    - pyright
     - discount  # previously known as markdown, also provides markdown binary
     - plantuml
   become: yes

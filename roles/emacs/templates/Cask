@@ -22,6 +22,7 @@
 
 (depends-on "lsp-mode")
 (depends-on "lsp-ui")
+(depends-on "lsp-pyright")
 
 (depends-on "rust-mode")
 (depends-on "cargo")
