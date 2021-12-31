@@ -33,6 +33,8 @@
  tab-width 4
  column-number-mode t
  select-enable-clipboard t)
+(setq-default
+ show-trailing-whitespace t)
 
 ;; enable C-x C-u and C-x C-l
 (put 'upcase-region 'disabled nil)
@@ -50,10 +52,16 @@
    kept-old-versions 2
    version-control t)
 
+;; Highlight matching pairs of parentheses
+(setq show-paren-delay 0)
+(show-paren-mode)
+
 ;; Pretty buffer names for duplicate filenames
 (use-package ido
   :config
-  (ido-mode 1))
+  (ido-mode 1)
+  (ido-everywhere)
+  (setq ido-enable-flex-matching t))
 
 ;; Display duplicate buffer names properly
 (use-package uniquify
