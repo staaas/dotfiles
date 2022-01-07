@@ -84,6 +84,12 @@
     - ttf-ubuntu-font-family
   become: yes
 
+- name: set xdg user dirs
+  copy: src=templates/user-dirs.dirs dest={{ ansible_env.HOME }}/.config/user-dirs.dirs
+- name: install xdg-user-dirs
+  pacman: package=xdg-user-dirs state=present
+  become: yes
+
 - name: set default apps
   copy: src=templates/mimeapps.list dest={{ ansible_env.HOME }}/.config/mimeapps.list
 
