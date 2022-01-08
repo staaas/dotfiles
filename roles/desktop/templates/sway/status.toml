@@ -1,9 +1,14 @@
 icons = "awesome5"
 
 [theme]
-name = "plain"
+name = "native"
 [theme.overrides]
-separator = "  "
+idle_fg = "#a3b1b1"
+info_fg = "#a3b1b1"
+warning_bg = "#ebcb8b" # yellow
+warning_fg = "#000000"
+critical_bg = "#bf616a" # red
+critical_fg = "#000000"
 
 [[block]]
 block = "keyboard_layout"
