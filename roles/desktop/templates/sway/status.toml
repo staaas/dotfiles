@@ -43,6 +43,12 @@ block = "sound"
 device_kind = "source"
 format = ""
 show_volume_when_muted = true
+[block.theme_overrides]
+# red background when the is enabled
+idle_bg = "#bf616a" # red
+idle_fg = "#000000"
+warning_bg = "#000000"
+warning_fg = "#a3b1b1"
 
 [[block]]
 block = "maildir"
