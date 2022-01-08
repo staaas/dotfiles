@@ -40,6 +40,14 @@ format = ""
 show_volume_when_muted = true
 
 [[block]]
+block = "maildir"
+interval = 60
+inboxes = ["{{ ansible_env.HOME }}/maildir/INBOX"]
+threshold_warning = 1
+threshold_critical = 100
+display_type = "new"
+
+[[block]]
 block = "time"
 interval = 60
 format = "%Y-%m-%d %H:%M"
