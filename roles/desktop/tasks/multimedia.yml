@@ -42,6 +42,14 @@
     - vlc
   become: yes
 
+- name: install mpv
+  pacman: package=mpv state=installed
+  become: yes
+- name: ensure mpv configuration dir exists
+  file: path={{ ansible_env.HOME }}/.config/mpv state=directory recurse=yes
+- name: copy mpv configuration
+  template: src=templates/mpv.conf dest={{ ansible_env.HOME }}/.config/mpv/mpv.conf
+
 - name: install imaging packages
   pacman:
     state: installed
