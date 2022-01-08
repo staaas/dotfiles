@@ -8,6 +8,11 @@ separator = "  "
 [[block]]
 block = "keyboard_layout"
 driver = "sway"
+format = "{layout}"
+[block.mappings]
+"English (US)" = "en"
+"Belarusian (N/A)" = "by"
+"Russian (N/A)" = "ru"
 
 [[block]]
 block = "net"
