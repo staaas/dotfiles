@@ -5,6 +5,7 @@ name = "native"
 [theme.overrides]
 idle_fg = "#a3b1b1"
 info_fg = "#a3b1b1"
+good_fg = "#a3b1b1"
 warning_bg = "#ebcb8b" # yellow
 warning_fg = "#000000"
 critical_bg = "#bf616a" # red
@@ -62,3 +63,5 @@ display_type = "new"
 block = "time"
 interval = 60
 format = "%Y-%m-%d %H:%M"
+[block.theme_overrides]
+idle_fg = "#ffffff"
