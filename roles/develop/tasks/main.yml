@@ -31,6 +31,10 @@
     - yq
   become: yes
 
+- name: install perf
+  pacman: package=perf state=installed
+  become: yes
+
 - include: nix.yml
 
 - include: python.yml
