@@ -201,3 +201,9 @@ for_window [app_id="firefox" title="Firefox — Sharing Indicator"] kill
 exec_always mako
 exec swayidle timeout 300 'swaylock -e -n -c 002b36' timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' before-sleep 'swaylock -e -n -c 002b36'
 exec light -P 5
+
+# Exporting env variables WAYLAND_DISPLAY, XDG_CURRENT_DESKTOP and
+# more to systemd user env. This is needed to enable screen sharing
+# via xdg-desktop-portal-wlr and requires env var
+# XDG_CURRENT_DESKTOP=sway being set before starting sway.
+include /etc/sway/config.d/50-systemd-user.conf
