@@ -17,6 +17,19 @@
   pacman: name=btrfs-progs state=installed
   become: yes
 
+- name: "install fuse"
+  pacman: name={{ item }} state=installed
+  with_items:
+  - fuse-common
+  - fuse3
+  become: yes
+- name: make fuse available to non-root via user_allow_other config option
+  lineinfile: >
+    dest=/etc/fuse.conf
+    line="user_allow_other"
+    regexp="^#?user_allow_other"
+  become: yes
+
 - name:  install netctl and related tools
   pacman:
     state: installed
