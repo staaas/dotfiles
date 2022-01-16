@@ -31,6 +31,8 @@
     - firefox-extension-multi-account-containers  # from AUR
     - chromium
   become: yes
+- name: persist chromium command line flags
+  template: src=templates/chromium-flags.conf dest={{ ansible_env.HOME }}/.config/chromium-flags.conf
 
 - name: install IM clients
   pacman:
