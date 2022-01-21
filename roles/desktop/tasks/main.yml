@@ -66,12 +66,14 @@
     line="text/html=/usr/share/aerc/filters/html"
     regexp="^#?text/html="
 - name: install mbsync service and timer
-  copy: src=templates/mbsync/mbsync.{{item}} dest={{ ansible_env.HOME }}/.config/systemd/user/mbsync.{{item}}
+  copy: src=templates/mbsync/mbsync.{{item}} dest=/usr/lib/systemd/system/mbsync@.{{item}}
   with_items:
   - service
   - timer
+  become: yes
 - name: start mbsync timer
-  systemd: name=mbsync.timer scope=user state=started enabled=yes daemon_reload=yes
+  systemd: name=mbsync@{{ ansible_user_id }}.timer state=started enabled=yes daemon_reload=yes
+  become: yes
 
 - name: install fonts
   pacman:

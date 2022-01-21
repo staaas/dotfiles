@@ -3,4 +3,6 @@ Description=Mailbox synchronization service
 
 [Service]
 Type=oneshot
+User=%i
+Group=%i
 ExecStart=/usr/bin/mbsync -Va
