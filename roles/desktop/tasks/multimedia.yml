@@ -61,7 +61,7 @@
   pacman:
     state: installed
     package:
-    - sxiv
+    - imv
     - imagemagick
     - gimp
     - scrot
