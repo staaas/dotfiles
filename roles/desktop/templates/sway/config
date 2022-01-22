@@ -183,9 +183,9 @@ input "type:keyboard" {
     xkb_options grp:win_space_toggle
 }
 mode "xkb" {
-    bindsym --to-code e input type:keyboard xkb_switch_layout 0; mode "default"
-    bindsym --to-code b input type:keyboard xkb_switch_layout 1; mode "default"
-    bindsym --to-code r input type:keyboard xkb_switch_layout 2; mode "default"
+    bindsym --locked --to-code e input type:keyboard xkb_switch_layout 0; mode "default"
+    bindsym --locked --to-code b input type:keyboard xkb_switch_layout 1; mode "default"
+    bindsym --locked --to-code r input type:keyboard xkb_switch_layout 2; mode "default"
 
     bindsym Return mode "default"
     bindsym Escape mode "default"
