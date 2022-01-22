@@ -22,7 +22,7 @@ format = "{layout}"
 
 [[block]]
 block = "net"
-device = "wlp3s0"
+device = "wlan0"
 format = "{signal_strength} {ssid}"
 interval = 2
 

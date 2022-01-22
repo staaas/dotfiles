@@ -30,23 +30,31 @@
     regexp="^#?user_allow_other"
   become: yes
 
-- name:  install netctl and related tools
-  pacman:
-    state: installed
-    package:
-    - netctl
-    - dialog  # used by wifi-menu
-    - wpa_supplicant
-    - ifplugd  # used by netctl-ifplugd
-  become: yes
-
-- name: enable netctl-auto
-  systemd: name=netctl-auto@{{ wlan0 }} enabled=yes state=started
-  become: yes
-  when: wlan0 != 'none'
-
 - name: install network-related utils
-  pacman: name=net-tools state=installed
+  pacman: name={{item}} state=installed
+  with_items:
+  - iwd
+  - net-tools
+  - wireguard-tools
+  - systemd-resolvconf  # used by wireguard and other tools
+  become: yes
+
+- name: "configure systemd-networkd networks"
+  copy: >
+    src=templates/networkd/{{item}}
+    dest=/etc/systemd/network/{{item}}
+    owner=root
+    group=root
+  with_items:
+  - 20-wired.network
+  - 25-wireless.network
+  become: yes
+
+- name: enable base network services
+  systemd: name={{item}} enabled=yes state=started
+  with_items:
+  - iwd
+  - systemd-networkd
   become: yes
 
 - name: "copy disable-acpi-wakeup service"
