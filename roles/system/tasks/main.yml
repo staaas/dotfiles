@@ -9,6 +9,10 @@
     regexp="GRUB_CMDLINE_LINUX="
   become: yes
 
+- name: configure IO schedulers
+  template: src=templates/udev/ioschedulers.rules dest=/etc/udev/rules.d/60-ioschedulers.rules
+  become: yes
+
 - name: "enable systemd-timesyncd"
   systemd: name=systemd-timesyncd enabled=yes state=started
   become: yes
