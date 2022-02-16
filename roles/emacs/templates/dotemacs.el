@@ -179,6 +179,8 @@
 
 (use-package lsp-mode
   :hook ((rust-mode . lsp))
+  :config
+  (setq lsp-headerline-breadcrumb-enable nil)
   :commands lsp)
 
 (use-package lsp-pyright
