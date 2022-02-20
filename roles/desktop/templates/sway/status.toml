@@ -11,12 +11,10 @@ warning_fg = "#000000"
 critical_bg = "#bf616a" # red
 critical_fg = "#000000"
 
-
-
 [[block]]
 block = "cpu"
 interval = 1
-format = "{barchart} {utilization}"
+format = "{utilization}"
 
 [[block]]
 block = "memory"
