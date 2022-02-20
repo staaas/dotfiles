@@ -23,10 +23,11 @@
     - kubectx
   become: yes
 
-- name: Install jq and yq
+- name: Install json and yaml tools
   pacman:
     state: installed
     package:
+    - jless
     - jq
     - yq
   become: yes
