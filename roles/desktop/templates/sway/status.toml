@@ -11,14 +11,21 @@ warning_fg = "#000000"
 critical_bg = "#bf616a" # red
 critical_fg = "#000000"
 
+
+
 [[block]]
-block = "keyboard_layout"
-driver = "sway"
-format = "{layout}"
-[block.mappings]
-"English (US)" = "en"
-"Belarusian (N/A)" = "by"
-"Russian (N/A)" = "ru"
+block = "cpu"
+interval = 1
+format = "{barchart} {utilization}"
+
+[[block]]
+block = "memory"
+format_mem = "{mem_used_percents}"
+display_type = "memory"
+icons = true
+interval = 5
+warning_mem = 60
+critical_mem = 90
 
 [[block]]
 block = "net"
@@ -65,3 +72,15 @@ interval = 60
 format = "%Y-%m-%d %H:%M"
 [block.theme_overrides]
 idle_fg = "#ffffff"
+
+[[block]]
+block = "keyboard_layout"
+driver = "sway"
+format = "{layout}"
+[block.mappings]
+"English (US)" = "en"
+"Belarusian (N/A)" = "by"
+"Russian (N/A)" = "ru"
+[block.theme_overrides]
+idle_fg = "#000000"
+idle_bg = "#70c0ba"
