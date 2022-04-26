@@ -15,7 +15,6 @@
 (depends-on "ox-gfm")
 (depends-on "rg")
 (depends-on "editorconfig")
-(depends-on "which-key")
 
 (depends-on "markdown-mode")
 (depends-on "web-mode")

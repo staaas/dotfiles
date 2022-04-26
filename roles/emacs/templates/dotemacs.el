@@ -98,11 +98,6 @@
 ;; Configuration of external packages
 ;; ----------------------------------
 
-(use-package which-key
-  :config
-  (which-key-mode)
-  (which-key-setup-side-window-right-bottom))
-
 (use-package org-download
   :config
   (add-hook 'dired-mode-hook 'org-download-enable))
