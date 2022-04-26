@@ -146,7 +146,8 @@
 
 (use-package projectile
   :init
-  (setq projectile-keymap-prefix (kbd "C-c p"))
+  (setq projectile-keymap-prefix (kbd "C-c p")
+	projectile-switch-project-action 'projectile-dired)
   :hook (after-init . projectile-global-mode))
 
 (use-package yasnippet
