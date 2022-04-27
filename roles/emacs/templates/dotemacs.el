@@ -21,9 +21,10 @@
  inhibit-startup-screen t
  inhibit-splash-screen t)
 
-(require 'cask)
-(cask-initialize)
 (require 'use-package)
+(require 'package)
+(add-to-list 'package-archives
+             '("MELPA" . "https://stable.melpa.org/packages/") t)
 
 ;; Configuration of builtin emacs features
 ;; ---------------------------------------
@@ -99,10 +100,12 @@
 ;; ----------------------------------
 
 (use-package org-download
+  :ensure t
   :config
   (add-hook 'dired-mode-hook 'org-download-enable))
 
 (use-package org-roam
+      :ensure t
       :init
       (setq org-roam-v2-ack t)
       (setq org-roam-capture-templates
@@ -129,43 +132,54 @@
               :map org-mode-map
               ("C-c n i" . org-roam-node-insert)))
 
-(use-package ob-http)
+(use-package ob-http
+  :ensure t)
 
-(use-package ox-gfm)
+(use-package ox-gfm
+  :ensure t)
 
 (use-package magit
+  :ensure t
   :bind (("C-x g" . magit-status)))
 
 (use-package editorconfig
+  :ensure t
   :config (editorconfig-mode 1))
 
 (use-package projectile
+  :ensure t
   :init
   (setq projectile-keymap-prefix (kbd "C-c p")
 	projectile-switch-project-action 'projectile-dired)
   :hook (after-init . projectile-global-mode))
 
 (use-package yasnippet
+  :ensure t
   :config
   (yas-global-mode 1)
   (yas-load-directory "~/.emacs.d/snippets"))
 
 (use-package company
+  :ensure t
   :hook (after-init . global-company-mode))
 
 (use-package flycheck
+  :ensure t
   :hook (after-init . global-flycheck-mode))
 
 (use-package ace-window
+  :ensure t
   :bind ("M-p" . ace-window))
 
-(use-package rg
-  :hook (after-init . rg-enable-default-bindings))
+(use-package ripgrep
+  :ensure t)
 
 (use-package web-mode
+  :ensure t
   :mode ("\\.html$" . web-mode))
 
 (use-package plantuml-mode
+  :ensure t
   :init
   (setq plantuml-default-exec-mode 'jar)
   (setq plantuml-jar-path "/usr/share/java/plantuml/plantuml.jar")
@@ -173,13 +187,18 @@
   (add-to-list 'org-src-lang-modes '("plantuml" . plantuml))
   (org-babel-do-load-languages 'org-babel-load-languages '((plantuml . t))))
 
+(use-package markdown-mode
+  :ensure t)
+
 (use-package lsp-mode
+  :ensure t
   :hook ((rust-mode . lsp))
   :config
   (setq lsp-headerline-breadcrumb-enable nil)
   :commands lsp)
 
 (use-package lsp-pyright
+  :ensure t
   :config
   (setq
    lsp-pyright-disable-organize-imports nil
@@ -192,20 +211,16 @@
                           (lsp))))
 
 (use-package lsp-ui
+  :ensure t
   :commands lsp-ui-mode
   :config
   (setq lsp-ui-sideline-enable nil))
 
 (use-package rust-mode
+  :ensure t
   :mode ("\\.rs\\$" . rust-mode)
   :init
   (setq lsp-rust-server 'rust-analyzer))
-
-(use-package rust-mode
-  :mode ("\\.rs\\$" . rust-mode))
-
-(use-package cargo-mode
-  :hook (rust-mode . cargo-minor-mode))
 
 (provide '.emacs)
 ;;; .emacs ends here

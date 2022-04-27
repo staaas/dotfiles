@@ -4,7 +4,7 @@
     state: installed
     package:
     - emacs
-    - cask  # dependency management - installed from AUR
+    - emacs-use-package  # installed from AUR
     - flake8
     - pyright
     - discount  # previously known as markdown, also provides markdown binary
@@ -17,24 +17,6 @@
     dest=/home/{{ ansible_user_id }}/.emacs
 - name: "ensure .emacs.d exists"
   file: path=/home/{{ ansible_user_id }}/.emacs.d state=directory
-- name: "copy Caskfile"
-  copy: >
-    src=templates/Cask
-    dest=/home/{{ ansible_user_id }}/.emacs.d/Cask
-
-- name: "cask install"
-  shell: "cask install --verbose"
-  args:
-    chdir: "/home/{{ ansible_user_id }}/.emacs.d"
-
-- name: "copy emacsclient shortcut"
-  copy: >
-    src=templates/e
-    dest=/usr/bin/e
-    mode=0555
-    owner=root
-    group=root
-  become: yes
 
 - name: set EDITOR=emacs
   copy: content='set -x EDITOR "emacs -nw -Q"\n' dest=/etc/fish/conf.d/50-editor.fish
