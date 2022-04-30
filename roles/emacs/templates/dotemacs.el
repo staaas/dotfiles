@@ -149,9 +149,15 @@
 (use-package projectile
   :ensure t
   :init
-  (setq projectile-keymap-prefix (kbd "C-c p")
-	projectile-switch-project-action 'projectile-dired)
-  :hook (after-init . projectile-global-mode))
+  (projectile-mode +1)
+  :bind (:map projectile-mode-map
+              ("C-c p" . projectile-command-map))
+  :config
+  (setq projectile-switch-project-action 'projectile-commander)
+  (def-projectile-commander-method ?s
+    "Search in project."
+    (call-interactively #'projectile-ripgrep))
+  (define-key projectile-command-map (kbd "s") #'projectile-ripgrep))
 
 (use-package yasnippet
   :ensure t
