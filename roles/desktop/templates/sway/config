@@ -159,7 +159,8 @@ bar {
 
 # Outputs
 output * bg #000000 solid_color
-output $primscreen pos 0 0
+output * pos 0 0
+output $primscreen pos 2560 0
 
 # Clamshell Mode (aka Closed Display mode)
 # Based on https://github.com/swaywm/sway/wiki#clamshell-mode
