@@ -228,5 +228,11 @@
   :init
   (setq lsp-rust-server 'rust-analyzer))
 
+
+(use-package protobuf-mode
+  :ensure t
+  :mode (("\\.proto\\'" . protobuf-mode)
+	 ("\\.proto3\\'" . protobuf-mode)))
+
 (provide '.emacs)
 ;;; .emacs ends here
