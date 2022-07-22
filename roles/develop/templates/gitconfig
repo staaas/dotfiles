@@ -14,3 +14,8 @@
   ui = true
 [gpg]
   format = ssh
+[sendemail]
+  smtpserver = smtp.migadu.com
+  smtpuser = stas@garage22.net
+  smtpencryption = ssl
+  smtpserverport = 465
