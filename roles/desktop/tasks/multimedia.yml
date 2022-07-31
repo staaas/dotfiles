@@ -18,16 +18,10 @@
     state: installed
     package:
     - pipewire
-    - pipewire-media-session
     - pipewire-pulse
+    - wireplumber
     - pavucontrol
     - pamixer
-  become: yes
-- name: make sure pipewire-media-session config directory exists
-  file: path=/etc/pipewire/media-session.d state=directory recurse=yes
-  become: yes
-- name: install custom bluez-monitor.conf for pipewire-media-session
-  template: src=templates/pipewire/bluez-monitor.conf dest=/etc/pipewire/media-session.d/bluez-monitor.conf
   become: yes
 - name: install xdg-desktop-portal that uses pipewire
   pacman:
