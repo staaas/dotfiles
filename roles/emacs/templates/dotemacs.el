@@ -36,6 +36,13 @@
  select-enable-clipboard t)
 (setq-default
  show-trailing-whitespace t)
+;; changes how C-x b works with dedicated windows
+(setq switch-to-buffer-obey-display-actions t)
+(defun stas/toggle-window-dedication ()
+  "Toggle window dedication in the selected window."
+  (interactive)
+  (set-window-dedicated-p (selected-window)
+     (not (window-dedicated-p (selected-window)))))
 
 ;; enable C-x C-u and C-x C-l
 (put 'upcase-region 'disabled nil)
