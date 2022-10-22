@@ -98,9 +98,14 @@
     org-log-done t
     org-agenda-files '("~/org")
     org-export-with-section-numbers nil)
+  ;; add ditaa support
+  (org-babel-do-load-languages
+   'org-babel-load-languages
+   '((ditaa . t)))
+  (setq org-ditaa-jar-path "/usr/share/java/ditaa/ditaa-0.11.jar")
   ;; eval plantuml diagrams without asking for confirmations
   (defun stas/org-confirm-babel-evaluate (lang body)
-    (not (string= lang "plantuml")))
+    (not (string-match "\\(plantuml\\|ditaa\\)"  lang)))
   (setq org-confirm-babel-evaluate 'stas/org-confirm-babel-evaluate))
 
 ;; Configuration of external packages

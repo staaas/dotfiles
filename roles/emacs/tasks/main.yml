@@ -9,6 +9,7 @@
     - pyright
     - discount  # previously known as markdown, also provides markdown binary
     - plantuml
+    - ditaa
   become: yes
 
 - name: "copy .emacs"
