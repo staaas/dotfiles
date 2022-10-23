@@ -104,3 +104,10 @@
     - remmina
     - libvncserver
   become: yes
+
+- name: install LanguageTool
+  pacman: package=languagetool state=present
+  become: yes
+- name: start LanguageTool
+  systemd: name=languagetool.service state=started enabled=yes daemon_reload=yes
+  become: yes
