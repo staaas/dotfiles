@@ -208,38 +208,18 @@
 (use-package markdown-mode
   :ensure t)
 
-(use-package lsp-mode
+(use-package eglot
   :ensure t
-  :hook ((rust-mode . lsp))
-  :config
-  (setq lsp-headerline-breadcrumb-enable nil)
-  :commands lsp)
-
-(use-package lsp-pyright
-  :ensure t
-  :config
-  (setq
-   lsp-pyright-disable-organize-imports nil
-   lsp-pyright-auto-import-completions nil
-   lsp-pyright-diagnostic-mode "openFilesOnly"
-   lsp-pyright-auto-search-paths nil
-   lsp-pyright-typechecking-mode "off")
-  :hook (python-mode . (lambda ()
-                          (require 'lsp-pyright)
-                          (lsp))))
-
-(use-package lsp-ui
-  :ensure t
-  :commands lsp-ui-mode
-  :config
-  (setq lsp-ui-sideline-enable nil))
+  :init
+  (add-to-list 'eglot-server-programs '(rust-mode . "rust-analyzer")))
 
 (use-package rust-mode
   :ensure t
   :mode ("\\.rs\\$" . rust-mode)
-  :init
-  (setq lsp-rust-server 'rust-analyzer))
+  :hook (rust-mode . eglot-ensure))
 
+(use-package python
+  :hook (python-mode . eglot-ensure))
 
 (use-package protobuf-mode
   :ensure t
