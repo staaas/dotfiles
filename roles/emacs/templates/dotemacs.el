@@ -201,8 +201,8 @@
 
 (use-package eglot
   :ensure t
-  :init
-  (add-to-list 'eglot-server-programs '(rust-mode . "rust-analyzer")))
+  :config
+  (add-to-list 'eglot-server-programs '(rust-mode . ("rust-analyzer"))))
 
 (use-package rust-mode
   :ensure t
