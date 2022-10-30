@@ -149,10 +149,6 @@
   :ensure t
   :bind (("C-x g" . magit-status)))
 
-(use-package editorconfig
-  :ensure t
-  :config (editorconfig-mode 1))
-
 (use-package projectile
   :ensure t
   :init
