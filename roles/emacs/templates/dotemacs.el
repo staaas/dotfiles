@@ -217,5 +217,19 @@
   :mode (("\\.proto\\'" . protobuf-mode)
 	 ("\\.proto3\\'" . protobuf-mode)))
 
+(use-package languagetool
+  :ensure t
+  :commands (languagetool-check
+             languagetool-clear-suggestions
+             languagetool-correct-at-point
+             languagetool-correct-buffer
+             languagetool-set-language
+             languagetool-server-mode)
+  :config
+  (setq languagetool-java-arguments '("-Dfile.encoding=UTF-8"
+				      "-cp"
+				      "/usr/share/languagetool:/usr/share/java/languagetool/*")
+        languagetool-console-command "org.languagetool.commandline.Main"))
+
 (provide '.emacs)
 ;;; .emacs ends here
