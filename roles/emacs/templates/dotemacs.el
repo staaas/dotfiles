@@ -9,11 +9,6 @@
 ;; Early start configuration
 ;; -------------------------
 
-;; Ignoring warning "Unnecessary call to ‘package-initialize’ in init file"
-;; until https://github.com/cask/cask/issues/463 is resolved
-;; TODO: revert
-(setq warning-minimum-level :emergency)
-
 (scroll-bar-mode -1)
 (tool-bar-mode -1)
 (menu-bar-mode -1)
