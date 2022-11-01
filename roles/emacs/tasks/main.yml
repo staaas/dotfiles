@@ -10,6 +10,7 @@
     - discount  # previously known as markdown, also provides markdown binary
     - plantuml
     - ditaa
+    - adobe-source-code-pro-fonts  # the font I use for emacs
   become: yes
 
 - name: "copy .emacs"

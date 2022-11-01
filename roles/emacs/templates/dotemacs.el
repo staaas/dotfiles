@@ -1,3 +1,4 @@
+b
 ;;; .emacs --- Initialization file for Emacs
 
 ;;; Commentary:
@@ -15,6 +16,8 @@
 (setq
  inhibit-startup-screen t
  inhibit-splash-screen t)
+
+(add-to-list 'default-frame-alist '(font . "Source Code Pro-12" ))
 
 (require 'use-package)
 (require 'package)
