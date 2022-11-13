@@ -142,6 +142,14 @@ b
               :map org-mode-map
               ("C-c n i" . org-roam-node-insert)))
 
+(use-package org-transclusion
+  :ensure t
+  :after (org)
+  :init (setq org-transclusion-extensions
+	      '(org-transclusion-src-lines
+		org-transclusion-font-lock
+		org-transclusion-indent-mode)))
+
 (use-package ob-http
   :ensure t)
 
