@@ -1,4 +1,3 @@
-b
 ;;; .emacs --- Initialization file for Emacs
 
 ;;; Commentary:
