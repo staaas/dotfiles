@@ -19,7 +19,3 @@
     dest=/home/{{ ansible_user_id }}/.emacs
 - name: "ensure .emacs.d exists"
   file: path=/home/{{ ansible_user_id }}/.emacs.d state=directory
-
-- name: set EDITOR=emacs
-  copy: content='set -x EDITOR "emacs -nw -Q"\n' dest=/etc/fish/conf.d/50-editor.fish
-  become: yes

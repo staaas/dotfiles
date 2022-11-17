@@ -56,4 +56,15 @@
 - name: configure dig via .digrc
   copy: content='+noall +answer\n' dest={{ ansible_env.HOME }}/.digrc
 
+- name: install helix
+  pacman: package=helix state=installed
+  become: yes
+- name: ensure .config/helix exists
+  file: path={{ansible_env.HOME}}/.config/helix
+- name: configure helix
+  template: src=templates/helix.toml dest={{ansible_env.HOME}}/.config/helix/config.toml
+- name: set EDITOR=helix
+  copy: content='set -x EDITOR helix\nalias hx helix\n' dest=/etc/fish/conf.d/50-editor.fish
+  become: yes
+
 - include: mpd.yml
