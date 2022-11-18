@@ -59,10 +59,26 @@
 - name: install helix
   pacman: package=helix state=installed
   become: yes
+- name: install language servers
+  pacman:
+    state: installed
+    package:
+    - bash-language-server
+    - lua-language-server
+    - pyright
+    - typescript-language-server
+    - vscode-css-languageserver
+    - vscode-html-languageserver
+    - vscode-json-languageserver
+    - yaml-language-server
+  become: yes
 - name: ensure .config/helix exists
   file: path={{ansible_env.HOME}}/.config/helix
 - name: configure helix
-  template: src=templates/helix.toml dest={{ansible_env.HOME}}/.config/helix/config.toml
+  copy: src=templates/helix/{item} dest={{ansible_env.HOME}}/.config/helix/{item}
+  with_items:
+  - config.toml
+  - languages.toml
 - name: set EDITOR=helix
   copy: content='set -x EDITOR helix\nalias hx helix\n' dest=/etc/fish/conf.d/50-editor.fish
   become: yes

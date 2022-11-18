@@ -1,0 +1,5 @@
+[[language]]
+name = "python"
+language-server = { command = "pyright-langserver", args = ["--stdio"] }
+roots = ["pyproject.toml", "pyrightconfig.json", "setup.py"]
+config = {}
