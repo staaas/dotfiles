@@ -34,6 +34,9 @@
 - name: persist chromium command line flags
   template: src=templates/chromium-flags.conf dest={{ ansible_env.HOME }}/.config/chromium-flags.conf
 
+- name: configure electron apps
+  template: src=templates/electron-flags.conf dest={{ ansible_env.HOME }}/.config/electron-flags.conf
+
 - name: install IM clients
   pacman:
     state: present
