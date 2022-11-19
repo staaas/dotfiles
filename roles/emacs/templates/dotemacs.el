@@ -108,11 +108,6 @@
 ;; Configuration of external packages
 ;; ----------------------------------
 
-(use-package org-download
-  :ensure t
-  :config
-  (add-hook 'dired-mode-hook 'org-download-enable))
-
 (use-package org-roam
       :ensure t
       :init
@@ -141,20 +136,6 @@
               :map org-mode-map
               ("C-c n i" . org-roam-node-insert)))
 
-(use-package org-transclusion
-  :ensure t
-  :after (org)
-  :init (setq org-transclusion-extensions
-	      '(org-transclusion-src-lines
-		org-transclusion-font-lock
-		org-transclusion-indent-mode)))
-
-(use-package ob-http
-  :ensure t)
-
-(use-package ox-gfm
-  :ensure t)
-
 (use-package magit
   :ensure t
   :bind (("C-x g" . magit-status)))
@@ -171,12 +152,6 @@
     "Search in project."
     (call-interactively #'projectile-ripgrep))
   (define-key projectile-command-map (kbd "s") #'projectile-ripgrep))
-
-(use-package yasnippet
-  :ensure t
-  :config
-  (yas-global-mode 1)
-  (yas-load-directory "~/.emacs.d/snippets"))
 
 (use-package company
   :ensure t
@@ -221,25 +196,6 @@
 
 (use-package python
   :hook (python-mode . eglot-ensure))
-
-(use-package protobuf-mode
-  :ensure t
-  :mode (("\\.proto\\'" . protobuf-mode)
-	 ("\\.proto3\\'" . protobuf-mode)))
-
-(use-package languagetool
-  :ensure t
-  :commands (languagetool-check
-             languagetool-clear-suggestions
-             languagetool-correct-at-point
-             languagetool-correct-buffer
-             languagetool-set-language
-             languagetool-server-mode)
-  :config
-  (setq languagetool-java-arguments '("-Dfile.encoding=UTF-8"
-				      "-cp"
-				      "/usr/share/languagetool:/usr/share/java/languagetool/*")
-        languagetool-console-command "org.languagetool.commandline.Main"))
 
 (provide '.emacs)
 ;;; .emacs ends here
