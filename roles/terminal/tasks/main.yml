@@ -1,23 +1,23 @@
 ---
 - name: install sudo
   pacman: package=sudo
-  become: yes
+  become: true
 - name: add wheel group to sudoers
   copy: src=templates/sudoers/10-wheel dest=/etc/sudoers.d/10-wheel
-  become: yes
+  become: true
 
 - name: install fish
   pacman: package=fish state=present
-  become: yes
+  become: true
 - name: set fish as a default shell for {{ ansible_user_id }}
   user: name={{ ansible_user_id }} shell=/usr/bin/fish
-  become: yes
+  become: true
 - name: set fish as a default shell for root
   user: name=root shell=/usr/bin/fish
-  become: yes
+  become: true
 - name: add global fish configuration file (prompt, manpager, etc.)
   copy: src=templates/00-global.fish dest=/etc/fish/conf.d/00-global.fish
-  become: yes
+  become: true
 - name: "ensure fish conf.d exists"
   file: path={{ ansible_env.HOME }}/.config/fish/conf.d state=directory recurse=yes
 
@@ -28,7 +28,7 @@
     - htop
     - iotop
     - powertop
-  become: yes
+  become: true
 
 - name: install frequently used applications
   pacman:
@@ -48,17 +48,17 @@
     - translate-shell
     - fd
     - bandwhich
-  become: yes
+  become: true
 
 - name: install bind as it contains dig
   pacman: package=bind state=installed
-  become: yes
+  become: true
 - name: configure dig via .digrc
   copy: content='+noall +answer\n' dest={{ ansible_env.HOME }}/.digrc
 
 - name: install helix
   pacman: package=helix state=installed
-  become: yes
+  become: true
 - name: install language servers
   pacman:
     state: installed
@@ -71,7 +71,7 @@
     - vscode-html-languageserver
     - vscode-json-languageserver
     - yaml-language-server
-  become: yes
+  become: true
 - name: ensure .config/helix exists
   file: path={{ansible_env.HOME}}/.config/helix
 - name: configure helix
@@ -81,6 +81,6 @@
   - languages.toml
 - name: set EDITOR=helix
   copy: content='set -x EDITOR helix\nalias hx helix\n' dest=/etc/fish/conf.d/50-editor.fish
-  become: yes
+  become: true
 
 - include: mpd.yml

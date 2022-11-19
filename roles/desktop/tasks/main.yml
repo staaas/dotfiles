@@ -5,14 +5,14 @@
   pacman:
     state: present
     package: alacritty
-  become: yes
+  become: true
 - name: ensure .config/alacritty exists
   file: path={{ ansible_env.HOME }}/.config/alacritty state=directory recurse=yes
 - name: configure terminal emulator alacritty
   copy: src=templates/alacritty/alacritty.yml dest={{ ansible_env.HOME }}/.config/alacritty/alacritty.yml
 - name: copy alacritty wrapper script
   copy: src=templates/term dest=/usr/bin/term mode=0555 owner=root group=root
-  become: yes
+  become: true
 
 - include: multimedia.yml
 
@@ -30,7 +30,7 @@
     - firefox-extension-https-everywhere
     - firefox-extension-multi-account-containers  # from AUR
     - chromium
-  become: yes
+  become: true
 - name: persist chromium command line flags
   template: src=templates/chromium-flags.conf dest={{ ansible_env.HOME }}/.config/chromium-flags.conf
 
@@ -39,7 +39,7 @@
 
 - name: install logseq
   pacman: package=logseq-desktop-bin state=installed
-  become: yes
+  become: true
 - name: create /usr/bin/lsq for starting logseq
   copy:
     content: "#!/usr/bin/env sh\nlogseq --ozone-platform-hint=auto\n"
@@ -47,7 +47,7 @@
     mode: "0555"
     owner: root
     group: root
-  become: yes
+  become: true
 
 - name: install IM clients
   pacman:
@@ -87,10 +87,10 @@
   with_items:
   - service
   - timer
-  become: yes
+  become: true
 - name: start mbsync timer
   systemd: name=mbsync@{{ ansible_user_id }}.timer state=started enabled=yes daemon_reload=yes
-  become: yes
+  become: true
 
 - name: install fonts
   pacman:
@@ -103,13 +103,13 @@
     - ttf-inconsolata
     - ttf-liberation
     - ttf-ubuntu-font-family
-  become: yes
+  become: true
 
 - name: set xdg user dirs
   copy: src=templates/user-dirs.dirs dest={{ ansible_env.HOME }}/.config/user-dirs.dirs
 - name: install xdg-user-dirs
   pacman: package=xdg-user-dirs state=present
-  become: yes
+  become: true
 
 - name: set default apps
   copy: src=templates/mimeapps.list dest={{ ansible_env.HOME }}/.config/mimeapps.list
@@ -120,11 +120,11 @@
     package:
     - remmina
     - libvncserver
-  become: yes
+  become: true
 
 - name: install LanguageTool
   pacman: package=languagetool state=present
-  become: yes
+  become: true
 - name: start LanguageTool
   systemd: name=languagetool.service state=started enabled=yes daemon_reload=yes
-  become: yes
+  become: true

@@ -5,7 +5,7 @@
     - xf86-input-evdev
     - xf86-input-synaptics
     - mesa
-  become: yes
+  become: true
 
 - name: install sway and related packages
   pacman:
@@ -26,7 +26,7 @@
     - grim  # screenshots
     - slurp  # select part of the screen
     - otf-font-awesome  # iconic fonts for i3status-rust
-  become: yes
+  become: true
 - name: ensure sway configuration dir exists
   file: path={{ ansible_env.HOME }}/.config/sway state=directory recurse=yes
 - name: copy sway config
@@ -46,17 +46,17 @@
     mode=0555
     owner=root
     group=root
-  become: yes
+  become: true
 - name: copy script sway-move-all-to-current-display.py
   copy: >
     src=templates/sway/sway-move-all-to-current-display.py
     dest={{ ansible_env.HOME }}/.config/sway/sway-move-all-to-current-display.py mode=0555
 - name: Create backlight udev rules so group video can control backlight without sudo
   template: src=templates/udev/backlight.rules dest=/etc/udev/rules.d/20-backlight.rules
-  become: yes
+  become: true
 - name: Add user to group video to make utility light work
   user: name={{ ansible_user_id }} groups=video append=yes
-  become: yes
+  become: true
 - name: Autostart sway when logging in on TTY1
   copy: >
     src=templates/sway/sway.fish

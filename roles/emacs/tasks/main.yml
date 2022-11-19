@@ -11,7 +11,7 @@
     - plantuml
     - ditaa
     - adobe-source-code-pro-fonts  # the font I use for emacs
-  become: yes
+  become: true
 
 - name: "copy .emacs"
   template: >

@@ -10,10 +10,10 @@
     package:
     - docker
     - docker-compose
-  become: yes
+  become: true
 - name: start docker daemon
   systemd: name=docker enabled=yes state=started
-  become: yes
+  become: true
 
 - name: Install K8s packages
   pacman:
@@ -21,7 +21,7 @@
     package:
     - kubectl
     - kubectx
-  become: yes
+  become: true
 
 - name: Install json and yaml tools
   pacman:
@@ -30,11 +30,11 @@
     - jless
     - jq
     - yq
-  become: yes
+  become: true
 
 - name: install perf
   pacman: package=perf state=installed
-  become: yes
+  become: true
 
 - include: nix.yml
 

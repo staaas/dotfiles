@@ -7,7 +7,7 @@
     - lsof
     - valgrind
     - binutils
-  become: yes
+  become: true
 
 - name: install base-devel
   pacman:
@@ -38,4 +38,4 @@
     - texinfo
     - util-linux
     - which
-  become: yes
+  become: true

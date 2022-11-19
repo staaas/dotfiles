@@ -1,10 +1,10 @@
 - name: install pdf reader
   pacman: name=evince state=installed
-  become: yes
+  become: true
 
 - name: install markdown editor
   pacman: name=ghostwriter state=installed
-  become: yes
+  become: true
 
 - name: install libreoffice
   pacman:
@@ -13,4 +13,4 @@
     - libreoffice-fresh
     - libreoffice-fresh-be
     - libreoffice-fresh-ru
-  become: yes
+  become: true

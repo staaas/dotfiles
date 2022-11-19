@@ -9,7 +9,7 @@
     - python-virtualenvwrapper
     - flake8
     - python-poetry
-  become: yes
+  become: true
 
 - name: install datascience tools
   pacman:
@@ -20,4 +20,4 @@
     - python-pandas
     - python-seaborn
     - python-scikit-learn
-  become: yes
+  become: true

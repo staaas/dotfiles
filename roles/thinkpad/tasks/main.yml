@@ -1,37 +1,37 @@
 ---
 - name: replace prtsc key with right meta
   copy: src=templates/hwdb/90-hhkb-layout.hwdb dest=/etc/udev/hwdb.d/90-hhkb-layout.hwdb
-  become: yes
+  become: true
   register: hwdb_hhkb_layout
 - name: increase trackpoint sensitivity
   copy: src=templates/udev/10-trackpoint.rules dest=/etc/udev/rules.d/10-trackpoint.rules
-  become: yes
+  become: true
   register: rules_trackpoint
 - name: update hwdb.bin
   command: udevadm hwdb --update
-  become: yes
+  become: true
   when: hwdb_hhkb_layout.changed or rules_trackpoint.changed
 - name: trigger udevadm
   command: udevadm trigger
-  become: yes
+  become: true
   when: hwdb_hhkb_layout.changed or rules_trackpoint.changed
 
 - name: install tlp
   pacman: package=tlp state=installed
-  become: yes
+  become: true
 - name: configure tlp
   copy: src=templates/tlp.conf dest=/etc/tlp.d/thinkpad.conf
-  become: yes
+  become: true
 - name: enable tlp
   systemd: name=tlp enabled=yes state=started
-  become: yes
+  become: true
 - name: disable systemd-rfkill as it conflicts with tlp
   systemd: name={{ item }} state=stopped enabled=no
-  become: yes
+  become: true
   with_items:
   - systemd-rfkill.service
   - systemd-rfkill.socket
 
 - name: mask service systemd-backlight@backlight:acpi_video0.service which produced errors in logs
   systemd: name=systemd-backlight@backlight:acpi_video0.service masked=yes
-  become: yes
+  become: true

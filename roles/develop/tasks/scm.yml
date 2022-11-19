@@ -5,6 +5,6 @@
     - git
     - mercurial
     - subversion
-  become: yes
+  become: true
 - name: copy .gitconfig
   template: src=templates/gitconfig dest={{ ansible_env.HOME }}/.gitconfig
