@@ -37,6 +37,18 @@
 - name: configure electron apps
   template: src=templates/electron-flags.conf dest={{ ansible_env.HOME }}/.config/electron-flags.conf
 
+- name: install logseq
+  pacman: package=logseq-desktop-bin state=installed
+  become: yes
+- name: create /usr/bin/lsq for starting logseq
+  copy:
+    content: "#!/usr/bin/env sh\nlogseq --ozone-platform-hint=auto\n"
+    dest: /usr/bin/lsq
+    mode: "0555"
+    owner: root
+    group: root
+  become: yes
+
 - name: install IM clients
   pacman:
     state: present
