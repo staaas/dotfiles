@@ -61,6 +61,18 @@
   - systemd-networkd
   become: true
 
+- name: ensure /etc/systemd/resolved.conf.d/ exists
+  file: path=/etc/systemd/resolved.conf.d state=directory owner=root group=root
+  become: true
+- name: configure DNS over TLS
+  copy: >
+    src=templates/resolved/dns_over_tls.conf
+    dest=/etc/systemd/resolved.conf.d/dns_over_tls.conf
+    owner=root
+    group=root
+  become: true
+  notify: restart resolved
+
 - name: "copy disable-acpi-wakeup service"
   copy: >
     src=templates/disable-acpi-wakeup.service
