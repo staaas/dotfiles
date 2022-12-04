@@ -3,7 +3,6 @@
     state: installed
     package:
     - python
-    - python2
     - ipython
     - python-virtualenv
     - python-virtualenvwrapper
