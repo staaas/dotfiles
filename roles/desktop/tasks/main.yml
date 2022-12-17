@@ -38,7 +38,7 @@
   template: src=templates/electron-flags.conf dest={{ ansible_env.HOME }}/.config/electron-flags.conf
 
 - name: install logseq
-  pacman: package=logseq-desktop-bin state=installed
+  pacman: package=logseq-desktop state=installed
   become: true
 - name: create /usr/bin/lsq for starting logseq
   copy:
