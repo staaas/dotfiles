@@ -75,7 +75,7 @@
 - name: ensure .config/helix exists
   file: path={{ansible_env.HOME}}/.config/helix
 - name: configure helix
-  copy: src=templates/helix/{item} dest={{ansible_env.HOME}}/.config/helix/{item}
+  copy: src=templates/helix/{{item}} dest={{ansible_env.HOME}}/.config/helix/{item}
   with_items:
   - config.toml
   - languages.toml
