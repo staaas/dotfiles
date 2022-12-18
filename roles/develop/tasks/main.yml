@@ -19,6 +19,8 @@
   pacman:
     state: installed
     package:
+    - helm
+    - k9s
     - kubectl
     - kubectx
   become: true
