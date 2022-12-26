@@ -5,6 +5,7 @@
     - git
     - mercurial
     - subversion
+    - python-pre-commit
   become: true
 - name: copy .gitconfig
   template: src=templates/gitconfig dest={{ ansible_env.HOME }}/.gitconfig
