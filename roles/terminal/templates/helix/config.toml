@@ -1,1 +1,15 @@
-theme = "solarized_dark"
+theme = "onedark"
+
+[editor]
+cursorline = true
+
+[editor.cursor-shape]
+insert = "bar"
+
+[editor.file-picker]
+hidden = false
+git-ignore = false
+
+[editor.statusline]
+left = ["mode", "spinner", "file-name"]
+right = ["diagnostics", "selections", "position", "position-percentage"]
