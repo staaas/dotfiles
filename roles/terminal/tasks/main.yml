@@ -39,7 +39,6 @@
     - curl
     - lm_sensors
     - mc
-    - neovim
     - unzip
     - dosfstools
     - bind-tools
