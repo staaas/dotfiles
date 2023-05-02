@@ -1,7 +1,8 @@
+[icons]
 icons = "awesome5"
 
 [theme]
-name = "native"
+theme = "native"
 [theme.overrides]
 idle_fg = "#a3b1b1"
 info_fg = "#a3b1b1"
@@ -14,13 +15,11 @@ critical_fg = "#000000"
 [[block]]
 block = "cpu"
 interval = 1
-format = "{utilization}"
+format = "$icon $utilization.eng(w:2) "
 
 [[block]]
 block = "memory"
-format_mem = "{mem_used_percents}"
-display_type = "memory"
-icons = true
+format = " $icon $mem_used_percents.eng(w:2) "
 interval = 5
 warning_mem = 60
 critical_mem = 90
@@ -28,23 +27,24 @@ critical_mem = 90
 [[block]]
 block = "net"
 device = "wlan0"
-format = "{signal_strength} {ssid}"
+format = " $icon $signal_strength $ssid "
 interval = 2
 
 [[block]]
 block = "battery"
-format = "{percentage} {time}"
+format = " $icon $percentage $time "
 interval = 10
 
 [[block]]
 block = "sound"
 device_kind = "sink"
+format = " $icon $volume "
 show_volume_when_muted = true
 
 [[block]]
 block = "sound"
 device_kind = "source"
-format = ""
+format = " $icon "
 show_volume_when_muted = true
 [block.theme_overrides]
 # red background when the is enabled
@@ -56,6 +56,7 @@ warning_fg = "#a3b1b1"
 [[block]]
 block = "maildir"
 interval = 60
+format = " $icon $status.eng(w:1) "
 inboxes = ["{{ ansible_env.HOME }}/maildir/INBOX"]
 threshold_warning = 1
 threshold_critical = 100
@@ -63,15 +64,15 @@ display_type = "new"
 
 [[block]]
 block = "time"
-interval = 60
-format = "%Y-%m-%d %H:%M"
+interval = 5
+format = " $timestamp.datetime(f:'%Y-%m-%d %H:%M') "
 [block.theme_overrides]
 idle_fg = "#ffffff"
 
 [[block]]
 block = "keyboard_layout"
 driver = "sway"
-format = "{layout}"
+format = " $layout "
 [block.mappings]
 "English (US)" = "en"
 "Belarusian (N/A)" = "by"
