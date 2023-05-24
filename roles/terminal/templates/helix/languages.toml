@@ -1,5 +1,6 @@
 [[language]]
 name = "python"
 language-server = { command = "pyright-langserver", args = ["--stdio"] }
+formatter = { command = "black", args = ["-", "-q"] }
 roots = ["pyproject.toml", "pyrightconfig.json", "setup.py"]
 config = {}
