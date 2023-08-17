@@ -34,16 +34,25 @@
 - name: persist chromium command line flags
   template: src=templates/chromium-flags.conf dest={{ ansible_env.HOME }}/.config/chromium-flags.conf
 
-- name: configure electron apps
-  template: src=templates/electron-flags.conf dest={{ ansible_env.HOME }}/.config/electron-flags.conf
-
 - name: install logseq
   pacman: package=logseq-desktop state=installed
   become: true
 - name: create /usr/bin/lsq for starting logseq
   copy:
-    content: "#!/usr/bin/env sh\nlogseq --ozone-platform-hint=auto\n"
+    content: "#!/usr/bin/env sh\n/usr/bin/logseq --enable-features=UseOzonePlatform --ozone-platform=wayland\n"
     dest: /usr/bin/lsq
+    mode: "0555"
+    owner: root
+    group: root
+  become: true
+
+- name: install element-desktop
+  pacman: package=element-desktop state=installed
+  become: true
+- name: create /usr/bin/elm for starting logseq
+  copy:
+    content: "#!/usr/bin/env sh\n/usr/bin/element-desktop --enable-features=UseOzonePlatform --ozone-platform=wayland\n"
+    dest: /usr/bin/elm
     mode: "0555"
     owner: root
     group: root
@@ -53,7 +62,6 @@
   pacman:
     state: present
     package:
-    - element-desktop
     - telegram-desktop
     - weechat
     - weechat-matrix
