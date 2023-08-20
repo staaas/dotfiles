@@ -47,6 +47,7 @@
     - translate-shell
     - fd
     - bandwhich
+    - zellij
   become: true
 
 - name: install bind as it contains dig

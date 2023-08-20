@@ -37,7 +37,7 @@
 - name: install logseq
   pacman: package=logseq-desktop state=installed
   become: true
-- name: create /usr/bin/lsq for starting logseq
+- name: create /usr/bin/lsq for starting logseq under wayland
   copy:
     content: "#!/usr/bin/env sh\n/usr/bin/logseq --enable-features=UseOzonePlatform --ozone-platform=wayland\n"
     dest: /usr/bin/lsq
@@ -49,10 +49,19 @@
 - name: install element-desktop
   pacman: package=element-desktop state=installed
   become: true
-- name: create /usr/bin/elm for starting logseq
+- name: create /usr/bin/element for starting element-desktop under wayland
   copy:
     content: "#!/usr/bin/env sh\n/usr/bin/element-desktop --enable-features=UseOzonePlatform --ozone-platform=wayland\n"
     dest: /usr/bin/elm
+    mode: "0555"
+    owner: root
+    group: root
+  become: true
+
+- name: create /usr/bin/signal for starting signal-desktop
+  copy:
+    content: "#!/usr/bin/env sh\n/usr/bin/signal-desktop --enable-features=UseOzonePlatform --ozone-platform=wayland\n"
+    dest: /usr/bin/signal
     mode: "0555"
     owner: root
     group: root
