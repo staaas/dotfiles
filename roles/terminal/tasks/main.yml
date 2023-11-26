@@ -83,4 +83,4 @@
   copy: content='set -x EDITOR helix\nalias hx helix\n' dest=/etc/fish/conf.d/50-editor.fish
   become: true
 
-- include: mpd.yml
+- include_tasks: mpd.yml

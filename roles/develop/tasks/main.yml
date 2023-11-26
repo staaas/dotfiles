@@ -2,7 +2,7 @@
 - name: ensure ~/projects exists
   file: path={{ ansible_env.HOME }}/projects state=directory
 
-- include: scm.yml
+- include_tasks: scm.yml
 
 - name: install docker
   pacman:
@@ -38,8 +38,8 @@
   pacman: package=perf state=installed
   become: true
 
-- include: nix.yml
+- include_tasks: nix.yml
 
-- include: python.yml
+- include_tasks: python.yml
 
-- include: rust.yml
+- include_tasks: rust.yml

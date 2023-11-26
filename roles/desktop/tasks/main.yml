@@ -1,5 +1,5 @@
 ---
-- include: sway.yml
+- include_tasks: sway.yml
 
 - name: install terminal emulators
   pacman:
@@ -14,11 +14,11 @@
   copy: src=templates/term dest=/usr/bin/term mode=0555 owner=root group=root
   become: true
 
-- include: multimedia.yml
+- include_tasks: multimedia.yml
 
-- include: office.yml
+- include_tasks: office.yml
 
-- include: p2p.yml
+- include_tasks: p2p.yml
 
 - name: install browsers
   pacman:
