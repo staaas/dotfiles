@@ -4,10 +4,12 @@
     package:
     - python
     - ipython
+    - python-black
     - python-virtualenv
     - python-virtualenvwrapper
-    - flake8
     - python-poetry
+    - python-ruff
+    - ruff-lsp
   become: true
 
 - name: install datascience tools

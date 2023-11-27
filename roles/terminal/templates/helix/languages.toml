@@ -1,6 +1,17 @@
 [[language]]
 name = "python"
-language-server = { command = "pyright-langserver", args = ["--stdio"] }
-formatter = { command = "black", args = ["-", "-q"] }
 roots = ["pyproject.toml", "pyrightconfig.json", "setup.py"]
-config = {}
+language-servers = [ "pyright", "ruff" ]
+
+[language-server.pyright.config.python.analysis]
+typeCheckingMode = "basic"
+
+[language-server.ruff]
+command = "ruff-lsp"
+
+[language-server.ruff.config.settings]
+args = ["--ignore", "E501"]
+
+[language.formatter]
+command = "black"
+args = ["-", "-q"]
