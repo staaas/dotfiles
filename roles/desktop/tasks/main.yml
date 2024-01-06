@@ -9,7 +9,7 @@
 - name: ensure .config/alacritty exists
   file: path={{ ansible_env.HOME }}/.config/alacritty state=directory recurse=yes
 - name: configure terminal emulator alacritty
-  copy: src=templates/alacritty/alacritty.yml dest={{ ansible_env.HOME }}/.config/alacritty/alacritty.yml
+  copy: src=templates/alacritty/alacritty.toml dest={{ ansible_env.HOME }}/.config/alacritty/alacritty.toml
 - name: copy alacritty wrapper script
   copy: src=templates/term dest=/usr/bin/term mode=0555 owner=root group=root
   become: true
