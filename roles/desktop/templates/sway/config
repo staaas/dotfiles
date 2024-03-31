@@ -16,8 +16,7 @@ bindsym $mod+Return exec alacritty
 # kill focused window
 bindsym --to-code $mod+Shift+c kill
 
-# start bemenu (a program launcher)
-set $menu bemenu-run --prompt "" --hf "#ffffff" --nf "#999999" --nb "#000000" --fb "#000000" --line-height 21 --fn "Roboto Mono 9"
+set $menu dmenu_path | wmenu -f "Roboto Mono 11" | xargs swaymsg exec --
 bindsym --to-code $mod+d exec $menu
 
 # change focus
