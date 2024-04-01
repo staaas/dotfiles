@@ -1,0 +1,9 @@
+- name: install golang and tools
+  pacman:
+    state: installed
+    package:
+    - go
+    - go-tools
+    - gopls
+    - delve
+  become: true

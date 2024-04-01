@@ -43,3 +43,5 @@
 - include_tasks: python.yml
 
 - include_tasks: rust.yml
+
+- include_tasks: golang.yml
