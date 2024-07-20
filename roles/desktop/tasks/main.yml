@@ -88,7 +88,7 @@
 - name: create aerc-specific helix config file
   copy: content='theme = "base16_transparent"' dest={{ansible_env.HOME}}/.config/aerc/helix.toml
 - name: copy initial config for aerc if not exists
-  copy: src=/usr/share/aerc/aerc.conf dest={{ ansible_env.HOME }}/.config/aerc/aerc.conf force=no
+  copy: src=/usr/share/aerc/aerc.conf dest={{ ansible_env.HOME }}/.config/aerc/aerc.conf
 - name: use helix for composing emails in aerc
   lineinfile: >
     dest={{ ansible_env.HOME }}/.config/aerc/aerc.conf
@@ -97,8 +97,13 @@
 - name: display html emails in aerc
   lineinfile: >
     dest={{ ansible_env.HOME }}/.config/aerc/aerc.conf
-    line="text/html=/usr/share/aerc/filters/html"
+    line="text/html=/usr/lib/aerc/filters/html"
     regexp="^#?text/html="
+- name: use styleset nord in aerc
+  lineinfile: >
+    dest={{ ansible_env.HOME }}/.config/aerc/aerc.conf
+    line="styleset-name=nord"
+    regexp="^#?styleset-name="
 - name: install mbsync service and timer
   copy: src=templates/mbsync/mbsync.{{item}} dest=/usr/lib/systemd/system/mbsync@.{{item}}
   with_items:
