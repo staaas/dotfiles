@@ -87,8 +87,10 @@
   file: path={{ ansible_env.HOME }}/.config/aerc state=directory recurse=yes
 - name: create aerc-specific helix config file
   copy: content='theme = "base16_transparent"' dest={{ansible_env.HOME}}/.config/aerc/helix.toml
-- name: copy initial config for aerc if not exists
+- name: copy default aerc config file
   copy: src=/usr/share/aerc/aerc.conf dest={{ ansible_env.HOME }}/.config/aerc/aerc.conf
+- name: copy default aerc binds file
+  copy: src=/usr/share/aerc/binds.conf dest={{ ansible_env.HOME }}/.config/aerc/binds.conf
 - name: use helix for composing emails in aerc
   lineinfile: >
     dest={{ ansible_env.HOME }}/.config/aerc/aerc.conf
