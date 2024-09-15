@@ -64,6 +64,7 @@
     state: installed
     package:
     - bash-language-server
+    - helix-gpt-bin
     - lua-language-server
     - pyright
     - typescript-language-server
@@ -75,10 +76,13 @@
 - name: ensure .config/helix exists
   file: path={{ansible_env.HOME}}/.config/helix
 - name: configure helix
-  copy: src=templates/helix/{{item}} dest={{ansible_env.HOME}}/.config/helix/{item}
+  template: src=templates/helix/{{item}} dest={{ansible_env.HOME}}/.config/helix/{{item}}
   with_items:
   - config.toml
+  - helix-gpt.sh
   - languages.toml
+- name: "make helix-gpt.sh executable"
+  file: path={{ansible_env.HOME}}/.config/helix/helix-gpt.sh state=file mode=0555
 - name: set EDITOR=helix
   copy: content='set -x EDITOR helix\nalias hx helix\n' dest=/etc/fish/conf.d/50-editor.fish
   become: true

@@ -1,7 +1,5 @@
-[[language]]
-name = "python"
-roots = ["pyproject.toml", "pyrightconfig.json", "setup.py"]
-language-servers = [ "pyright", "ruff" ]
+[language-server.gpt]
+command = "{{ ansible_env.HOME }}/.config/helix/helix-gpt.sh"
 
 [language-server.pyright.config.python.analysis]
 typeCheckingMode = "basic"
@@ -12,6 +10,24 @@ command = "ruff-lsp"
 [language-server.ruff.config.settings]
 args = ["--ignore", "E501"]
 
-[language.formatter]
-command = "black"
-args = ["-", "-q"]
+[[language]]
+name = "go"
+language-servers = ["gopls", "gpt"]
+
+[[language]]
+name = "hcl"
+language-servers = ["terraform-ls", "gpt"]
+
+[[language]]
+name = "python"
+roots = ["pyproject.toml", "pyrightconfig.json", "setup.py"]
+language-servers = ["pyright", "ruff", "gpt"]
+formatter = { command = "black", args = ["-", "-q"] }
+
+[[language]]
+name = "rust"
+language-servers = ["rust-analyzer", "gpt"]
+
+[[language]]
+name = "tfvars"
+language-servers = ["terraform-ls", "gpt"]
