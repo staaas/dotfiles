@@ -31,7 +31,7 @@
     package:
     - jless
     - jq
-    - yq
+    - go-yq
   become: true
 
 - name: install perf
