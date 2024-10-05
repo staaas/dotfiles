@@ -1,0 +1,6 @@
+evdev:name:AT Translated Set 2 keyboard:dmi:bvn*:bvr*:bd*:svn*:pn*
+ KEYBOARD_KEY_9d=rightmeta
+ KEYBOARD_KEY_2b=backspace
+ KEYBOARD_KEY_0e=backslash
+ KEYBOARD_KEY_3a=leftctrl
+ KEYBOARD_KEY_1d=capslock

@@ -1,0 +1,29 @@
+---
+- name: remap keys
+  copy: src=templates/hwdb/90-hhkb-layout.hwdb dest=/etc/udev/hwdb.d/90-hhkb-layout.hwdb
+  become: true
+  register: hwdb_hhkb_layout
+- name: update hwdb.bin
+  command: udevadm hwdb --update
+  become: true
+  when: hwdb_hhkb_layout.changed or rules_trackpoint.changed
+- name: trigger udevadm
+  command: udevadm trigger
+  become: true
+  when: hwdb_hhkb_layout.changed or rules_trackpoint.changed
+
+- name: install tlp
+  pacman: package=tlp state=installed
+  become: true
+- name: configure tlp
+  copy: src=templates/tlp.conf dest=/etc/tlp.d/framework.conf
+  become: true
+- name: enable tlp
+  systemd: name=tlp enabled=yes state=started
+  become: true
+- name: disable systemd-rfkill as it conflicts with tlp
+  systemd: name={{ item }} state=stopped enabled=no
+  become: true
+  with_items:
+  - systemd-rfkill.service
+  - systemd-rfkill.socket
