@@ -18,9 +18,10 @@
     - i3status-rust
     - wl-clipboard
     - wmenu  # program launcher
+    - dmenu  # used together with wmenu
     - ttf-roboto  # font used in sway config (1/2)
     - ttf-roboto-mono  # font used in sway config (2/2)
-    - light  # control screen backlight brightness
+    - acpilight  # control screen backlight brightness via command xbacklight
     - mako  # notifications manager
     - grim  # screenshots
     - slurp  # select part of the screen

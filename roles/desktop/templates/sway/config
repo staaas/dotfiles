@@ -124,8 +124,8 @@ bindsym --to-code $mod+r mode "resize"
 # misc key bindings
 bindsym $mod+backslash exec --no-startup-id swaylock -e -n -c 002b36
 bindsym $mod+backspace exec --no-startup-id swaylock -e -n -c 002b36
-bindsym XF86MonBrightnessDown exec --no-startup-id light -U 10
-bindsym XF86MonBrightnessUp exec --no-startup-id light -A 10
+bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 10
+bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 10
 bindsym --locked XF86AudioRaiseVolume exec --no-startup-id pamixer --increase 5
 bindsym --locked XF86AudioLowerVolume exec --no-startup-id pamixer --decrease 5
 bindsym --locked XF86AudioMute exec --no-startup-id pamixer --toggle-mute
@@ -161,12 +161,6 @@ output * bg #000000 solid_color
 output * pos 0 0
 output $primscreen pos 2560 0
 
-# Clamshell Mode (aka Closed Display mode)
-# Based on https://github.com/swaywm/sway/wiki#clamshell-mode
-bindswitch --reload --locked lid:on output $laptopscreen disable
-bindswitch --reload --locked lid:off output $laptopscreen enable
-exec_always ~/.config/sway/restore-lid-state.sh $laptopscreen
-
 # class                 border  backgr. text    indicator child_border
 client.focused          #586e75 #586e75 #fdf6e3 #268bd2   #586e75
 client.focused_inactive #073642 #073642 #93a1a1 #002b36   #073642
@@ -199,7 +193,6 @@ for_window [app_id="firefox" title="Firefox — Sharing Indicator"] kill
 
 exec_always mako
 exec swayidle timeout 300 'swaylock -e -n -c 002b36' timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' before-sleep 'swaylock -e -n -c 002b36'
-exec light -P 5
 
 # Exporting env variables WAYLAND_DISPLAY, XDG_CURRENT_DESKTOP and
 # more to systemd user env. This is needed to enable screen sharing
