@@ -1,14 +1,4 @@
 ---
-- name: "install grub"
-  pacman: name=grub state=installed
-  become: true
-- name: "skip filesystem balance on reboot"
-  lineinfile: >
-    dest=/etc/default/grub
-    line='GRUB_CMDLINE_LINUX="rootflags=subvol=@,skip_balance"'
-    regexp="GRUB_CMDLINE_LINUX="
-  become: true
-
 - name: configure IO schedulers
   template: src=templates/udev/ioschedulers.rules dest=/etc/udev/rules.d/60-ioschedulers.rules
   become: true
@@ -72,14 +62,3 @@
     group=root
   become: true
   notify: restart resolved
-
-- name: "copy disable-acpi-wakeup service"
-  copy: >
-    src=templates/disable-acpi-wakeup.service
-    dest=/usr/lib/systemd/system/disable-acpi-wakeup.service
-    owner=root
-    group=root
-  become: true
-- name: "start disable-acpi-wakeup service"
-  systemd: name=disable-acpi-wakeup state=started enabled=yes daemon_reload=yes
-  become: true
