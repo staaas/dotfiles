@@ -35,7 +35,6 @@
   pacman:
     state: installed
     package:
-    - deadbeef
     - ffmpeg
     - libvorbis
     - libmad
