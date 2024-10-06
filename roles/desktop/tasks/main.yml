@@ -53,6 +53,9 @@
     group: root
   become: true
 
+- name: install signal-desktop
+  pacman: package=signal-desktop state=installed
+  become: true
 - name: create /usr/bin/signal for starting signal-desktop
   copy:
     content: "#!/usr/bin/env sh\n/usr/bin/signal-desktop --enable-features=UseOzonePlatform --ozone-platform=wayland --use-tray-icon\n"
