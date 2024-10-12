@@ -159,7 +159,8 @@ bar {
 # Outputs
 output * bg #000000 solid_color
 output * pos 0 0
-output $primscreen pos 2560 0
+output $primscreen pos 1920 0
+output "Dell Inc. DELL U2723QE GPWYCP3" scale 2
 
 # class                 border  backgr. text    indicator child_border
 client.focused          #586e75 #586e75 #fdf6e3 #268bd2   #586e75
