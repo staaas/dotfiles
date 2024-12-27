@@ -7,8 +7,8 @@
     - python-black
     - python-virtualenv
     - python-virtualenvwrapper
-    - python-poetry
     - python-ruff
+    - python-uv
     - ruff-lsp
   become: true
 
