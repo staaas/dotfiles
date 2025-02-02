@@ -51,6 +51,14 @@
   - systemd-networkd
   become: true
 
+- name: configure resolv.conf
+  file: >
+    src=../run/systemd/resolve/stub-resolv.conf
+    dest=/etc/resolv.conf
+    state=link
+    force=yes
+  become: true
+
 - name: ensure /etc/systemd/resolved.conf.d/ exists
   file: path=/etc/systemd/resolved.conf.d state=directory owner=root group=root
   become: true
