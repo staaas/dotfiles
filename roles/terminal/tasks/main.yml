@@ -63,6 +63,7 @@
     package:
     - bash-language-server
     - lua-language-server
+    - marksman
     - pyright
     - typescript-language-server
     - vscode-css-languageserver
