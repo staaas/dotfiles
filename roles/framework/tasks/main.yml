@@ -27,3 +27,7 @@
   with_items:
   - systemd-rfkill.service
   - systemd-rfkill.socket
+
+- name: install framework-system-git (from AUR)
+  pacman: package=framework-system-git state=installed
+  become: true
