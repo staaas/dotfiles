@@ -4,17 +4,6 @@
 
 - include_tasks: scm.yml
 
-- name: install docker
-  pacman:
-    state: installed
-    package:
-    - docker
-    - docker-compose
-  become: true
-- name: start docker daemon
-  systemd: name=docker enabled=yes state=started
-  become: true
-
 - name: Install K8s packages
   pacman:
     state: installed
