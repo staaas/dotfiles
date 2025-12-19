@@ -4,6 +4,14 @@
 
 - include_tasks: scm.yml
 
+- name: Install container and image management packages
+  pacman:
+    state: installed
+    package:
+    - podman
+    - skopeo
+  become: true
+
 - name: Install K8s packages
   pacman:
     state: installed

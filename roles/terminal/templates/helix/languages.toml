@@ -1,6 +1,3 @@
-[language-server.pyright.config.python.analysis]
-typeCheckingMode = "basic"
-
 [language-server.ruff]
 command = "ruff-lsp"
 
@@ -10,5 +7,5 @@ args = ["--ignore", "E501"]
 [[language]]
 name = "python"
 roots = ["pyproject.toml", "pyrightconfig.json", "setup.py"]
-language-servers = ["pyright", "ruff"]
+language-servers = ["ty", "ruff"]
 formatter = { command = "black", args = ["-", "-q"] }
