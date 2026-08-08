@@ -1,0 +1,15 @@
+- name: install kubectl
+  pacman:
+    name: kubectl
+    state: installed
+  become: true
+
+- name: install kind
+  pacman:
+    package: kind
+    state: installed
+  become: true
+- name: "copy fish condiguration preset for kind"
+  copy: >
+    src=templates/kind.fish
+    dest={{ ansible_facts["env"]["HOME"] }}/.config/fish/conf.d/10-kind.fish

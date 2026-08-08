@@ -1,0 +1,1 @@
+set -x KIND_EXPERIMENTAL_PROVIDER podman

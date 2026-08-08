@@ -42,3 +42,5 @@
 - include_tasks: rust.yml
 
 - include_tasks: golang.yml
+
+- include_tasks: k8s.yml
