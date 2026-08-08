@@ -4,7 +4,9 @@
 - name: install terminal emulators
   pacman:
     state: present
-    package: alacritty
+    package:
+    - alacritty
+    - ghostty
   become: true
 - name: ensure .config/alacritty exists
   file: path={{ ansible_env.HOME }}/.config/alacritty state=directory recurse=yes
