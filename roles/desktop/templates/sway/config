@@ -14,7 +14,7 @@ workspace_auto_back_and_forth no
 bindsym $mod+Return exec ghostty
 
 # kill focused window
-bindsym --to-code $mod+Shift+c kill
+bindsym --to-code $mod+q kill
 
 set $menu dmenu_path | wmenu -f "Roboto Mono 11" | xargs swaymsg exec --
 bindsym --to-code $mod+d exec $menu
