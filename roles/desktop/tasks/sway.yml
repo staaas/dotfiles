@@ -28,15 +28,15 @@
     - otf-font-awesome  # iconic fonts for i3status-rust
   become: true
 - name: ensure sway configuration dir exists
-  file: path={{ ansible_env.HOME }}/.config/sway state=directory recurse=yes
+  file: path={{ ansible_facts['env']['HOME'] }}/.config/sway state=directory recurse=yes
 - name: copy sway config
-  template: src=templates/sway/config dest={{ ansible_env.HOME }}/.config/sway/config
+  template: src=templates/sway/config dest={{ ansible_facts['env']['HOME'] }}/.config/sway/config
 - name: ensure mako configuration dir exists
-  file: path={{ ansible_env.HOME }}/.config/mako state=directory recurse=yes
+  file: path={{ ansible_facts['env']['HOME'] }}/.config/mako state=directory recurse=yes
 - name: copy mako config
-  template: src=templates/mako/config dest={{ ansible_env.HOME }}/.config/mako/config
+  template: src=templates/mako/config dest={{ ansible_facts['env']['HOME'] }}/.config/mako/config
 - name: copy i3status-rs config
-  template: src=templates/sway/status.toml dest={{ ansible_env.HOME }}/.config/sway/status.toml
+  template: src=templates/sway/status.toml dest={{ ansible_facts['env']['HOME'] }}/.config/sway/status.toml
 - name: create grim-wrapper
   copy: >
     src=templates/gimp-screenshot
@@ -48,14 +48,14 @@
 - name: copy script sway-move-all-to-current-display.py
   copy: >
     src=templates/sway/sway-move-all-to-current-display.py
-    dest={{ ansible_env.HOME }}/.config/sway/sway-move-all-to-current-display.py mode=0555
+    dest={{ ansible_facts['env']['HOME'] }}/.config/sway/sway-move-all-to-current-display.py mode=0555
 - name: Create backlight udev rules so group video can control backlight without sudo
   template: src=templates/udev/backlight.rules dest=/etc/udev/rules.d/20-backlight.rules
   become: true
 - name: Add user to group video to make utility light work
-  user: name={{ ansible_user_id }} groups=video append=yes
+  user: name={{ ansible_facts['user_id'] }} groups=video append=yes
   become: true
 - name: Autostart sway when logging in on TTY1
   copy: >
     src=templates/sway/sway.fish
-    dest={{ ansible_env.HOME }}/.config/fish/conf.d/00-sway.fish
+    dest={{ ansible_facts['env']['HOME'] }}/.config/fish/conf.d/00-sway.fish

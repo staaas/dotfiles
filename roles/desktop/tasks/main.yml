@@ -9,9 +9,9 @@
     - ghostty
   become: true
 - name: ensure .config/alacritty exists
-  file: path={{ ansible_env.HOME }}/.config/alacritty state=directory recurse=yes
+  file: path={{ ansible_facts['env']['HOME'] }}/.config/alacritty state=directory recurse=yes
 - name: configure terminal emulator alacritty
-  copy: src=templates/alacritty/alacritty.toml dest={{ ansible_env.HOME }}/.config/alacritty/alacritty.toml
+  copy: src=templates/alacritty/alacritty.toml dest={{ ansible_facts['env']['HOME'] }}/.config/alacritty/alacritty.toml
 - name: copy alacritty wrapper script
   copy: src=templates/term dest=/usr/bin/term mode=0555 owner=root group=root
   become: true
@@ -33,7 +33,7 @@
     - chromium
   become: true
 - name: persist chromium command line flags
-  template: src=templates/chromium-flags.conf dest={{ ansible_env.HOME }}/.config/chromium-flags.conf
+  template: src=templates/chromium-flags.conf dest={{ ansible_facts['env']['HOME'] }}/.config/chromium-flags.conf
 
 - name: install logseq
   pacman: package=logseq-desktop-bin state=installed
@@ -41,7 +41,7 @@
 - name: create logseq-flags.conf
   copy:
     content: "--enable-features=UseOzonePlatform --ozone-platform=wayland"
-    dest: "{{ ansible_env.HOME }}/.config/logseq-flags.conf"
+    dest: "{{ ansible_facts['env']['HOME'] }}/.config/logseq-flags.conf"
 
 - name: install element-desktop
   pacman: package=element-desktop state=installed
@@ -77,26 +77,26 @@
     - helix  # my editor of choice
   become: true
 - name: ensure .config/aerc exists
-  file: path={{ ansible_env.HOME }}/.config/aerc state=directory recurse=yes
+  file: path={{ ansible_facts['env']['HOME'] }}/.config/aerc state=directory recurse=yes
 - name: create aerc-specific helix config file
-  copy: content='theme = "base16_transparent"' dest={{ansible_env.HOME}}/.config/aerc/helix.toml
+  copy: content='theme = "base16_transparent"' dest={{ ansible_facts['env']['HOME'] }}/.config/aerc/helix.toml
 - name: copy default aerc config file
-  copy: src=/usr/share/aerc/aerc.conf dest={{ ansible_env.HOME }}/.config/aerc/aerc.conf
+  copy: src=/usr/share/aerc/aerc.conf dest={{ ansible_facts['env']['HOME'] }}/.config/aerc/aerc.conf
 - name: copy default aerc binds file
-  copy: src=/usr/share/aerc/binds.conf dest={{ ansible_env.HOME }}/.config/aerc/binds.conf
+  copy: src=/usr/share/aerc/binds.conf dest={{ ansible_facts['env']['HOME'] }}/.config/aerc/binds.conf
 - name: use helix for composing emails in aerc
   lineinfile: >
-    dest={{ ansible_env.HOME }}/.config/aerc/aerc.conf
-    line="editor=helix -c {{ansible_env.HOME}}/.config/aerc/helix.toml"
+    dest={{ ansible_facts['env']['HOME'] }}/.config/aerc/aerc.conf
+    line="editor=helix -c {{ ansible_facts['env']['HOME'] }}/.config/aerc/helix.toml"
     regexp="editor="
 - name: display html emails in aerc
   lineinfile: >
-    dest={{ ansible_env.HOME }}/.config/aerc/aerc.conf
+    dest={{ ansible_facts['env']['HOME'] }}/.config/aerc/aerc.conf
     line="text/html=/usr/lib/aerc/filters/html"
     regexp="^#?text/html="
 - name: use styleset nord in aerc
   lineinfile: >
-    dest={{ ansible_env.HOME }}/.config/aerc/aerc.conf
+    dest={{ ansible_facts['env']['HOME'] }}/.config/aerc/aerc.conf
     line="styleset-name=nord"
     regexp="^#?styleset-name="
 - name: install mbsync package
@@ -111,7 +111,7 @@
   - timer
   become: true
 - name: start mbsync timer
-  systemd: name=mbsync@{{ ansible_user_id }}.timer state=started enabled=yes daemon_reload=yes
+  systemd: name=mbsync@{{ ansible_facts['user_id'] }}.timer state=started enabled=yes daemon_reload=yes
   become: true
 
 - name: install fonts
@@ -128,13 +128,13 @@
   become: true
 
 - name: set xdg user dirs
-  copy: src=templates/user-dirs.dirs dest={{ ansible_env.HOME }}/.config/user-dirs.dirs
+  copy: src=templates/user-dirs.dirs dest={{ ansible_facts['env']['HOME'] }}/.config/user-dirs.dirs
 - name: install xdg-user-dirs
   pacman: package=xdg-user-dirs state=present
   become: true
 
 - name: set default apps
-  copy: src=templates/mimeapps.list dest={{ ansible_env.HOME }}/.config/mimeapps.list
+  copy: src=templates/mimeapps.list dest={{ ansible_facts['env']['HOME'] }}/.config/mimeapps.list
 
 - name: install Intel AMT management software
   pacman:

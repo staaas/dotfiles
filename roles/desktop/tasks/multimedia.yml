@@ -46,9 +46,9 @@
   pacman: package=mpv state=installed
   become: true
 - name: ensure mpv configuration dir exists
-  file: path={{ ansible_env.HOME }}/.config/mpv state=directory recurse=yes
+  file: path={{ ansible_facts['env']['HOME'] }}/.config/mpv state=directory recurse=yes
 - name: copy mpv configuration
-  template: src=templates/mpv.conf dest={{ ansible_env.HOME }}/.config/mpv/mpv.conf
+  template: src=templates/mpv.conf dest={{ ansible_facts['env']['HOME'] }}/.config/mpv/mpv.conf
 
 - name: install imaging packages
   pacman:
