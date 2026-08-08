@@ -13,22 +13,22 @@
   become: true
 
 - name: "create .gnupg"
-  file: path=/home/{{ ansible_user_id }}/.gnupg state=directory mode=0700
+  file: path={{ ansible_facts["env"]["HOME"] }}/.gnupg state=directory mode=0700
 - name: add arch devs to gpg.conf
-  lineinfile: dest={{ ansible_env.HOME }}/.gnupg/gpg.conf line="keyring /etc/pacman.d/gnupg/pubring.gpg" create=yes
+  lineinfile: dest={{ ansible_facts["env"]["HOME"] }}/.gnupg/gpg.conf line="keyring /etc/pacman.d/gnupg/pubring.gpg" create=yes
 
 - name: ensure .local/share/systemd/user exists
-  file: path={{ ansible_env.HOME }}/.local/share/systemd/user state=directory recurse=yes
+  file: path={{ ansible_facts["env"]["HOME"] }}/.local/share/systemd/user state=directory recurse=yes
 - name: "copy ssh-agent user service"
   copy: >
     src=templates/ssh-agent.service
-    dest={{ ansible_env.HOME }}/.local/share/systemd/user/ssh-agent.service
+    dest={{ ansible_facts["env"]["HOME"] }}/.local/share/systemd/user/ssh-agent.service
 - name: start ssh-agent user service
   systemd: name=ssh-agent scope=user state=started enabled=yes daemon_reload=yes
 - name: "copy fish condiguration preset for ssh-agent"
   copy: >
     src=templates/ssh-agent.fish
-    dest={{ ansible_env.HOME }}/.config/fish/conf.d/10-ssh-agent.fish
+    dest={{ ansible_facts["env"]["HOME"] }}/.config/fish/conf.d/10-ssh-agent.fish
 
 - name: "start pcscd.service needed by ykman"
   systemd: name=pcscd enabled=yes state=started
