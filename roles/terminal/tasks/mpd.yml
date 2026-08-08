@@ -8,20 +8,20 @@
   become: true
 
 - name: ensure .config/mpd exists
-  file: path={{ ansible_env.HOME }}/.config/mpd state=directory recurse=yes
+  file: path={{ ansible_facts['env']['HOME'] }}/.config/mpd state=directory recurse=yes
 
 - name: ensure music dir exists
-  file: path={{ ansible_env.HOME }}/music state=directory
+  file: path={{ ansible_facts['env']['HOME'] }}/music state=directory
 
 - name: copy mpd.conf
-  copy: src=templates/mpd.conf dest={{ ansible_env.HOME }}/.config/mpd/mpd.conf
+  copy: src=templates/mpd.conf dest={{ ansible_facts['env']['HOME'] }}/.config/mpd/mpd.conf
   notify: restart mpd
 
 - name: start mpd
   systemd: name=mpd scope=user state=started enabled=yes
 
 - name: ensure .config/ncmpc exists
-  file: path={{ ansible_env.HOME }}/.config/ncmpc state=directory recurse=yes
+  file: path={{ ansible_facts['env']['HOME'] }}/.config/ncmpc state=directory recurse=yes
 
 - name: copy ncmpc config
-  copy: src=templates/ncmpc.conf dest={{ ansible_env.HOME }}/.config/ncmpc/config
+  copy: src=templates/ncmpc.conf dest={{ ansible_facts['env']['HOME'] }}/.config/ncmpc/config

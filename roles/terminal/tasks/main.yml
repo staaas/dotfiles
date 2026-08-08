@@ -9,8 +9,8 @@
 - name: install fish
   pacman: package=fish state=present
   become: true
-- name: set fish as a default shell for {{ ansible_user_id }}
-  user: name={{ ansible_user_id }} shell=/usr/bin/fish
+- name: set fish as a default shell for {{ ansible_facts['user_id'] }}
+  user: name={{ ansible_facts['user_id'] }} shell=/usr/bin/fish
   become: true
 - name: set fish as a default shell for root
   user: name=root shell=/usr/bin/fish
@@ -19,7 +19,7 @@
   copy: src=templates/00-global.fish dest=/etc/fish/conf.d/00-global.fish
   become: true
 - name: "ensure fish conf.d exists"
-  file: path={{ ansible_env.HOME }}/.config/fish/conf.d state=directory recurse=yes
+  file: path={{ ansible_facts['env']['HOME'] }}/.config/fish/conf.d state=directory recurse=yes
 
 - name: install resource monitors
   pacman:
@@ -52,7 +52,7 @@
   pacman: package=bind state=installed
   become: true
 - name: configure dig via .digrc
-  copy: content='+noall +answer\n' dest={{ ansible_env.HOME }}/.digrc
+  copy: content='+noall +answer\n' dest={{ ansible_facts['env']['HOME'] }}/.digrc
 
 - name: install helix
   pacman: package=helix state=installed
@@ -72,9 +72,9 @@
     - yaml-language-server
   become: true
 - name: ensure .config/helix exists
-  file: path={{ansible_env.HOME}}/.config/helix
+  file: path={{ ansible_facts['env']['HOME'] }}/.config/helix
 - name: configure helix
-  template: src=templates/helix/{{item}} dest={{ansible_env.HOME}}/.config/helix/{{item}}
+  template: src=templates/helix/{{ item }} dest={{ ansible_facts['env']['HOME'] }}/.config/helix/{{ item }}
   with_items:
   - config.toml
   - languages.toml
