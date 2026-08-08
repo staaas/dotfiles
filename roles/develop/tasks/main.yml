@@ -1,6 +1,6 @@
 ---
 - name: ensure ~/projects exists
-  file: path={{ ansible_env.HOME }}/projects state=directory
+  file: path={{ ansible_facts["env"]["HOME"] }}/projects state=directory
 
 - include_tasks: scm.yml
 
