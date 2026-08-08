@@ -45,14 +45,3 @@
 - name: mask service systemd-backlight@backlight:acpi_video0.service which produced errors in logs
   systemd: name=systemd-backlight@backlight:acpi_video0.service masked=yes
   become: true
-
-- name: "copy disable-acpi-wakeup service"
-  copy: >
-    src=templates/disable-acpi-wakeup.service
-    dest=/usr/lib/systemd/system/disable-acpi-wakeup.service
-    owner=root
-    group=root
-  become: true
-- name: "start disable-acpi-wakeup service"
-  systemd: name=disable-acpi-wakeup state=started enabled=yes daemon_reload=yes
-  become: true
